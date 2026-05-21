@@ -1,0 +1,33 @@
+#pragma once
+
+#ifndef GERENCIADORGRAFICO_H_
+#define GERENCIADORGRAFICO_H_
+
+#include <SFML/Graphics.hpp>
+
+namespace TrabalhoJogo {
+	class Ente;
+}
+namespace TrabalhoJogo {
+	namespace Gerenciadores {
+		class GerenciadorGrafico {
+		private:
+			sf::RenderWindow obj;
+		public:
+			GerenciadorGrafico();
+			~GerenciadorGrafico();
+
+			bool janelaAberta() const;
+			void fecharJanela();
+
+			void tratarEventos();
+			void limpar();
+			void mostrar();
+
+			void desenharEnte(Ente* pE);
+			void desenharFigura(const sf::Drawable& figura);
+		};
+	}
+}
+#endif
+
