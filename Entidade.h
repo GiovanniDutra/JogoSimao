@@ -13,7 +13,7 @@ namespace TrabalhoJogo {
 		protected:
 			int x;
 			int y;
-			//ostream buffer;
+			//ostream buffer; Falta Entender
 		public:
 			Entidade();
 			virtual ~Entidade();

@@ -8,10 +8,7 @@ namespace TrabalhoJogo {
 	Gerenciadores::GerenciadorGrafico* Ente::pGG = NULL;
 
 	Ente::Ente() : id(0), pFig(0) {}
-	Ente::~Ente() {
-		delete pFig;
-		pFig = 0;
-	}
+	Ente::~Ente() {}
 
 	void Ente::desenhar() {
 		if (pGG != NULL) {
@@ -21,5 +18,13 @@ namespace TrabalhoJogo {
 
 	void Ente::setGG(Gerenciadores::GerenciadorGrafico* pGerenciadorGrafico) {
 		pGG = pGerenciadorGrafico;
+	}
+
+	Figura* Ente::getFigura() const {
+		return pFig;
+	}
+
+	void Ente::setFigura(Figura* pF) {
+		pFig = pF;
 	}
 }

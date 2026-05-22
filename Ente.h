@@ -24,6 +24,9 @@ namespace TrabalhoJogo {
 		void desenhar();
 
 		static void setGG(Gerenciadores::GerenciadorGrafico* pGG);
+
+		Figura* getFigura() const;
+		void setFigura(Figura* pF);
 	};
 }
 
