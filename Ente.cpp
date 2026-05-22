@@ -1,13 +1,15 @@
 #include "Ente.h"
 #include "GerenciadorGrafico.h"
 #include <stdlib.h>
+
+#include "SFML/Graphics.hpp"
 //#include "Figura.h"
 
 namespace TrabalhoJogo {
 
 	Gerenciadores::GerenciadorGrafico* Ente::pGG = NULL;
 
-	Ente::Ente() : id(0), pFig(0) {}
+	Ente::Ente() : id(0) {}
 	Ente::~Ente() {}
 
 	void Ente::desenhar() {
@@ -19,12 +21,21 @@ namespace TrabalhoJogo {
 	void Ente::setGG(Gerenciadores::GerenciadorGrafico* pGerenciadorGrafico) {
 		pGG = pGerenciadorGrafico;
 	}
+	bool Ente::carregarTextura(const char* caminho) {
+		if (!textura.loadFromFile(caminho)) {
+			return false;
+		}
+		
+		sprite.setTexture(textura);
 
-	Figura* Ente::getFigura() const {
-		return pFig;
+		return true;
 	}
 
-	void Ente::setFigura(Figura* pF) {
-		pFig = pF;
+	sf::Sprite& Ente::getSprite() {
+		return sprite;
+	}
+
+	const sf::Sprite& Ente::getSprite() const {
+		return sprite;
 	}
 }

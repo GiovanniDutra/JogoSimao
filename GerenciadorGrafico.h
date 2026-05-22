@@ -25,7 +25,6 @@ namespace TrabalhoJogo {
 			void mostrar();
 
 			void desenharEnte(Ente* pE);
-			void desenharFigura(const sf::Drawable& figura);
 		};
 	}
 }

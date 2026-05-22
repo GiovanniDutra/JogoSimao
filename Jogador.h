@@ -9,27 +9,28 @@ namespace TrabalhoJogo {
 	namespace Entidades {
 		namespace Personagens {
 
-				class Inimigo;
+			class Inimigo;
 
-				class Jogador : public Personagem
-				{
-				private:
-					int pontos;
+			class Jogador : public Personagem
+			{
+			protected:
+				int pontos;
 
-				public:
+			public:
 
-					Jogador();
-					virtual ~Jogador();
+				Jogador();
+				~Jogador();
 
-					void colidir(Inimigo* inimigo);
-					virtual void executar();
-					virtual void salvar();
-					virtual void mover();
+				void colidir(Inimigo* inimigo);
 
-					void addPontos(int valor);
-					int getPontos() const;
+				void executar();
+				void salvar();
+				void mover();
 
-				};
+				void addPontos(int valor);
+				int getPontos() const;
+
+			};
 		}
 	}
 }

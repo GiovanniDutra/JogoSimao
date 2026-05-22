@@ -1,6 +1,8 @@
 #include "GerenciadorGrafico.h"
 #include "Ente.h"
 
+#include "SFML/Graphics.hpp"
+
 namespace TrabalhoJogo {
 	namespace Gerenciadores {
 		GerenciadorGrafico::GerenciadorGrafico() :
@@ -41,10 +43,10 @@ namespace TrabalhoJogo {
 			obj.display();
 		}
 
-		void GerenciadorGrafico::desenharEnte(Ente* pE) {} //Falta Implementar
-
-		void GerenciadorGrafico::desenharFigura(const sf::Drawable& figura) {
-			obj.draw(figura);
+		void GerenciadorGrafico::desenharEnte(Ente* pE) {
+			if (pE != NULL) {
+				obj.draw(pE->getSprite());
+			}
 		}
 	}
 }

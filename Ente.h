@@ -3,6 +3,8 @@
 #ifndef ENTE_H_
 #define ENTE_H_
 
+#include "SFML/Graphics.hpp"
+
 namespace TrabalhoJogo {
 	
 	class Figura;
@@ -15,7 +17,8 @@ namespace TrabalhoJogo {
 	protected:
 		int id;
 		static Gerenciadores::GerenciadorGrafico* pGG;
-		Figura* pFig;
+		sf::Texture textura;
+		sf::Sprite sprite;
 	public:
 		Ente();
 		virtual ~Ente();
@@ -25,8 +28,9 @@ namespace TrabalhoJogo {
 
 		static void setGG(Gerenciadores::GerenciadorGrafico* pGG);
 
-		Figura* getFigura() const;
-		void setFigura(Figura* pF);
+		bool carregarTextura(const char* caminho);
+		sf::Sprite& getSprite();
+		const sf::Sprite& getSprite() const;
 	};
 }
 
