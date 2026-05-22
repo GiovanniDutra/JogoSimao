@@ -21,21 +21,4 @@ namespace TrabalhoJogo {
 	void Ente::setGG(Gerenciadores::GerenciadorGrafico* pGerenciadorGrafico) {
 		pGG = pGerenciadorGrafico;
 	}
-	bool Ente::carregarTextura(const char* caminho) {
-		if (!textura.loadFromFile(caminho)) {
-			return false;
-		}
-		
-		sprite.setTexture(textura);
-
-		return true;
-	}
-
-	sf::Sprite& Ente::getSprite() {
-		return sprite;
-	}
-
-	const sf::Sprite& Ente::getSprite() const {
-		return sprite;
-	}
 }

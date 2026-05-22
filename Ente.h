@@ -17,8 +17,8 @@ namespace TrabalhoJogo {
 	protected:
 		int id;
 		static Gerenciadores::GerenciadorGrafico* pGG;
-		sf::Texture textura;
-		sf::Sprite sprite;
+		sf::Texture texturaEntidade;
+		sf::RectangleShape body;
 	public:
 		Ente();
 		virtual ~Ente();
@@ -28,9 +28,7 @@ namespace TrabalhoJogo {
 
 		static void setGG(Gerenciadores::GerenciadorGrafico* pGG);
 
-		bool carregarTextura(const char* caminho);
-		sf::Sprite& getSprite();
-		const sf::Sprite& getSprite() const;
+		//void setTexture()
 	};
 }
 
