@@ -7,6 +7,11 @@ namespace TrabalhoJogo {
 
 			InimFacil::InimFacil()
 			{
+				/*
+				num_vidas = 1;
+				nivel_mal = 1;
+				raio = 120.f;
+				*/
 
 			}
 			InimFacil::~InimFacil()
@@ -15,11 +20,18 @@ namespace TrabalhoJogo {
 			}
 			void InimFacil::executar()
 			{
-
+				//implementar ainda
 			}
 			void InimFacil::danificar(Jogador* p)
 			{
-
+				/*if (Jogador)
+				{
+					perde vida
+				}*/
+			}
+			void InimFacil::salvar()
+			{
+				
 			}
 		}
 	}

@@ -22,6 +22,7 @@ namespace TrabalhoJogo {
 
 				void executar();
 				void danificar(Jogador* p);
+				void salvar();
 
 			};
 		}
