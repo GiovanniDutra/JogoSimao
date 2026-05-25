@@ -29,6 +29,9 @@ namespace TrabalhoJogo {
 		static void setGG(Gerenciadores::GerenciadorGrafico* pGG);
 
 		//void setTexture()
+
+		sf::RectangleShape& getBody();
+		const sf::RectangleShape& getBody() const;
 	};
 }
 

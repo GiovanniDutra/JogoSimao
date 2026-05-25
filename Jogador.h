@@ -15,13 +15,21 @@ namespace TrabalhoJogo {
 			{
 			protected:
 				int pontos;
+				int velocidadeY;
+				bool noChao;
 
+				void aplicarGravidade();
+				void pular();
 			public:
 
 				Jogador();
 				~Jogador();
 
-				void colidir(Inimigo* inimigo);
+				void colidir(Inimigo* pInim);
+
+				int getVelocidadeY() const;
+				void zerarVelocidadeY();
+				void setNoChao(bool estado);
 
 				void executar();
 				void salvar();

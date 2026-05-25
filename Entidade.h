@@ -22,6 +22,10 @@ namespace TrabalhoJogo {
 		public:
 			virtual void executar() = 0;
 			virtual void salvar() = 0;
+
+			void setPosicao(int x, int y);
+			int getX() const;
+			int getY() const;
 		};
 	}
 }

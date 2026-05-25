@@ -9,49 +9,50 @@ namespace TrabalhoJogo {
 
 			Jogador::Jogador():
 				Personagem(),
-				pontos(0)
+				pontos(0),
+				velocidadeY(0),
+				noChao(false)
 			{
-				
+				num_vidas = 5;
+
+				body.setSize(sf::Vector2f(100.f, 100.f));
+				body.setFillColor(sf::Color::White);
+
+				setPosicao(100, 300);
 			}
 
-			Jogador::~Jogador()
-			{
-
-			}
+			Jogador::~Jogador() {}
 
 			void Jogador::executar()
 			{
 				mover();
+				aplicarGravidade();
 			}
+
+			void Jogador::salvar() {}
 
 			void Jogador::mover()
 			{
-				const int velocidade = 5;
+				const int velocidadeX = 5;
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+				int novoX = getX();
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 				{
-					x -= velocidade;
+					novoX -= velocidadeX;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 				{
-					x += velocidade;
+					novoX += velocidadeX;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 				{
-					y -= velocidade;
+					pular();
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-				{
-					y += velocidade;
-				}
-			}
-
-			void Jogador::salvar()
-			{
-
+				setPosicao(novoX, getY());
 			}
 
 			void Jogador::colidir(Inimigo* pInim)
@@ -62,13 +63,47 @@ namespace TrabalhoJogo {
 				}
 			}
 
-			void Jogador::addPontos(int valor)
-			{
+			void Jogador::pular() {
+				if (noChao)
+				{
+					velocidadeY = -15;
+					noChao = false;
+				}
+			}
+
+			void Jogador::aplicarGravidade() {
+				const int gravidade = 1;
+				const int velocidadeMaxima = 20;
+
+				velocidadeY += gravidade;
+
+				if (velocidadeY > velocidadeMaxima)
+				{
+					velocidadeY = velocidadeMaxima;
+				}
+
+				noChao = false;
+
+				setPosicao(getX(), getY() + velocidadeY);
+			}
+
+			int Jogador::getVelocidadeY() const {
+				return velocidadeY;
+			}
+
+			void Jogador::zerarVelocidadeY() {
+				velocidadeY = 0;
+			}
+
+			void Jogador::setNoChao(bool estado) {
+				noChao = estado;
+			}
+
+			void Jogador::addPontos(int valor) {
 				pontos += valor;
 			}
 
-			int Jogador::getPontos() const
-			{
+			int Jogador::getPontos() const {
 				return pontos;
 			}
 		}

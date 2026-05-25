@@ -45,7 +45,7 @@ namespace TrabalhoJogo {
 
 		void GerenciadorGrafico::desenharEnte(Ente* pE) {
 			if (pE != NULL) {
-				obj.draw(pE->getSprite());
+				obj.draw(pE->getBody());
 			}
 		}
 	}

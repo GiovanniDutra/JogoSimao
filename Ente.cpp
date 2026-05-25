@@ -9,7 +9,9 @@ namespace TrabalhoJogo {
 
 	Gerenciadores::GerenciadorGrafico* Ente::pGG = NULL;
 
-	Ente::Ente() : id(0) {}
+	Ente::Ente() : id(0),
+		body(sf::Vector2f(100.f, 100.f)){}
+	
 	Ente::~Ente() {}
 
 	void Ente::desenhar() {
@@ -20,5 +22,13 @@ namespace TrabalhoJogo {
 
 	void Ente::setGG(Gerenciadores::GerenciadorGrafico* pGerenciadorGrafico) {
 		pGG = pGerenciadorGrafico;
+	}
+	sf::RectangleShape& Ente::getBody()
+	{
+		return body;
+	}
+	const sf::RectangleShape& Ente::getBody() const
+	{
+		return body;
 	}
 }

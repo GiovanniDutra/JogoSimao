@@ -1,5 +1,26 @@
 #pragma once
-class Plataforma
-{
-};
+
+#ifndef PLATAFORMA_H_
+#define PLATAFORMA_H_
+
+#include "Obstaculo.h"
+
+namespace TrabalhoJogo {
+	namespace Entidades {
+		namespace Obstaculos {
+			class Plataforma : public Obstaculo {
+			private:
+				int altura;
+			public:
+				Plataforma();
+				~Plataforma();
+
+				void executar();
+				void obstaculizar(Personagens::Jogador* pJogador);
+				void salvar();
+			};
+		}
+	}
+}
+#endif
 

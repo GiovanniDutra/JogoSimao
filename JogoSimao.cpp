@@ -28,21 +28,27 @@ int main()
 
 #include "GerenciadorGrafico.h"
 #include "Ente.h"
+#include "Jogador.h"
+#include "Plataforma.h"
 
 int main() {
     TrabalhoJogo::Gerenciadores::GerenciadorGrafico gerenciadorGrafico;
     TrabalhoJogo::Ente::setGG(&gerenciadorGrafico);
+    TrabalhoJogo::Entidades::Personagens::Jogador jogador;
+    TrabalhoJogo::Entidades::Obstaculos::Plataforma plataforma;
 
     while (gerenciadorGrafico.janelaAberta()) {
         gerenciadorGrafico.tratarEventos();
         gerenciadorGrafico.limpar();
 
-        //jogo.executar();
-        //fase.executar();
-        //entidade.executar();
+        jogador.executar();
+        
+        plataforma.obstaculizar(&jogador);
+
+        plataforma.executar();
+        jogador.desenhar();
 
         gerenciadorGrafico.mostrar();
     }
-
     return 0;
 }
