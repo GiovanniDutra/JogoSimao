@@ -27,15 +27,22 @@ int main()
 */
 
 #include "GerenciadorGrafico.h"
+#include "GerenciadorColisoes.h"
 #include "Ente.h"
 #include "Jogador.h"
 #include "Plataforma.h"
 
 int main() {
     TrabalhoJogo::Gerenciadores::GerenciadorGrafico gerenciadorGrafico;
+    TrabalhoJogo::Gerenciadores::GerenciadorColisoes gerenciadorColisoes;
+
     TrabalhoJogo::Ente::setGG(&gerenciadorGrafico);
+
     TrabalhoJogo::Entidades::Personagens::Jogador jogador;
     TrabalhoJogo::Entidades::Obstaculos::Plataforma plataforma;
+
+    gerenciadorColisoes.setJogador(&jogador);
+    gerenciadorColisoes.incluirObstaculo(&plataforma);
 
     while (gerenciadorGrafico.janelaAberta()) {
         gerenciadorGrafico.tratarEventos();
@@ -43,7 +50,7 @@ int main() {
 
         jogador.executar();
         
-        plataforma.obstaculizar(&jogador);
+        gerenciadorColisoes.executar();
 
         plataforma.executar();
         jogador.desenhar();

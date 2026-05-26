@@ -6,14 +6,14 @@ namespace TrabalhoJogo {
 		namespace Obstaculos {
 			Plataforma::Plataforma() :
 				Obstaculo(),
-				altura(40) 
+				altura(40)
 			{
 				danoso = false;
 
 				body.setSize(sf::Vector2f(1300.0f, static_cast<float>(altura)));
 				body.setFillColor(sf::Color(120, 120, 120));
 
-				setPosicao(0, 600);
+				setPosicao(0, 700);
 			}
 
 			Plataforma::~Plataforma(){}
