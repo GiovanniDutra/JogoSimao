@@ -11,12 +11,18 @@ namespace TrabalhoJogo {
 	namespace Gerenciadores {
 		class GerenciadorColisoes;
 	}
+	namespace Entidades {
+		namespace Personagens {
+			class Jogador;
+		}
+	}
 
 	namespace Fases {
 		class Fase : public Ente {
 		protected:
 			Listas::ListaEntidades listaEnts;
 			Gerenciadores::GerenciadorColisoes* pGC;
+			Entidades::Personagens::Jogador* pJog1;
 		public:
 			Fase();
 			~Fase();

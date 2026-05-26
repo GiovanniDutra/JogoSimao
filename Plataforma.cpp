@@ -11,7 +11,7 @@ namespace TrabalhoJogo {
 				danoso = false;
 
 				body.setSize(sf::Vector2f(1300.0f, static_cast<float>(altura)));
-				body.setFillColor(sf::Color(120, 120, 120));
+				body.setFillColor(sf::Color::Green);
 
 				setPosicao(0, 700);
 			}

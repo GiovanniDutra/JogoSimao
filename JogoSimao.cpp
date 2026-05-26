@@ -31,29 +31,23 @@ int main()
 #include "Ente.h"
 #include "Jogador.h"
 #include "Plataforma.h"
+#include "FasePrimeira.h"
 
 int main() {
     TrabalhoJogo::Gerenciadores::GerenciadorGrafico gerenciadorGrafico;
     TrabalhoJogo::Gerenciadores::GerenciadorColisoes gerenciadorColisoes;
 
     TrabalhoJogo::Ente::setGG(&gerenciadorGrafico);
-
-    TrabalhoJogo::Entidades::Personagens::Jogador jogador;
-    TrabalhoJogo::Entidades::Obstaculos::Plataforma plataforma;
-
-    gerenciadorColisoes.setJogador(&jogador);
-    gerenciadorColisoes.incluirObstaculo(&plataforma);
+    
+	TrabalhoJogo::Fases::FasePrimeira fasePrimeira;
 
     while (gerenciadorGrafico.janelaAberta()) {
         gerenciadorGrafico.tratarEventos();
         gerenciadorGrafico.limpar();
 
-        jogador.executar();
+        fasePrimeira.executar();
         
         gerenciadorColisoes.executar();
-
-        plataforma.executar();
-        jogador.desenhar();
 
         gerenciadorGrafico.mostrar();
     }

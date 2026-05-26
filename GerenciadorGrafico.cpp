@@ -6,7 +6,7 @@
 namespace TrabalhoJogo {
 	namespace Gerenciadores {
 		GerenciadorGrafico::GerenciadorGrafico() :
-			obj(sf::VideoMode(1500, 800), "TrabalhoJogo++")
+			obj(sf::VideoMode(1900, 1050), "TrabalhoJogo++")
 		{
 			obj.setFramerateLimit(60);
 		}

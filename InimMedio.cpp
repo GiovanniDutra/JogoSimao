@@ -18,7 +18,7 @@ namespace TrabalhoJogo {
 
 				body.setFillColor(sf::Color::Red);
 
-				setPosicao(400, 300);
+				setPosicao(400, 500);
 			}
 
 			InimMedio::~InimMedio(){}
@@ -39,7 +39,7 @@ namespace TrabalhoJogo {
 
 				setPosicao(novoX, getY());
 			}
-
+			
 			void InimMedio::danificar(Jogador* p) {
 				if (p != NULL) {
 					p->colidir(this);

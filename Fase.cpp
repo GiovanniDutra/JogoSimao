@@ -1,9 +1,11 @@
 #include "Fase.h"
 #include "GerenciadorColisoes.h"
+#include "Plataforma.h"
+#include "Jogador.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
-		Fase::Fase() : Ente(), pGC(NULL) {
+		Fase::Fase() : Ente(), pGC(NULL), pJog1(NULL) {
 			pGC = new Gerenciadores::GerenciadorColisoes();
 		}
 		Fase::~Fase() {
@@ -26,10 +28,27 @@ namespace TrabalhoJogo {
 		}
 
 		void Fase::criarPlataformas() {
-			//Implementar Quando Plataforma Existir
+			Entidades::Obstaculos::Plataforma* pPlat =
+				new Entidades::Obstaculos::Plataforma();
+
+			listaEnts.incluirEntidade(pPlat);
+
+			if (pGC != NULL)
+			{
+				pGC->incluirObstaculo(pPlat);
+			}
 		}
 
 		void Fase::criarCenario() {
+			pJog1 = new Entidades::Personagens::Jogador();
+
+			listaEnts.incluirEntidade(pJog1);
+
+			if (pGC != NULL)
+			{
+				pGC->setJogador(pJog1);
+			}
+
 			criarInimFaceis();
 			criarObstaculos();
 			criarPlataformas();
