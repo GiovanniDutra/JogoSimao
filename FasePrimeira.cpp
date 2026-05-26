@@ -1,10 +1,11 @@
 #include "FasePrimeira.h"
+#include "InimMedio.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
 		FasePrimeira::FasePrimeira() :
 			Fase(),
-			maxInimMedios(5)
+			maxInimMedios(3)
 		{
 			criarCenario();
 		}
@@ -20,7 +21,13 @@ namespace TrabalhoJogo {
 		}
 
 		void FasePrimeira::criarInimMedios() {
-			//Implementar Quando Inimigo Medio Existir
+			Entidades::Personagens::InimMedio* pInimMedio = new Entidades::Personagens::InimMedio();
+
+			listaEnts.incluirEntidade(pInimMedio);
+
+			if(pGC != NULL) {
+				pGC->incluirInimigo(pInimMedio);
+			}
 		}
 
 		void FasePrimeira::criarObstMedios() {

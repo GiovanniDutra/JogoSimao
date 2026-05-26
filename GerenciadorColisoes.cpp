@@ -62,7 +62,17 @@ namespace TrabalhoJogo {
 		}
 
 		void GerenciadorColisoes::tratarColisoesJogoInimigos() {
-			//Implementar Quando Inimigo Existir
+			if(pJog1 == NULL) {
+				return;
+			}
+
+			for (int i = 0; i < LIs.size(); i++) {
+				if(LIs[i] != NULL) {
+					if (verificarColisao(pJog1, LIs[i])) {
+						LIs[i]->danificar(pJog1);
+					}
+				}
+			}
 		}
 
 		void GerenciadorColisoes::tratarColisoesJogoProjeteis() {

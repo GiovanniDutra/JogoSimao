@@ -5,6 +5,7 @@
 
 #include "Ente.h"
 #include "ListaEntidades.h"
+#include "GerenciadorColisoes.h"
 
 namespace TrabalhoJogo {
 	namespace Gerenciadores {
