@@ -10,6 +10,15 @@ namespace TrabalhoJogo {
 			Personagem::~Personagem() {}
 
 			void Personagem::salvaDataBuffer(){} //Falta Implementar
+
+			void Personagem::receberDano(int dano)
+			{
+				num_vidas -= dano;
+				if (num_vidas < 0)
+				{
+					num_vidas = 0;
+				}
+			}
 		}
 	}
 }
