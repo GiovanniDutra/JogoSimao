@@ -18,8 +18,12 @@ namespace TrabalhoJogo {
 				int velocidadeY;
 				bool noChao;
 
+				bool invuneravel;
+				int tempInvuneravel;
+
 				void aplicarGravidade();
 				void pular();
+				void atualizarInvunerabilidade();
 			public:
 
 				Jogador();
@@ -37,6 +41,8 @@ namespace TrabalhoJogo {
 
 				void addPontos(int valor);
 				int getPontos() const;
+
+				void receberDano();
 
 			};
 		}

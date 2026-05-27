@@ -46,7 +46,7 @@ namespace TrabalhoJogo {
 			}
 		}
 
-		void GerenciadorColisoes::tratarColisoesJogoObstaculos() {
+		void GerenciadorColisoes::tratarColisoesJogsObstaculos() {
 			if (pJog1 == NULL) {
 				return;
 			}
@@ -61,7 +61,7 @@ namespace TrabalhoJogo {
 			}
 		}
 
-		void GerenciadorColisoes::tratarColisoesJogoInimigos() {
+		void GerenciadorColisoes::tratarColisoesJogsInimigos() {
 			if(pJog1 == NULL) {
 				return;
 			}
@@ -75,14 +75,14 @@ namespace TrabalhoJogo {
 			}
 		}
 
-		void GerenciadorColisoes::tratarColisoesJogoProjeteis() {
+		void GerenciadorColisoes::tratarColisoesJogsProjeteis() {
 			//Implementar Quando Projetil Existir
 		}
 
 		void GerenciadorColisoes::executar() {
-			tratarColisoesJogoObstaculos();
-			tratarColisoesJogoInimigos();
-			tratarColisoesJogoProjeteis();
+			tratarColisoesJogsObstaculos();
+			tratarColisoesJogsInimigos();
+			tratarColisoesJogsProjeteis();
 		}
 	}
 }

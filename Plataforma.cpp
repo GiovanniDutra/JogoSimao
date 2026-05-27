@@ -10,10 +10,24 @@ namespace TrabalhoJogo {
 			{
 				danoso = false;
 
-				body.setSize(sf::Vector2f(1300.0f, static_cast<float>(altura)));
+				body.setSize(sf::Vector2f(1300.0f, 25.f));
 				body.setFillColor(sf::Color::Green);
 
 				setPosicao(0, 700);
+			}
+
+			Plataforma::Plataforma(int x, int y, int largura, int altura) :
+				Obstaculo(),
+				altura(altura)
+			{
+				danoso = false;
+
+				body.setSize(sf::Vector2f(static_cast<float>(largura),
+					static_cast<float>(altura)));
+
+				body.setFillColor(sf::Color(120, 120, 120));
+
+				setPosicao(x, y);
 			}
 
 			Plataforma::~Plataforma(){}

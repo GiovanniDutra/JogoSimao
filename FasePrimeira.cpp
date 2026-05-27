@@ -1,5 +1,6 @@
 #include "FasePrimeira.h"
 #include "InimMedio.h"
+#include "ObstMedio.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
@@ -31,7 +32,13 @@ namespace TrabalhoJogo {
 		}
 
 		void FasePrimeira::criarObstMedios() {
-			//Implementar Quando Obstaculo Medio Existir
+			Entidades::Obstaculos::ObstMedio* pObstMedio1 = new Entidades::Obstaculos::ObstMedio(300, 600);
+
+			listaEnts.incluirEntidade(pObstMedio1);
+
+			if(pGC != NULL) {
+				pGC->incluirObstaculo(pObstMedio1);
+			}
 		}
 	}
 }

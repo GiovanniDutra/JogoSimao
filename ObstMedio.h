@@ -13,9 +13,11 @@ namespace TrabalhoJogo {
 				float largura;
 			public:
 				ObstMedio();
+				ObstMedio(int x, int y); //Sobrecarga para facilitar a criação
 				~ObstMedio();
 
 				void executar();
+				void salvar();
 
 				void obstaculizar(Personagens::Jogador* pJogador);
 			};

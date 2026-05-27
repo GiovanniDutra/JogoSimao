@@ -11,7 +11,9 @@ namespace TrabalhoJogo {
 				Personagem(),
 				pontos(0),
 				velocidadeY(0),
-				noChao(false)
+				noChao(false),
+				invuneravel(false),
+				tempInvuneravel(0)
 			{
 				num_vidas = 5;
 
@@ -27,6 +29,7 @@ namespace TrabalhoJogo {
 			{
 				mover();
 				aplicarGravidade();
+				atualizarInvunerabilidade();
 			}
 
 			void Jogador::salvar() {}
@@ -59,7 +62,7 @@ namespace TrabalhoJogo {
 			{
 				if (pInim != NULL)
 				{
-					num_vidas--;
+					receberDano();
 				}
 			}
 
@@ -105,6 +108,29 @@ namespace TrabalhoJogo {
 
 			int Jogador::getPontos() const {
 				return pontos;
+			}
+
+			void Jogador::atualizarInvunerabilidade() {
+				if (invuneravel) {
+					tempInvuneravel--;
+
+					if (tempInvuneravel <= 0) {
+						invuneravel = false;
+						tempInvuneravel = 0;
+						body.setFillColor(sf::Color::White);
+					}
+				}
+			}
+
+			void Jogador::receberDano() {
+				if (!invuneravel) {
+					num_vidas--;
+
+					invuneravel = true;
+					tempInvuneravel = 30;
+
+					body.setFillColor(sf::Color::Yellow);
+				}
 			}
 		}
 	}

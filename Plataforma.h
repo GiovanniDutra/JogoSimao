@@ -13,6 +13,7 @@ namespace TrabalhoJogo {
 				int altura;
 			public:
 				Plataforma();
+				Plataforma(int x, int y, int largura, int altura); //Sobrecarga para facilitar a criação
 				~Plataforma();
 
 				void executar();

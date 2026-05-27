@@ -32,9 +32,9 @@ namespace TrabalhoJogo {
 		private:
 			bool const verificarColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2) const;
 
-			void tratarColisoesJogoObstaculos();
-			void tratarColisoesJogoInimigos();
-			void tratarColisoesJogoProjeteis();
+			void tratarColisoesJogsObstaculos();
+			void tratarColisoesJogsInimigos();
+			void tratarColisoesJogsProjeteis();
 		public:
 			GerenciadorColisoes();
 			~GerenciadorColisoes();
