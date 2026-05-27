@@ -6,7 +6,7 @@ namespace TrabalhoJogo {
 	namespace Fases {
 		FasePrimeira::FasePrimeira() :
 			Fase(),
-			maxInimMedios(3)
+			maxInimMedios(10)
 		{
 			criarCenario();
 		}
@@ -40,5 +40,7 @@ namespace TrabalhoJogo {
 				pGC->incluirObstaculo(pObstMedio1);
 			}
 		}
+
+
 	}
 }

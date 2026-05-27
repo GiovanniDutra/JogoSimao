@@ -15,6 +15,7 @@ namespace TrabalhoJogo {
 			{
 			private:
 				float raio;
+				int direcao; // -1 para esquerda, 1 para direita
 				
 			public:
 				InimFacil();
@@ -22,6 +23,9 @@ namespace TrabalhoJogo {
 
 				void executar();
 				void danificar(Jogador* p);
+				void salvar();
+				void mover();
+
 
 			};
 		}

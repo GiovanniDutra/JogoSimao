@@ -2,6 +2,7 @@
 #include "GerenciadorColisoes.h"
 #include "Plataforma.h"
 #include "Jogador.h"
+#include "InimFacil.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
@@ -25,7 +26,13 @@ namespace TrabalhoJogo {
 		}
 
 		void Fase::criarInimFaceis() {
-			//Implementar Quando Inimigo Existir
+			Entidades::Personagens::InimFacil* pInimFacil1 = new Entidades::Personagens::InimFacil();
+
+			listaEnts.incluirEntidade(pInimFacil1);
+
+			if(pGC != NULL) {
+				pGC->incluirInimigo(pInimFacil1);
+			}
 		}
 
 		void Fase::criarPlataformas() {

@@ -23,6 +23,7 @@ namespace TrabalhoJogo {
 			Listas::ListaEntidades listaEnts;
 			Gerenciadores::GerenciadorColisoes* pGC;
 			Entidades::Personagens::Jogador* pJog1;
+
 		public:
 			Fase();
 			~Fase();
@@ -35,6 +36,8 @@ namespace TrabalhoJogo {
 			virtual void criarObstaculos() = 0;
 			
 			virtual void criarCenario();
+
+
 		};
 	}
 }
