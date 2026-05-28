@@ -9,7 +9,9 @@ namespace TrabalhoJogo {
 			InimMedio::InimMedio() :
 				Inimigo(),
 				tamanho(45),
-				direcao(1)
+				direcao(1),
+				limEsq(450),
+				limDir(750)
 			{
 				nivelMaldade = 2;
 				num_vidas = 2;
@@ -21,6 +23,22 @@ namespace TrabalhoJogo {
 				setPosicao(400, 500);
 			}
 
+			InimMedio::InimMedio(int x, int y, int limEsq, int limDir) :
+				Inimigo(),
+				tamanho(45),
+				direcao(1),
+				limEsq(limEsq),
+				limDir(limDir)
+			{
+				nivelMaldade = 2;
+				num_vidas = 2;
+
+				body.setSize(sf::Vector2f(100.f, 100.f));
+				body.setFillColor(sf::Color::Red);
+
+				setPosicao(x, y);
+			}
+
 			InimMedio::~InimMedio(){}
 
 			void InimMedio::mover() {
@@ -28,12 +46,12 @@ namespace TrabalhoJogo {
 
 				int novoX = getX() + velocidade * direcao;
 
-				if (novoX < 450) {
-					novoX = 450;
+				if (novoX < limEsq) {
+					novoX = limEsq;
 					direcao = 1;
 				}
-				else if (novoX > 750) {
-					novoX = 750;
+				else if (novoX > limDir) {
+					novoX = limDir;
 					direcao = -1;
 				}
 

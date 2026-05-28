@@ -15,11 +15,13 @@ namespace TrabalhoJogo {
 			{
 			private:
 				float raio;
-				int direcao; // -1 para esquerda, 1 para direita
-				
+				int direcao;
+				int limEsq;
+				int limDir;
 			public:
 				InimFacil();
-				virtual ~InimFacil();
+				InimFacil(int x, int y, int limEsq, int limDir); //Sobrecarga
+				~InimFacil();
 
 				void executar();
 				void danificar(Jogador* p);

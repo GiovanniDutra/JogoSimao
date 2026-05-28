@@ -44,6 +44,9 @@ namespace TrabalhoJogo {
 
 				void receberDano();
 
+				int getNumVidas() const;
+				bool estarVivo() const;
+
 			};
 		}
 	}

@@ -132,6 +132,14 @@ namespace TrabalhoJogo {
 					body.setFillColor(sf::Color::Yellow);
 				}
 			}
+
+			int Jogador::getNumVidas() const {
+				return num_vidas;
+			}
+
+			bool Jogador::estarVivo() const {
+				return num_vidas > 0;
+			}
 		}
 	}
 }

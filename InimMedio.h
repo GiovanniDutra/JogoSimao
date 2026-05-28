@@ -12,8 +12,11 @@ namespace TrabalhoJogo {
 			private:
 				int tamanho;
 				int direcao;
+				int limEsq;
+				int limDir;
 			public:
 				InimMedio();
+				InimMedio(int x, int y, int limEsq, int limDir); //Sobrecarga
 				~InimMedio();
 
 				virtual void executar();

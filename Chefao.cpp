@@ -1,4 +1,4 @@
-#include "Chefao.h"
+/*#include "Chefao.h"
 #include "Jogador.h"
 
 namespace TrabalhoJogo {
@@ -20,3 +20,4 @@ namespace TrabalhoJogo {
 		}
 	}
 }
+*/

@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #ifndef CHEFAO_H_
 #define CHEFAO_H_
@@ -26,4 +26,4 @@ namespace TrabalhoJogo {
 }
 
 #endif
-
+*/

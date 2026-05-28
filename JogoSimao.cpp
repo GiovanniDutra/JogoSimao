@@ -27,10 +27,7 @@ int main()
 */
 
 #include "GerenciadorGrafico.h"
-#include "GerenciadorColisoes.h"
 #include "Ente.h"
-#include "Jogador.h"
-#include "Plataforma.h"
 #include "FasePrimeira.h"
 
 int main() {
@@ -46,8 +43,11 @@ int main() {
         gerenciadorGrafico.limpar();
 
         fasePrimeira.executar();
+        if (fasePrimeira.getTerminou()) {
+            gerenciadorGrafico.fecharJanela();
+        }
         
-        gerenciadorColisoes.executar();
+        //GerenciadorColisoes.executar();
 
         gerenciadorGrafico.mostrar();
     }

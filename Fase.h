@@ -24,20 +24,25 @@ namespace TrabalhoJogo {
 			Gerenciadores::GerenciadorColisoes* pGC;
 			Entidades::Personagens::Jogador* pJog1;
 
+			bool terminarFase;
+			bool vitoria;
 		public:
 			Fase();
 			~Fase();
+			
 			virtual void executar();
+			
+			bool getTerminou() const;
+			bool getVitoria() const;
 		protected:
 			void criarInimFaceis();
 			void criarPlataformas();
-			
+			void criarCenario();
+
 			virtual void criarInimigos() = 0;
 			virtual void criarObstaculos() = 0;
 			
-			virtual void criarCenario();
-
-
+			void verificarFimFase();
 		};
 	}
 }
