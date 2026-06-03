@@ -10,6 +10,7 @@
 namespace TrabalhoJogo {
 	namespace Gerenciadores {
 		class GerenciadorColisoes;
+		class GerenciadorGrafico;
 	}
 	namespace Entidades {
 		namespace Personagens {
@@ -23,6 +24,9 @@ namespace TrabalhoJogo {
 			Listas::ListaEntidades listaEnts;
 			Gerenciadores::GerenciadorColisoes* pGC;
 			Entidades::Personagens::Jogador* pJog1;
+
+			sf::Texture texturaFundo;
+			sf::Sprite fundo;
 
 			bool terminarFase;
 			bool vitoria;
@@ -38,6 +42,7 @@ namespace TrabalhoJogo {
 			void criarInimFaceis();
 			void criarPlataformas();
 			void criarCenario();
+			void carregaFundo(const std::string& caminho);
 
 			virtual void criarInimigos() = 0;
 			virtual void criarObstaculos() = 0;

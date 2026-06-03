@@ -48,5 +48,9 @@ namespace TrabalhoJogo {
 				obj.draw(pE->getBody());
 			}
 		}
+		void GerenciadorGrafico::desenharFundo(sf::Drawable& drawable)
+		{
+			obj.draw(drawable);
+		}
 	}
 }

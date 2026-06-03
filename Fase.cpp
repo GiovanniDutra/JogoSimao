@@ -3,12 +3,17 @@
 #include "Plataforma.h"
 #include "Jogador.h"
 #include "InimFacil.h"
+#include "GerenciadorGrafico.h"
+#include <iostream>
 
 namespace TrabalhoJogo {
 	namespace Fases {
 		Fase::Fase() : Ente(), 
 			pGC(new Gerenciadores::GerenciadorColisoes()),
-			pJog1(NULL), terminarFase(false), vitoria(false) {}
+			pJog1(NULL), terminarFase(false), vitoria(false) {
+			
+			carregaFundo("assets/fundo_laboratorio.jpeg");
+		}
 
 		Fase::~Fase() {
 			delete pGC;
@@ -17,6 +22,8 @@ namespace TrabalhoJogo {
 		}
 
 		void Fase::executar() {
+			pGG->desenharFundo(fundo);
+
 			if (terminarFase) {
 				listaEnts.desenhar();
 				return;
@@ -51,6 +58,15 @@ namespace TrabalhoJogo {
 				pGC->incluirInimigo(pInimFacil2);
 				pGC->incluirInimigo(pInimFacil3);
 			}
+		}
+
+		void Fase::carregaFundo(const std::string& caminho) {
+			if (!texturaFundo.loadFromFile(caminho)) {
+				std::cout << "Erro ao carregar fundo: " << caminho << std::endl;
+				return;
+			}
+
+			fundo.setTexture(texturaFundo);
 		}
 
 		void Fase::criarPlataformas() {
