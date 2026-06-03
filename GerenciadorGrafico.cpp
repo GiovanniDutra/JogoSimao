@@ -25,6 +25,10 @@ namespace TrabalhoJogo {
 			obj.close();
 		}
 
+		sf::RenderWindow& GerenciadorGrafico::getJanela() {
+			return obj;
+		}
+
 		void GerenciadorGrafico::tratarEventos() {
 			sf::Event evento;
 

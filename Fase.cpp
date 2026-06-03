@@ -22,7 +22,7 @@ namespace TrabalhoJogo {
 		}
 
 		void Fase::executar() {
-			pGG->desenharFundo(fundo);
+			pGG->getJanela().draw(fundo);
 
 			if (terminarFase) {
 				listaEnts.desenhar();
@@ -37,6 +37,11 @@ namespace TrabalhoJogo {
 			verificarFimFase();
 
 			listaEnts.desenhar();
+
+			if (pJog1 && pJog1->getNumVidas() <= 0)
+			{
+				pGG->fecharJanela();
+			}
 		}
 
 		void Fase::criarInimFaceis() {
@@ -60,13 +65,22 @@ namespace TrabalhoJogo {
 			}
 		}
 
-		void Fase::carregaFundo(const std::string& caminho) {
+		void Fase::carregaFundo(const std::string& caminho) 
+		{
 			if (!texturaFundo.loadFromFile(caminho)) {
 				std::cout << "Erro ao carregar fundo: " << caminho << std::endl;
 				return;
 			}
 
 			fundo.setTexture(texturaFundo);
+
+			sf::Vector2u tamTextura = texturaFundo.getSize();
+			sf::Vector2u tamJanela = pGG->getJanela().getSize();
+
+			fundo.setScale(
+				static_cast<float>(tamJanela.x) / tamTextura.x,
+				static_cast<float>(tamJanela.y) / tamTextura.y
+			);
 		}
 
 		void Fase::criarPlataformas() {
