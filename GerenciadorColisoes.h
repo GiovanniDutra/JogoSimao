@@ -29,9 +29,12 @@ namespace TrabalhoJogo {
 			std::set<Entidades::Projetil*> LPs;
 
 			Entidades::Personagens::Jogador* pJog1;
+
+			int limiteChao;
 		private:
 			bool const verificarColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2) const;
 
+			void tratarColisaoJogsChao();
 			void tratarColisoesJogsObstaculos();
 			void tratarColisoesJogsInimigos();
 			void tratarColisoesJogsProjeteis();
@@ -40,6 +43,9 @@ namespace TrabalhoJogo {
 			~GerenciadorColisoes();
 
 			void setJogador(Entidades::Personagens::Jogador* pJogador);
+
+			void setLimiteChao(int limite);
+			int getLimiteChao() const;
 			
 			void incluirInimigo(Entidades::Personagens::Inimigo* pI);
 			void incluirObstaculo(Entidades::Obstaculos::Obstaculo* pO);

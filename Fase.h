@@ -24,8 +24,13 @@ namespace TrabalhoJogo {
 			Gerenciadores::GerenciadorColisoes* pGC;
 			Entidades::Personagens::Jogador* pJog1;
 
+			sf::Texture texturaFundo;
+			sf::Sprite fundo;
+
 			bool terminarFase;
 			bool vitoria;
+
+			int limiteChao;
 		public:
 			Fase();
 			~Fase();
@@ -43,6 +48,8 @@ namespace TrabalhoJogo {
 			virtual void criarObstaculos() = 0;
 			
 			void verificarFimFase();
+
+			void carregaFundo(const std::string& caminho);
 		};
 	}
 }

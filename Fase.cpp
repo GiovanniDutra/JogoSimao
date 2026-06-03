@@ -3,12 +3,21 @@
 #include "Plataforma.h"
 #include "Jogador.h"
 #include "InimFacil.h"
+#include "GerenciadorGrafico.h"
+#include <iostream>
 
 namespace TrabalhoJogo {
 	namespace Fases {
 		Fase::Fase() : Ente(), 
 			pGC(new Gerenciadores::GerenciadorColisoes()),
-			pJog1(NULL), terminarFase(false), vitoria(false) {}
+			pJog1(NULL), terminarFase(false), vitoria(false), limiteChao(900)
+		{
+			carregaFundo("assets/fundo_laboratorio.jpeg");
+
+			if (pGC != NULL) {
+				pGC->setLimiteChao(limiteChao);
+			}
+		}
 
 		Fase::~Fase() {
 			delete pGC;
@@ -17,6 +26,8 @@ namespace TrabalhoJogo {
 		}
 
 		void Fase::executar() {
+			pGG->getJanela().draw(fundo);
+			
 			if (terminarFase) {
 				listaEnts.desenhar();
 				return;
@@ -53,27 +64,22 @@ namespace TrabalhoJogo {
 			}
 		}
 
-		void Fase::criarPlataformas() {
-			Entidades::Obstaculos::Plataforma* pChao =
-				new Entidades::Obstaculos::Plataforma(0, 650, 1280, 70);
-			
+		void Fase::criarPlataformas() {			
 			Entidades::Obstaculos::Plataforma* pPlat1 =
-				new Entidades::Obstaculos::Plataforma(180, 540, 220, 30);
+				new Entidades::Obstaculos::Plataforma(180, 545, 270, 30);
 
 			Entidades::Obstaculos::Plataforma* pPlat2 =
-				new Entidades::Obstaculos::Plataforma(520, 460, 240, 30);
+				new Entidades::Obstaculos::Plataforma(500, 465, 280, 30);
 
 			Entidades::Obstaculos::Plataforma* pPlat3 =
-				new Entidades::Obstaculos::Plataforma(880, 360, 250, 30);
+				new Entidades::Obstaculos::Plataforma(860, 385, 280, 30);
 
-			listaEnts.incluirEntidade(pChao);
 			listaEnts.incluirEntidade(pPlat1);
 			listaEnts.incluirEntidade(pPlat2);
 			listaEnts.incluirEntidade(pPlat3);
 
 			if (pGC != NULL)
 			{
-				pGC->incluirObstaculo(pChao);
 				pGC->incluirObstaculo(pPlat1);
 				pGC->incluirObstaculo(pPlat2);
 				pGC->incluirObstaculo(pPlat3);
@@ -119,10 +125,28 @@ namespace TrabalhoJogo {
 				vitoria = false;
 			}
 
-			if (pJog1->getX() >= 1100) {
+			if (pJog1->getX() >= 1900) {
 				terminarFase = true;
 				vitoria = true;
 			}
+		}
+
+		void Fase::carregaFundo(const std::string& caminho)
+		{
+			if (!texturaFundo.loadFromFile(caminho)) {
+				std::cout << "Erro ao carregar fundo: " << caminho << std::endl;
+				return;
+			}
+
+			fundo.setTexture(texturaFundo);
+
+			sf::Vector2u tamTextura = texturaFundo.getSize();
+			sf::Vector2u tamJanela = pGG->getJanela().getSize();
+
+			fundo.setScale(
+				static_cast<float>(tamJanela.x) / tamTextura.x,
+				static_cast<float>(tamJanela.y) / tamTextura.y
+			);
 		}
 	}
 }

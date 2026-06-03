@@ -24,7 +24,9 @@ namespace TrabalhoJogo {
 			void limpar();
 			void mostrar();
 
+			void desenharFundo(sf::Drawable& drawable);
 			void desenharEnte(Ente* pE);
+			sf::RenderWindow& getJanela();
 		};
 	}
 }

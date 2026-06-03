@@ -24,7 +24,6 @@ int main()
 
     return 0;
 }
-*/
 
 #include "GerenciadorGrafico.h"
 #include "Ente.h"
@@ -51,5 +50,16 @@ int main() {
 
         gerenciadorGrafico.mostrar();
     }
+    return 0;
+}
+*/
+
+#include "Jogo.h"
+
+int main()
+{
+    TrabalhoJogo::Jogo jogo;
+    jogo.executar();
+
     return 0;
 }

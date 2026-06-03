@@ -46,7 +46,6 @@ namespace TrabalhoJogo {
 
 				int getNumVidas() const;
 				bool estarVivo() const;
-
 			};
 		}
 	}

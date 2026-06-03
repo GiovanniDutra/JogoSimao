@@ -8,7 +8,8 @@
 
 namespace TrabalhoJogo {
 	namespace Gerenciadores {
-		GerenciadorColisoes::GerenciadorColisoes() : pJog1(NULL) {}
+		GerenciadorColisoes::GerenciadorColisoes() : pJog1(NULL), limiteChao(900) {}
+
 		GerenciadorColisoes::~GerenciadorColisoes() {
 			LIs.clear();
 			LOs.clear();
@@ -81,8 +82,40 @@ namespace TrabalhoJogo {
 
 		void GerenciadorColisoes::executar() {
 			tratarColisoesJogsObstaculos();
+			tratarColisaoJogsChao();
 			tratarColisoesJogsInimigos();
 			tratarColisoesJogsProjeteis();
+		}
+
+		void GerenciadorColisoes::setLimiteChao(int limite)
+		{
+			limiteChao = limite;
+		}
+
+		int GerenciadorColisoes::getLimiteChao() const
+		{
+			return limiteChao;
+		}
+
+		void GerenciadorColisoes::tratarColisaoJogsChao()
+		{
+			if (pJog1 == NULL)
+			{
+				return;
+			}
+
+			sf::FloatRect corpoJogador = pJog1->getBody().getGlobalBounds();
+
+			int baseJogador = static_cast<int>(corpoJogador.top + corpoJogador.height);
+
+			if (baseJogador >= limiteChao)
+			{
+				int novoY = limiteChao - static_cast<int>(corpoJogador.height);
+
+				pJog1->setPosicao(pJog1->getX(), novoY);
+				pJog1->zerarVelocidadeY();
+				pJog1->setNoChao(true);
+			}
 		}
 	}
 }

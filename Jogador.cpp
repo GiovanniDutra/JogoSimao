@@ -20,7 +20,7 @@ namespace TrabalhoJogo {
 				body.setSize(sf::Vector2f(100.f, 100.f));
 				body.setFillColor(sf::Color::White);
 
-				setPosicao(100, 300);
+				setPosicao(50, 300);
 			}
 
 			Jogador::~Jogador() {}
@@ -140,6 +140,7 @@ namespace TrabalhoJogo {
 			bool Jogador::estarVivo() const {
 				return num_vidas > 0;
 			}
+
 		}
 	}
 }
