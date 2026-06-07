@@ -25,6 +25,10 @@ namespace TrabalhoJogo {
 			obj.close();
 		}
 
+		sf::RenderWindow& GerenciadorGrafico::getJanela() {
+			return obj;
+		}
+
 		void GerenciadorGrafico::tratarEventos() {
 			sf::Event evento;
 
@@ -48,14 +52,20 @@ namespace TrabalhoJogo {
 				obj.draw(pE->getBody());
 			}
 		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 		void GerenciadorGrafico::desenharFundo(sf::Drawable& drawable)
 		{
 			obj.draw(drawable);
 		}
+<<<<<<< HEAD
 
 		sf::RenderWindow& GerenciadorGrafico::getJanela() {
 			return obj;
 		}
+=======
+>>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 	}
 }

@@ -24,6 +24,11 @@ int main()
 
     return 0;
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 
 #include "GerenciadorGrafico.h"
 #include "Ente.h"
@@ -34,8 +39,8 @@ int main() {
     TrabalhoJogo::Gerenciadores::GerenciadorColisoes gerenciadorColisoes;
 
     TrabalhoJogo::Ente::setGG(&gerenciadorGrafico);
-    
-	TrabalhoJogo::Fases::FasePrimeira fasePrimeira;
+
+    TrabalhoJogo::Fases::FasePrimeira fasePrimeira;
 
     while (gerenciadorGrafico.janelaAberta()) {
         gerenciadorGrafico.tratarEventos();
@@ -45,7 +50,7 @@ int main() {
         if (fasePrimeira.getTerminou()) {
             gerenciadorGrafico.fecharJanela();
         }
-        
+
         //GerenciadorColisoes.executar();
 
         gerenciadorGrafico.mostrar();
@@ -54,6 +59,10 @@ int main() {
 }
 */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 #include "Jogo.h"
 
 int main()
@@ -62,4 +71,8 @@ int main()
     jogo.executar();
 
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
