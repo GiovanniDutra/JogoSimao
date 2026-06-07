@@ -10,19 +10,13 @@ namespace TrabalhoJogo {
 	namespace Fases {
 		Fase::Fase() : Ente(), 
 			pGC(new Gerenciadores::GerenciadorColisoes()),
-<<<<<<< HEAD
 			pJog1(NULL), terminarFase(false), vitoria(false), limiteChao(900)
 		{
-			carregaFundo("assets/fundo_laboratorio.jpeg");
+			carregaFundo("assets/Fundo_novo.jpeg");
 
 			if (pGC != NULL) {
 				pGC->setLimiteChao(limiteChao);
 			}
-=======
-			pJog1(NULL), terminarFase(false), vitoria(false) {
-			
-			carregaFundo("assets/fundo_laboratorio.jpeg");
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 		}
 
 		Fase::~Fase() {
@@ -33,11 +27,7 @@ namespace TrabalhoJogo {
 
 		void Fase::executar() {
 			pGG->getJanela().draw(fundo);
-<<<<<<< HEAD
-			
-=======
 
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 			if (terminarFase) {
 				listaEnts.desenhar();
 				return;
@@ -79,9 +69,6 @@ namespace TrabalhoJogo {
 			}
 		}
 
-<<<<<<< HEAD
-		void Fase::criarPlataformas() {			
-=======
 		void Fase::carregaFundo(const std::string& caminho) 
 		{
 			if (!texturaFundo.loadFromFile(caminho)) {
@@ -103,8 +90,7 @@ namespace TrabalhoJogo {
 		void Fase::criarPlataformas() {
 			Entidades::Obstaculos::Plataforma* pChao =
 				new Entidades::Obstaculos::Plataforma(0, 650, 1280, 70);
-			
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
+		
 			Entidades::Obstaculos::Plataforma* pPlat1 =
 				new Entidades::Obstaculos::Plataforma(180, 545, 270, 30);
 
@@ -169,24 +155,6 @@ namespace TrabalhoJogo {
 				terminarFase = true;
 				vitoria = true;
 			}
-		}
-
-		void Fase::carregaFundo(const std::string& caminho)
-		{
-			if (!texturaFundo.loadFromFile(caminho)) {
-				std::cout << "Erro ao carregar fundo: " << caminho << std::endl;
-				return;
-			}
-
-			fundo.setTexture(texturaFundo);
-
-			sf::Vector2u tamTextura = texturaFundo.getSize();
-			sf::Vector2u tamJanela = pGG->getJanela().getSize();
-
-			fundo.setScale(
-				static_cast<float>(tamJanela.x) / tamTextura.x,
-				static_cast<float>(tamJanela.y) / tamTextura.y
-			);
 		}
 	}
 }

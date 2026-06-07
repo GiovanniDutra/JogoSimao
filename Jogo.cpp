@@ -11,10 +11,6 @@ namespace TrabalhoJogo {
 
 		faseAtual = new Fases::FasePrimeira();
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 	Jogo::~Jogo() {} //Implementar depois
 
 	void Jogo::executar()
@@ -31,8 +27,4 @@ namespace TrabalhoJogo {
 			pGG->mostrar();
 		}
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6

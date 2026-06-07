@@ -51,7 +51,6 @@ namespace TrabalhoJogo {
 			
 			void verificarFimFase();
 
-			void carregaFundo(const std::string& caminho);
 		};
 	}
 }

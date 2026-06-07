@@ -59,10 +59,6 @@ int main() {
 }
 */
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 #include "Jogo.h"
 
 int main()
@@ -71,8 +67,6 @@ int main()
     jogo.executar();
 
     return 0;
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
+

@@ -1,34 +1,6 @@
-#pragma once
-<<<<<<< HEAD
 
 #ifndef JOGO_H_
 #define JOGO_H_
-
-#include "GerenciadorGrafico.h"
-#include "FasePrimeira.h"
-#include "Jogador.h"
-
-namespace TrabalhoJogo {
-
-	class Jogo
-	{
-	private:
-		Entidades::Personagens::Jogador* pJog1;
-		Gerenciadores::GerenciadorGrafico* pGG;
-		Fases::FasePrimeira* faseAtual;
-
-	public:
-		Jogo();
-		~Jogo();
-
-		void executar();
-	};
-}
-#endif
-=======
-#ifndef JOGO_H_
-#define JOGO_H_
->>>>>>> 241329947601a0d9eef8df0610e2b59093c258e6
 
 #include "GerenciadorGrafico.h"
 #include "FasePrimeira.h"
