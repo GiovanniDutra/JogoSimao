@@ -11,6 +11,7 @@ namespace TrabalhoJogo {
 			class ObstMedio : public Obstaculo {
 			private:
 				float largura;
+				//int tempoLentidao;
 			public:
 				ObstMedio();
 				ObstMedio(int x, int y); //Sobrecarga para facilitar a criação

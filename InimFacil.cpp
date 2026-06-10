@@ -5,7 +5,7 @@ namespace TrabalhoJogo {
 	namespace Entidades {
 		namespace Personagens {
 
-			InimFacil::InimFacil() : 
+			InimFacil::InimFacil() :
 				Inimigo(),
 				raio(20.0),
 				direcao(1),
@@ -15,7 +15,7 @@ namespace TrabalhoJogo {
 				nivelMaldade = 1;
 				num_vidas = 1;
 
-				body.setSize(sf::Vector2f(100.f, 100.f));
+				body.setSize(sf::Vector2f(60.f, 60.f));
 				body.setFillColor(sf::Color::Green);
 
 				setPosicao(250, 620);
@@ -30,7 +30,7 @@ namespace TrabalhoJogo {
 			{
 				nivelMaldade = 1;
 				num_vidas = 1;
-				body.setSize(sf::Vector2f(100.f, 100.f));
+				body.setSize(sf::Vector2f(60.f, 60.f));
 				body.setFillColor(sf::Color::Green);
 
 				setPosicao(x, y);

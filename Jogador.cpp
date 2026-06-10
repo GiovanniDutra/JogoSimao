@@ -15,7 +15,7 @@ namespace TrabalhoJogo {
 				invuneravel(false),
 				tempInvuneravel(0)
 			{
-				num_vidas = 5;
+				num_vidas = 100;
 
 				body.setSize(sf::Vector2f(100.f, 100.f));
 				body.setFillColor(sf::Color::White);
@@ -69,7 +69,7 @@ namespace TrabalhoJogo {
 			void Jogador::pular() {
 				if (noChao)
 				{
-					velocidadeY = -15;
+					velocidadeY = -25;
 					noChao = false;
 				}
 			}

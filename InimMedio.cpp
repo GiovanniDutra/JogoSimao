@@ -16,7 +16,7 @@ namespace TrabalhoJogo {
 				nivelMaldade = 2;
 				num_vidas = 2;
 
-				body.setSize(sf::Vector2f(100.f, 100.f));
+				body.setSize(sf::Vector2f(70.f, 70.f));
 
 				body.setFillColor(sf::Color::Red);
 
@@ -33,7 +33,7 @@ namespace TrabalhoJogo {
 				nivelMaldade = 2;
 				num_vidas = 2;
 
-				body.setSize(sf::Vector2f(100.f, 100.f));
+				body.setSize(sf::Vector2f(70.f, 70.f));
 				body.setFillColor(sf::Color::Red);
 
 				setPosicao(x, y);
