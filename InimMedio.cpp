@@ -16,9 +16,13 @@ namespace TrabalhoJogo {
 				nivelMaldade = 2;
 				num_vidas = 2;
 
-				body.setSize(sf::Vector2f(70.f, 70.f));
+				body.setSize(sf::Vector2f(100.f, 80.f));
 
-				body.setFillColor(sf::Color::Red);
+				body.setFillColor(sf::Color::White);
+
+				if (!carregarTextura("assets/lobopreto.png")) {
+					body.setFillColor(sf::Color::Red);
+				}
 
 				setPosicao(400, 500);
 			}
@@ -33,8 +37,14 @@ namespace TrabalhoJogo {
 				nivelMaldade = 2;
 				num_vidas = 2;
 
-				body.setSize(sf::Vector2f(70.f, 70.f));
-				body.setFillColor(sf::Color::Red);
+				body.setSize(sf::Vector2f(100.f, 80.f));
+
+				body.setFillColor(sf::Color::White);
+
+				if (!carregarTextura("assets/lobopreto.png"))
+				{
+					body.setFillColor(sf::Color::Red);
+				}
 
 				setPosicao(x, y);
 			}

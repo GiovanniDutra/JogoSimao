@@ -28,18 +28,12 @@ namespace TrabalhoJogo {
 			sf::Texture texturaFundo;
 			sf::Sprite fundo;
 
-			bool terminarFase;
-			bool vitoria;
-
 			int limiteChao;
 		public:
 			Fase();
 			~Fase();
 			
 			virtual void executar();
-			
-			bool getTerminou() const;
-			bool getVitoria() const;
 		protected:
 			void criarInimFaceis();
 			void criarPlataformas();
@@ -48,8 +42,6 @@ namespace TrabalhoJogo {
 
 			virtual void criarInimigos() = 0;
 			virtual void criarObstaculos() = 0;
-			
-			void verificarFimFase();
 
 		};
 	}

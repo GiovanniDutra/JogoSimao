@@ -31,4 +31,14 @@ namespace TrabalhoJogo {
 	{
 		return body;
 	}
+
+	bool Ente::carregarTextura(const char* caminho) {
+		if (!texturaEntidade.loadFromFile(caminho)) {
+			return false;
+		}
+
+		body.setTexture(&texturaEntidade);
+
+		return true;
+	}
 }

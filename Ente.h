@@ -28,7 +28,7 @@ namespace TrabalhoJogo {
 
 		static void setGG(Gerenciadores::GerenciadorGrafico* pGG);
 
-		//void setTexture()
+		bool carregarTextura(const char* caminho);
 
 		sf::RectangleShape& getBody();
 		const sf::RectangleShape& getBody() const;

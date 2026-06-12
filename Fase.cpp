@@ -10,9 +10,9 @@ namespace TrabalhoJogo {
 	namespace Fases {
 		Fase::Fase() : Ente(), 
 			pGC(new Gerenciadores::GerenciadorColisoes()),
-			pJog1(NULL), terminarFase(false), vitoria(false), limiteChao(900)
+			pJog1(NULL), limiteChao(900)
 		{
-			carregaFundo("assets/Fundo_novo.jpeg");
+			carregaFundo("assets/cenariofrio.jfif");
 
 			if (pGC != NULL) {
 				pGC->setLimiteChao(limiteChao);
@@ -28,17 +28,11 @@ namespace TrabalhoJogo {
 		void Fase::executar() {
 			pGG->getJanela().draw(fundo);
 
-			if (terminarFase) {
-				listaEnts.desenhar();
-				return;
-			}
 			listaEnts.percorrer();
 
 			if(pGC != NULL) {
 				pGC->executar();
 			}
-
-			verificarFimFase();
 
 			listaEnts.desenhar();
 
@@ -50,7 +44,7 @@ namespace TrabalhoJogo {
 
 		void Fase::criarInimFaceis() {
 			Entidades::Personagens::InimFacil* pInimFacil1 =
-				new Entidades::Personagens::InimFacil(260, 510, 180, 380);
+				new Entidades::Personagens::InimFacil(260, 660, 150, 340);
 
 			Entidades::Personagens::InimFacil* pInimFacil2 =
 				new Entidades::Personagens::InimFacil(580, 430, 520, 730);
@@ -87,28 +81,35 @@ namespace TrabalhoJogo {
 			);
 		}
 
-		void Fase::criarPlataformas() {
-			Entidades::Obstaculos::Plataforma* pChao =
-				new Entidades::Obstaculos::Plataforma(0, 650, 1280, 70);
-		
+		void Fase::criarPlataformas() {	
 			Entidades::Obstaculos::Plataforma* pPlat1 =
-				new Entidades::Obstaculos::Plataforma(180, 545, 270, 30);
+				new Entidades::Obstaculos::Plataforma(150, 720, 200, 20);
 
 			Entidades::Obstaculos::Plataforma* pPlat2 =
-				new Entidades::Obstaculos::Plataforma(500, 465, 280, 30);
+				new Entidades::Obstaculos::Plataforma(500, 550, 200, 20);
 
 			Entidades::Obstaculos::Plataforma* pPlat3 =
-				new Entidades::Obstaculos::Plataforma(860, 385, 280, 30);
+				new Entidades::Obstaculos::Plataforma(860, 385, 200, 20);
+
+			Entidades::Obstaculos::Plataforma* pPlat4 =
+				new Entidades::Obstaculos::Plataforma(1200, 650, 200, 20);
+
+			Entidades::Obstaculos::Plataforma* pPlat5 =
+				new Entidades::Obstaculos::Plataforma(1500, 450, 200, 20);
 
 			listaEnts.incluirEntidade(pPlat1);
 			listaEnts.incluirEntidade(pPlat2);
 			listaEnts.incluirEntidade(pPlat3);
+			listaEnts.incluirEntidade(pPlat4);
+			listaEnts.incluirEntidade(pPlat5);
 
 			if (pGC != NULL)
 			{
 				pGC->incluirObstaculo(pPlat1);
 				pGC->incluirObstaculo(pPlat2);
 				pGC->incluirObstaculo(pPlat3);
+				pGC->incluirObstaculo(pPlat4);
+				pGC->incluirObstaculo(pPlat5);
 			}
 		}
 
@@ -126,35 +127,6 @@ namespace TrabalhoJogo {
 			criarObstaculos();
 			criarPlataformas();
 			criarInimigos();
-		}
-
-		bool Fase::getTerminou() const {
-			return terminarFase;
-		}
-
-		bool Fase::getVitoria() const {
-			return vitoria;
-		}
-
-		void Fase::verificarFimFase() {
-			if (pJog1 == NULL) {
-				return;
-			}
-
-			if(!pJog1->estarVivo()) {
-				terminarFase = true;
-				vitoria = false;
-			}
-
-			if (pJog1->getY() > 800) {
-				terminarFase = true;
-				vitoria = false;
-			}
-
-			if (pJog1->getX() >= 1900) {
-				terminarFase = true;
-				vitoria = true;
-			}
 		}
 	}
 }
