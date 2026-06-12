@@ -17,8 +17,13 @@ namespace TrabalhoJogo {
 			{
 				num_vidas = 100;
 
-				body.setSize(sf::Vector2f(100.f, 100.f));
+				body.setSize(sf::Vector2f(100.f, 80.f));
+
 				body.setFillColor(sf::Color::White);
+
+				if (!carregarTextura("assets/pinguim.png")) {
+					body.setFillColor(sf::Color::Red);
+				}
 
 				setPosicao(50, 300);
 			}

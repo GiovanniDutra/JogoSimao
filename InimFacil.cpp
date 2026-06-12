@@ -15,8 +15,13 @@ namespace TrabalhoJogo {
 				nivelMaldade = 1;
 				num_vidas = 1;
 
-				body.setSize(sf::Vector2f(60.f, 60.f));
-				body.setFillColor(sf::Color::Green);
+				body.setSize(sf::Vector2f(100.f, 80.f));
+
+				body.setFillColor(sf::Color::White);
+
+				if (!carregarTextura("assets/pinguim.png")) {
+					body.setFillColor(sf::Color::Red);
+				}
 
 				setPosicao(250, 620);
 			}
@@ -30,8 +35,14 @@ namespace TrabalhoJogo {
 			{
 				nivelMaldade = 1;
 				num_vidas = 1;
-				body.setSize(sf::Vector2f(60.f, 60.f));
-				body.setFillColor(sf::Color::Green);
+				body.setSize(sf::Vector2f(100.f, 80.f));
+
+				body.setFillColor(sf::Color::White);
+
+				if (!carregarTextura("assets/pinguim.png"))
+				{
+					body.setFillColor(sf::Color::Red);
+				}
 
 				setPosicao(x, y);
 			}
