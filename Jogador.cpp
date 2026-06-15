@@ -17,11 +17,11 @@ namespace TrabalhoJogo {
 			{
 				num_vidas = 100;
 
-				body.setSize(sf::Vector2f(100.f, 80.f));
+				body.setSize(sf::Vector2f(40.f, 50.f));
 
 				body.setFillColor(sf::Color::White);
 
-				if (!carregarTextura("assets/pinguim.png")) {
+				if (!carregarTextura("assets/jogador1.png")) {
 					body.setFillColor(sf::Color::Red);
 				}
 

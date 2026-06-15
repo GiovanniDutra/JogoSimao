@@ -1,12 +1,12 @@
 #include "FasePrimeira.h"
-#include "InimMedio.h"
-#include "ObstMedio.h"
+#include "LoboGelo.h"
+#include "PlataformaGelida.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
 		FasePrimeira::FasePrimeira() :
 			Fase(),
-			maxInimMedios(10)
+			maxLoboGelo(10)
 		{
 			criarCenario();
 		}
@@ -14,52 +14,52 @@ namespace TrabalhoJogo {
 		FasePrimeira::~FasePrimeira() {}
 
 		void FasePrimeira::criarInimigos() {
-			criarInimMedios();
+			criarLoboGelo();
 		}
 
 		void FasePrimeira::criarObstaculos() {
 			criarObstMedios();
 		}
 
-		void FasePrimeira::criarInimMedios() {
-			Entidades::Personagens::InimMedio* pInimMedio1 =
-				new Entidades::Personagens::InimMedio(650, 605, 580, 820);
+		void FasePrimeira::criarLoboGelo() {
+			Entidades::Personagens::LoboGelo* pLoboGelo1 =
+				new Entidades::Personagens::LoboGelo(650, 605, 580, 820);
 
-			Entidades::Personagens::InimMedio* pInimMedio2 =
-				new Entidades::Personagens::InimMedio(560, 415, 520, 730);
+			Entidades::Personagens::LoboGelo* pLoboGelo2 =
+				new Entidades::Personagens::LoboGelo(560, 415, 520, 730);
 
-			Entidades::Personagens::InimMedio* pInimMedio3 =
-				new Entidades::Personagens::InimMedio(940, 315, 880, 1100);
+			Entidades::Personagens::LoboGelo* pLoboGelo3 =
+				new Entidades::Personagens::LoboGelo(940, 315, 880, 1100);
 
-			listaEnts.incluirEntidade(pInimMedio1);
-			listaEnts.incluirEntidade(pInimMedio2);
-			listaEnts.incluirEntidade(pInimMedio3);
+			listaEnts.incluirEntidade(pLoboGelo1);
+			listaEnts.incluirEntidade(pLoboGelo2);
+			listaEnts.incluirEntidade(pLoboGelo3);
 
 			if(pGC != NULL) {
-				pGC->incluirInimigo(pInimMedio1);
-				pGC->incluirInimigo(pInimMedio2);
-				pGC->incluirInimigo(pInimMedio3);
+				pGC->incluirInimigo(pLoboGelo1);
+				pGC->incluirInimigo(pLoboGelo2);
+				pGC->incluirInimigo(pLoboGelo3);
 			}
 		}
 
 		void FasePrimeira::criarObstMedios() {
-			Entidades::Obstaculos::ObstMedio* pObstMedio1 =
-				new Entidades::Obstaculos::ObstMedio(430, 590);
+			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida1 =
+				new Entidades::Obstaculos::PlataformaGelida(430, 590);
 
-			Entidades::Obstaculos::ObstMedio* pObstMedio2 =
-				new Entidades::Obstaculos::ObstMedio(620, 400);
+			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida2 =
+				new Entidades::Obstaculos::PlataformaGelida(620, 400);
 
-			Entidades::Obstaculos::ObstMedio* pObstMedio3 =
-				new Entidades::Obstaculos::ObstMedio(980, 300);
+			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida3 =
+				new Entidades::Obstaculos::PlataformaGelida(980, 300);
 
-			listaEnts.incluirEntidade(pObstMedio1);
-			listaEnts.incluirEntidade(pObstMedio2);
-			listaEnts.incluirEntidade(pObstMedio3);
+			listaEnts.incluirEntidade(pPlataformaGelida1);
+			listaEnts.incluirEntidade(pPlataformaGelida2);
+			listaEnts.incluirEntidade(pPlataformaGelida3);
 
 			if(pGC != NULL) {
-				pGC->incluirObstaculo(pObstMedio1);
-				pGC->incluirObstaculo(pObstMedio2);
-				pGC->incluirObstaculo(pObstMedio3);
+				pGC->incluirObstaculo(pPlataformaGelida1);
+				pGC->incluirObstaculo(pPlataformaGelida2);
+				pGC->incluirObstaculo(pPlataformaGelida3);
 			}
 		}
 

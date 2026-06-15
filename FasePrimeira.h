@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef LISTAPRIMEIRA_H_
-#define LISTAPRIMEIRA_H_
+#ifndef FASEPRIMEIRA_H_
+#define FASEPRIMEIRA_H_
 
 #include "Fase.h"
 
@@ -9,7 +9,7 @@ namespace TrabalhoJogo {
 	namespace Fases {
 		class FasePrimeira : public Fase {
 		private:
-			const int maxInimMedios;
+			const int maxLoboGelo; //Max Inimigos Medios
 		public:
 			FasePrimeira();
 			~FasePrimeira();
@@ -18,7 +18,7 @@ namespace TrabalhoJogo {
 			virtual void criarInimigos();
 			virtual void criarObstaculos();
 
-			void criarInimMedios();
+			void criarLoboGelo(); //Criar Inimigo Medio
 			void criarObstMedios();
 		};
 	}

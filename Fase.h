@@ -35,7 +35,7 @@ namespace TrabalhoJogo {
 			
 			virtual void executar();
 		protected:
-			void criarInimFaceis();
+			void criarPinguins(); //Criar Inimigos Faceis
 			void criarPlataformas();
 			void criarCenario();
 			void carregaFundo(const std::string& caminho);
