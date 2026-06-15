@@ -17,28 +17,27 @@ namespace TrabalhoJogo
 
 	void Jogo::executar()
 	{
-		while (pGG->janelaAberta())
+	
+		Menu menu;
+		menu.executar();
+
+		pGG= new Gerenciadores::GerenciadorGrafico();
+		Ente::setGG(pGG);
+		faseAtual = new Fases::FasePrimeira();
+
+		while (pGG->janelaAberta()) 
 		{
-			Menu menu;
-			menu.executar();
 
-			pGG= new Gerenciadores::GerenciadorGrafico();
-			Ente::setGG(pGG);
-			faseAtual = new Fases::FasePrimeira();
+			pGG->tratarEventos();
+			pGG->limpar();
 
-			while (pGG->janelaAberta()) 
+			if (faseAtual)
 			{
-
-				pGG->tratarEventos();
-				pGG->limpar();
-
-				if (faseAtual)
-				{
-					faseAtual->executar();
-				}
-				pGG->mostrar();
+				faseAtual->executar();
 			}
+			pGG->mostrar();
 		}
+
 	}
 }
 		

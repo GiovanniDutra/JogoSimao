@@ -137,7 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chefao.cpp" />
+    <ClCompile Include="GolemGelo.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase.cpp" />
@@ -145,23 +145,23 @@
     <ClCompile Include="FaseSegunda.cpp" />
     <ClCompile Include="GerenciadorColisoes.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
-    <ClCompile Include="InimFacil.cpp" />
+    <ClCompile Include="Pinguim.cpp" />
     <ClCompile Include="Inimigo.cpp" />
-    <ClCompile Include="InimMedio.cpp" />
+    <ClCompile Include="LoboGelo.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="JogoSimao.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
-    <ClCompile Include="ObstDificil.cpp" />
-    <ClCompile Include="ObstMedio.cpp" />
+    <ClCompile Include="EspinhoGelo.cpp" />
+    <ClCompile Include="PlataformaGelida.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Projetil.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Chefao.h" />
+    <ClInclude Include="GolemGelo.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Fase.h" />
@@ -169,17 +169,17 @@
     <ClInclude Include="FaseSegunda.h" />
     <ClInclude Include="GerenciadorColisoes.h" />
     <ClInclude Include="GerenciadorGrafico.h" />
-    <ClInclude Include="InimFacil.h" />
+    <ClInclude Include="Pinguim.h" />
     <ClInclude Include="Inimigo.h" />
-    <ClInclude Include="InimMedio.h" />
+    <ClInclude Include="LoboGelo.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Obstaculo.h" />
-    <ClInclude Include="ObstDificil.h" />
-    <ClInclude Include="ObstMedio.h" />
+    <ClInclude Include="EspinhoGelo.h" />
+    <ClInclude Include="PlataformaGelida.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Projetil.h" />

@@ -11,7 +11,11 @@ namespace TrabalhoJogo {
 				danoso = false;
 
 				body.setSize(sf::Vector2f(1300.0f, 25.f));
-				body.setFillColor(sf::Color::Green);
+				body.setFillColor(sf::Color::White);
+
+				if (!carregarTextura("assets/plataforma.png")) {
+					body.setFillColor(sf::Color::Red);
+				}
 
 				setPosicao(0, 700);
 			}
@@ -25,7 +29,11 @@ namespace TrabalhoJogo {
 				body.setSize(sf::Vector2f(static_cast<float>(largura),
 					static_cast<float>(altura)));
 
-				body.setFillColor(sf::Color(120, 120, 120));
+				body.setFillColor(sf::Color::White);
+
+				if (!carregarTextura("assets/plataforma.png")) {
+					body.setFillColor(sf::Color::Red);
+				}
 
 				setPosicao(x, y);
 			}

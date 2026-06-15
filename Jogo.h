@@ -1,10 +1,14 @@
+#pragma
 
 #ifndef JOGO_H_
 #define JOGO_H_
 
 #include "GerenciadorGrafico.h"
 #include "FasePrimeira.h"
+#include "FaseSegunda.h"
 #include "Jogador.h"
+#include "Menu.h"
+
 
 namespace TrabalhoJogo {
 
@@ -14,6 +18,8 @@ namespace TrabalhoJogo {
 		Entidades::Personagens::Jogador* pJog1;
 		Gerenciadores::GerenciadorGrafico* pGG;
 		Fases::FasePrimeira* faseAtual;
+
+		sf::RenderWindow window;
 
 	public:
 		Jogo();

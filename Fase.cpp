@@ -2,7 +2,7 @@
 #include "GerenciadorColisoes.h"
 #include "Plataforma.h"
 #include "Jogador.h"
-#include "InimFacil.h"
+#include "Pinguim.h"
 #include "GerenciadorGrafico.h"
 #include <iostream>
 
@@ -42,24 +42,24 @@ namespace TrabalhoJogo {
 			}
 		}
 
-		void Fase::criarInimFaceis() {
-			Entidades::Personagens::InimFacil* pInimFacil1 =
-				new Entidades::Personagens::InimFacil(260, 660, 150, 340);
+		void Fase::criarPinguins() { //Criar Inimigos Faceis
+			Entidades::Personagens::Pinguim* pPinguim1 =
+				new Entidades::Personagens::Pinguim(260, 660, 150, 340);
 
-			Entidades::Personagens::InimFacil* pInimFacil2 =
-				new Entidades::Personagens::InimFacil(580, 430, 520, 730);
+			Entidades::Personagens::Pinguim* pPinguim2 =
+				new Entidades::Personagens::Pinguim(580, 430, 520, 730);
 
-			Entidades::Personagens::InimFacil* pInimFacil3 =
-				new Entidades::Personagens::InimFacil(950, 330, 880, 1100);
+			Entidades::Personagens::Pinguim* pPinguim3 =
+				new Entidades::Personagens::Pinguim(950, 330, 880, 1100);
 
-			listaEnts.incluirEntidade(pInimFacil1);
-			listaEnts.incluirEntidade(pInimFacil2);
-			listaEnts.incluirEntidade(pInimFacil3);
+			listaEnts.incluirEntidade(pPinguim1);
+			listaEnts.incluirEntidade(pPinguim2);
+			listaEnts.incluirEntidade(pPinguim3);
 
 			if(pGC != NULL) {
-				pGC->incluirInimigo(pInimFacil1);
-				pGC->incluirInimigo(pInimFacil2);
-				pGC->incluirInimigo(pInimFacil3);
+				pGC->incluirInimigo(pPinguim1);
+				pGC->incluirInimigo(pPinguim2);
+				pGC->incluirInimigo(pPinguim3);
 			}
 		}
 
@@ -83,19 +83,19 @@ namespace TrabalhoJogo {
 
 		void Fase::criarPlataformas() {	
 			Entidades::Obstaculos::Plataforma* pPlat1 =
-				new Entidades::Obstaculos::Plataforma(150, 720, 200, 20);
+				new Entidades::Obstaculos::Plataforma(150, 720, 300, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat2 =
-				new Entidades::Obstaculos::Plataforma(500, 550, 200, 20);
+				new Entidades::Obstaculos::Plataforma(500, 550, 300, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat3 =
-				new Entidades::Obstaculos::Plataforma(860, 385, 200, 20);
+				new Entidades::Obstaculos::Plataforma(860, 385, 300, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat4 =
-				new Entidades::Obstaculos::Plataforma(1200, 650, 200, 20);
+				new Entidades::Obstaculos::Plataforma(1200, 650, 300, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat5 =
-				new Entidades::Obstaculos::Plataforma(1500, 450, 200, 20);
+				new Entidades::Obstaculos::Plataforma(1500, 450, 300, 50);
 
 			listaEnts.incluirEntidade(pPlat1);
 			listaEnts.incluirEntidade(pPlat2);
@@ -123,7 +123,7 @@ namespace TrabalhoJogo {
 				pGC->setJogador(pJog1);
 			}
 
-			criarInimFaceis();
+			criarPinguins(); //Criar Inim Faceis
 			criarObstaculos();
 			criarPlataformas();
 			criarInimigos();

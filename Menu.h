@@ -1,3 +1,5 @@
+#pragma once
+#include "Jogo.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -31,4 +33,3 @@ public:
     void executar();
     int getOpcaoEscolhida() const;
 };
-

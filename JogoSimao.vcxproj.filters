@@ -48,22 +48,22 @@
     <ClCompile Include="Inimigo.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="InimFacil.cpp">
+    <ClCompile Include="Pinguim.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="InimMedio.cpp">
+    <ClCompile Include="LoboGelo.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Chefao.cpp">
+    <ClCompile Include="GolemGelo.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Plataforma.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="ObstDificil.cpp">
+    <ClCompile Include="EspinhoGelo.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="ObstMedio.cpp">
+    <ClCompile Include="PlataformaGelida.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Fase.cpp">
@@ -116,22 +116,22 @@
     <ClInclude Include="Inimigo.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="InimFacil.h">
+    <ClInclude Include="Pinguim.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="InimMedio.h">
+    <ClInclude Include="LoboGelo.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Chefao.h">
+    <ClInclude Include="GolemGelo.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Plataforma.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="ObstDificil.h">
+    <ClInclude Include="EspinhoGelo.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="ObstMedio.h">
+    <ClInclude Include="PlataformaGelida.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Fase.h">
