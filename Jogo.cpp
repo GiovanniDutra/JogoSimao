@@ -1,6 +1,8 @@
 #include "Jogo.h"
+#include "Menu.h"
 
-namespace TrabalhoJogo {
+namespace TrabalhoJogo 
+{
 	Jogo::Jogo() :
 		pJog1(NULL),
 		pGG(NULL),
@@ -17,14 +19,26 @@ namespace TrabalhoJogo {
 	{
 		while (pGG->janelaAberta())
 		{
-			pGG->tratarEventos();
-			pGG->limpar();
+			Menu menu;
+			menu.executar();
 
-			if (faseAtual)
+			pGG= new Gerenciadores::GerenciadorGrafico();
+			Ente::setGG(pGG);
+			faseAtual = new Fases::FasePrimeira();
+
+			while (pGG->janelaAberta()) 
 			{
-				faseAtual->executar();
+
+				pGG->tratarEventos();
+				pGG->limpar();
+
+				if (faseAtual)
+				{
+					faseAtual->executar();
+				}
+				pGG->mostrar();
 			}
-			pGG->mostrar();
 		}
 	}
 }
+		

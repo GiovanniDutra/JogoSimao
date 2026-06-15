@@ -11,9 +11,13 @@ namespace TrabalhoJogo {
 				danoso = true;
 
 				body.setSize(sf::Vector2f(largura, 50.f));
-				body.setFillColor(sf::Color::Magenta);
+				body.setFillColor(sf::Color::Cyan);
 				
 				setPosicao(400, 600);
+
+				if (!carregarTextura("assets/boladeneve.png")) {
+					body.setFillColor(sf::Color::Blue);
+				}
 			}
 
 			ObstMedio::ObstMedio(int x, int y) :
@@ -23,9 +27,13 @@ namespace TrabalhoJogo {
 				danoso = true;
 
 				body.setSize(sf::Vector2f(largura, 50.0f));
-				body.setFillColor(sf::Color::Magenta);
+				body.setFillColor(sf::Color::Cyan);
 
 				setPosicao(x, y);
+
+				if (!carregarTextura("assets/boladeneve.png")) {
+					body.setFillColor(sf::Color::Blue);
+				}
 			}
 
 			ObstMedio::~ObstMedio() {}
