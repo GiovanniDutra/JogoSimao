@@ -110,7 +110,8 @@ void Menu::draw_all() {
     window->display();
 }
 
-void Menu::run_menu() {
+
+void Menu::executar() {
     while (window->isOpen()) {
         loop_events();
         draw_all();

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Jogo.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -30,6 +30,6 @@ protected:
 public:
     Menu();
     ~Menu();
-    void run_menu();
+    void executar();
     int getOpcaoEscolhida() const;
 };
