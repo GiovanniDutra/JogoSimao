@@ -34,7 +34,9 @@ namespace TrabalhoJogo {
 		private:
 			bool const verificarColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2) const;
 
-			void tratarColisaoJogsChao();
+			void tratarColisaoChao(Entidades::Entidade* pEntidade);
+			void tratarColisoesChao();
+
 			void tratarColisoesJogsObstaculos();
 			void tratarColisoesJogsInimigos();
 			void tratarColisoesJogsProjeteis();

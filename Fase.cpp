@@ -83,19 +83,19 @@ namespace TrabalhoJogo {
 
 		void Fase::criarPlataformas() {	
 			Entidades::Obstaculos::Plataforma* pPlat1 =
-				new Entidades::Obstaculos::Plataforma(150, 720, 300, 50);
+				new Entidades::Obstaculos::Plataforma(150, 735, 350, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat2 =
-				new Entidades::Obstaculos::Plataforma(500, 550, 300, 50);
+				new Entidades::Obstaculos::Plataforma(500, 565, 350, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat3 =
-				new Entidades::Obstaculos::Plataforma(860, 385, 300, 50);
+				new Entidades::Obstaculos::Plataforma(860, 415, 350, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat4 =
-				new Entidades::Obstaculos::Plataforma(1200, 650, 300, 50);
+				new Entidades::Obstaculos::Plataforma(1200, 665, 350, 50);
 
 			Entidades::Obstaculos::Plataforma* pPlat5 =
-				new Entidades::Obstaculos::Plataforma(1500, 450, 300, 50);
+				new Entidades::Obstaculos::Plataforma(1500, 465, 350, 50);
 
 			listaEnts.incluirEntidade(pPlat1);
 			listaEnts.incluirEntidade(pPlat2);

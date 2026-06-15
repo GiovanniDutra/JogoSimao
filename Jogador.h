@@ -15,13 +15,17 @@ namespace TrabalhoJogo {
 			{
 			protected:
 				int pontos;
-				int velocidadeY;
-				bool noChao;
+
+				bool noGelo;
+				int tempoGelo;
+				int impulsoGelo;
+				int ultimaDirecao;
 
 				bool invuneravel;
 				int tempInvuneravel;
 
 				void aplicarGravidade();
+				void aplicarEscorramento();
 				void pular();
 				void atualizarInvunerabilidade();
 			public:
@@ -30,10 +34,6 @@ namespace TrabalhoJogo {
 				~Jogador();
 
 				void colidir(Inimigo* pInim);
-
-				int getVelocidadeY() const;
-				void zerarVelocidadeY();
-				void setNoChao(bool estado);
 
 				void executar();
 				void salvar();
@@ -46,6 +46,9 @@ namespace TrabalhoJogo {
 
 				int getNumVidas() const;
 				bool estarVivo() const;
+
+				void aplicarGelo();
+
 			};
 		}
 	}

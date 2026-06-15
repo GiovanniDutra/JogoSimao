@@ -6,31 +6,33 @@ namespace TrabalhoJogo {
 		namespace Obstaculos {
 			PlataformaGelida::PlataformaGelida() :
 				Obstaculo(),
-				largura(30.0f)
+				largura(50.0f),
+				altura(25.0f)
 			{
-				danoso = true;
+				danoso = false;
 
-				body.setSize(sf::Vector2f(largura, largura));
+				body.setSize(sf::Vector2f(largura, altura));
 				body.setFillColor(sf::Color::Cyan);
 
-				if (!carregarTextura("assets/boladeneve.png"))
+				if (!carregarTextura("assets/plataformaGelida.png"))
 				{
 					body.setFillColor(sf::Color::Red);
 				}
 				
-				setPosicao(400, 600);
+				setPosicao(400, 875);
 			}
 
-			PlataformaGelida::PlataformaGelida(int x, int y) :
+			PlataformaGelida::PlataformaGelida(int x, int y, float largura, float altura) :
 				Obstaculo(),
-				largura(25.0f)
+				largura(largura),
+				altura(altura)
 			{
 				danoso = true;
 
-				body.setSize(sf::Vector2f(largura, largura));
+				body.setSize(sf::Vector2f(this->largura, this->altura));
 				body.setFillColor(sf::Color::Cyan);
 
-				if (!carregarTextura("assets/boladeneve.png"))
+				if (!carregarTextura("assets/plataformaGelida.png"))
 				{
 					body.setFillColor(sf::Color::Red);
 				}
@@ -38,35 +40,41 @@ namespace TrabalhoJogo {
 				setPosicao(x, y);
 			}
 
-			PlataformaGelida::~PlataformaGelida() {}
+			PlataformaGelida::~PlataformaGelida() {} 
 
 			void PlataformaGelida::executar() {} //Falta implementar
 
 			void PlataformaGelida::obstaculizar(Personagens::Jogador* pJogador) {
-				if(pJogador == NULL) {
+				if (pJogador == NULL)
+				{
 					return;
 				}
 
 				sf::FloatRect corpoJogador = pJogador->getBody().getGlobalBounds();
-				sf::FloatRect corpoObstaculo = body.getGlobalBounds();
+				sf::FloatRect corpoGelo = body.getGlobalBounds();
 
-				if(corpoJogador.intersects(corpoObstaculo)) {
-					if (danoso) {
-						pJogador->receberDano();
-					}
+				if (corpoJogador.intersects(corpoGelo))
+				{
+					pJogador->aplicarGelo();
 
-					if(pJogador->getX() < getX()) {
-						pJogador->setPosicao(getX() - corpoJogador.width, pJogador->getY());
-					} 
-					else {
-						pJogador->setPosicao(getX() + corpoObstaculo.width, pJogador->getY());
+					float baseJogador = corpoJogador.top + corpoJogador.height;
+					float topoGelo = corpoGelo.top;
+					float baseAnterior = baseJogador - pJogador->getVelocidadeY();
+
+					if (pJogador->getVelocidadeY() >= 0 && baseAnterior <= topoGelo)
+					{
+						pJogador->setPosicao(
+							pJogador->getX(),
+							static_cast<int>(topoGelo - corpoJogador.height)
+						);
+
+						pJogador->zerarVelocidadeY();
+						pJogador->setNoChao(true);
 					}
 				}
 			}
 
-			void PlataformaGelida:: salvar() {} //Falta implementar
+			void PlataformaGelida::salvar() {} //Falta implementar
 		}
-
-
 	}
 }

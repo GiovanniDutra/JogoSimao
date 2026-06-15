@@ -13,6 +13,10 @@ namespace TrabalhoJogo {
 		protected:
 			int x;
 			int y;
+
+			int velocidadeY;
+			bool noChao;
+
 			//ostream buffer; Falta Entender
 		public:
 			Entidade();
@@ -26,6 +30,17 @@ namespace TrabalhoJogo {
 			void setPosicao(int x, int y);
 			int getX() const;
 			int getY() const;
+
+			void aplicarGravidade();
+
+			int getVelocidadeY() const;
+			void zerarVelocidadeY();
+
+			void setNoChao(bool estado);
+
+			sf::RectangleShape& getBody();
+			const sf::RectangleShape& getBody() const;
+
 		};
 	}
 }

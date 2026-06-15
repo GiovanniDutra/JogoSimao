@@ -44,13 +44,13 @@ namespace TrabalhoJogo {
 
 		void FasePrimeira::criarObstMedios() {
 			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida1 =
-				new Entidades::Obstaculos::PlataformaGelida(430, 590);
+				new Entidades::Obstaculos::PlataformaGelida(725, 750, 350.0f, 50.0f);
 
 			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida2 =
-				new Entidades::Obstaculos::PlataformaGelida(620, 400);
+				new Entidades::Obstaculos::PlataformaGelida(200, 315, 350.0f, 50.0f);
 
 			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida3 =
-				new Entidades::Obstaculos::PlataformaGelida(980, 300);
+				new Entidades::Obstaculos::PlataformaGelida(1250, 280, 350.0f, 50.0f);
 
 			listaEnts.incluirEntidade(pPlataformaGelida1);
 			listaEnts.incluirEntidade(pPlataformaGelida2);

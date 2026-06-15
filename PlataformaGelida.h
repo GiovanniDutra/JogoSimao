@@ -11,10 +11,10 @@ namespace TrabalhoJogo {
 			class PlataformaGelida : public Obstaculo {
 			private:
 				float largura;
-				//int tempoLentidao;
+				float altura;
 			public:
 				PlataformaGelida();
-				PlataformaGelida(int x, int y); //Sobrecarga para facilitar a criação
+				PlataformaGelida(int x, int y, float largura, float altura); //Sobrecarga para facilitar a criação
 				~PlataformaGelida();
 
 				void executar();

@@ -6,7 +6,9 @@ namespace TrabalhoJogo {
 		Entidade::Entidade() :
 			Ente(),
 			x(0),
-			y(0) {}
+			y(0),
+			velocidadeY(0),
+			noChao(false) {}
 
 		Entidade::~Entidade() {}
 
@@ -25,6 +27,43 @@ namespace TrabalhoJogo {
 
 		int Entidade::getY() const {
 			return y;
+		}
+
+		int Entidade::getVelocidadeY() const {
+			return velocidadeY;
+		}
+
+		void Entidade::zerarVelocidadeY() {
+			velocidadeY = 0;
+		}
+
+		void Entidade::setNoChao(bool estado) {
+			noChao = estado;
+		}
+
+		sf::RectangleShape& Entidade::getBody() {
+			return body;
+		}
+
+		const sf::RectangleShape& Entidade::getBody() const {
+			return body;
+		}
+
+		void Entidade::aplicarGravidade()
+		{
+			const int gravidade = 1;
+			const int velocidadeMaxima = 20;
+
+			velocidadeY += gravidade;
+
+			if (velocidadeY > velocidadeMaxima)
+			{
+				velocidadeY = velocidadeMaxima;
+			}
+
+			noChao = false;
+
+			setPosicao(getX(), getY() + velocidadeY);
 		}
 	}
 }

@@ -67,7 +67,7 @@ namespace TrabalhoJogo {
 				return;
 			}
 
-			for (int i = 0; i < LIs.size(); i++) {
+			for (unsigned int i = 0; i < LIs.size(); i++) {
 				if(LIs[i] != NULL) {
 					if (verificarColisao(pJog1, LIs[i])) {
 						LIs[i]->danificar(pJog1);
@@ -82,7 +82,9 @@ namespace TrabalhoJogo {
 
 		void GerenciadorColisoes::executar() {
 			tratarColisoesJogsObstaculos();
-			tratarColisaoJogsChao();
+
+			tratarColisoesChao();
+
 			tratarColisoesJogsInimigos();
 			tratarColisoesJogsProjeteis();
 		}
@@ -97,7 +99,7 @@ namespace TrabalhoJogo {
 			return limiteChao;
 		}
 
-		void GerenciadorColisoes::tratarColisaoJogsChao()
+		void GerenciadorColisoes::tratarColisaoChao(Entidades::Entidade* pEntidade)
 		{
 			if (pJog1 == NULL)
 			{
@@ -115,6 +117,16 @@ namespace TrabalhoJogo {
 				pJog1->setPosicao(pJog1->getX(), novoY);
 				pJog1->zerarVelocidadeY();
 				pJog1->setNoChao(true);
+			}
+		}
+
+		void GerenciadorColisoes::tratarColisoesChao() {
+			tratarColisaoChao(pJog1);
+
+			for (unsigned int i = 0; i < LIs.size(); i++) {
+				if (LIs[i] != NULL) {
+					tratarColisaoChao(LIs[i]);
+				}
 			}
 		}
 	}
