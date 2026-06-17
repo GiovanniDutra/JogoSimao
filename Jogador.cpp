@@ -11,11 +11,7 @@ namespace TrabalhoJogo {
 				Personagem(),
 				pontos(0),
 				invuneravel(false),
-				tempInvuneravel(0),
-				noGelo(false),
-				tempoGelo(0),
-				impulsoGelo(0),
-				ultimaDirecao(1)
+				tempInvuneravel(0)
 			{
 				num_vidas = 100;
 
@@ -36,7 +32,6 @@ namespace TrabalhoJogo {
 			{
 				mover();
 				aplicarGravidade();
-				aplicarEscorramento();
 				atualizarInvunerabilidade();
 			}
 
@@ -51,13 +46,11 @@ namespace TrabalhoJogo {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 				{
 					novoX -= velocidadeX;
-					ultimaDirecao = -1;
 				}
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 				{
 					novoX += velocidadeX;
-					ultimaDirecao = 1;
 				}
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -137,39 +130,6 @@ namespace TrabalhoJogo {
 
 			bool Jogador::estarVivo() const {
 				return num_vidas > 0;
-			}
-
-			void Jogador::aplicarGelo() {
-				noGelo = true;
-				tempoGelo = 20;
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-					impulsoGelo = -5;
-					ultimaDirecao = -1;
-				}
-				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-					impulsoGelo = 5;
-					ultimaDirecao = 1;
-				}
-				else {
-					impulsoGelo = 5 * ultimaDirecao;
-				}
-			}
-
-			void Jogador::aplicarEscorramento() {
-				if(!noGelo) {
-					return;
-				}
-
-				setPosicao(getX() + impulsoGelo, getY());
-
-				tempoGelo--;
-
-				if (tempoGelo <= 0) {
-					noGelo = false;
-					tempoGelo = 0;
-					impulsoGelo = 0;
-				}
 			}
 		}
 	}

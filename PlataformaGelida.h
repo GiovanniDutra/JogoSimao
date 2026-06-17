@@ -4,6 +4,7 @@
 #define PLATAFORMAGELIDA_H_
 
 #include "Obstaculo.h"
+#include "Jogador.h"
 
 namespace TrabalhoJogo {
 	namespace Entidades {
@@ -12,6 +13,9 @@ namespace TrabalhoJogo {
 			private:
 				float largura;
 				float altura;
+
+				int escorregamento;
+				int direcaoEscorregamento;
 			public:
 				PlataformaGelida();
 				PlataformaGelida(int x, int y, float largura, float altura); //Sobrecarga para facilitar a criação

@@ -7,7 +7,9 @@ namespace TrabalhoJogo {
 			PlataformaGelida::PlataformaGelida() :
 				Obstaculo(),
 				largura(50.0f),
-				altura(25.0f)
+				altura(25.0f),
+				escorregamento(3),
+				direcaoEscorregamento(1)
 			{
 				danoso = false;
 
@@ -19,13 +21,15 @@ namespace TrabalhoJogo {
 					body.setFillColor(sf::Color::Red);
 				}
 				
-				setPosicao(400, 875);
+				setPosicao(0, 0);
 			}
 
 			PlataformaGelida::PlataformaGelida(int x, int y, float largura, float altura) :
 				Obstaculo(),
 				largura(largura),
-				altura(altura)
+				altura(altura),
+				escorregamento(3),
+				direcaoEscorregamento(1)
 			{
 				danoso = true;
 
@@ -50,27 +54,17 @@ namespace TrabalhoJogo {
 					return;
 				}
 
-				sf::FloatRect corpoJogador = pJogador->getBody().getGlobalBounds();
-				sf::FloatRect corpoGelo = body.getGlobalBounds();
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+					direcaoEscorregamento = 1;
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+					direcaoEscorregamento = -1;
+				}
 
-				if (corpoJogador.intersects(corpoGelo))
-				{
-					pJogador->aplicarGelo();
-
-					float baseJogador = corpoJogador.top + corpoJogador.height;
-					float topoGelo = corpoGelo.top;
-					float baseAnterior = baseJogador - pJogador->getVelocidadeY();
-
-					if (pJogador->getVelocidadeY() >= 0 && baseAnterior <= topoGelo)
-					{
-						pJogador->setPosicao(
-							pJogador->getX(),
-							static_cast<int>(topoGelo - corpoJogador.height)
-						);
-
-						pJogador->zerarVelocidadeY();
-						pJogador->setNoChao(true);
-					}
+				if (direcaoEscorregamento != 0) {
+					pJogador->setPosicao(
+						pJogador->getX() + direcaoEscorregamento * escorregamento,
+						pJogador->getY());
 				}
 			}
 

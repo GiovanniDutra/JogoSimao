@@ -16,16 +16,10 @@ namespace TrabalhoJogo {
 			protected:
 				int pontos;
 
-				bool noGelo;
-				int tempoGelo;
-				int impulsoGelo;
-				int ultimaDirecao;
-
 				bool invuneravel;
 				int tempInvuneravel;
 
 				void aplicarGravidade();
-				void aplicarEscorramento();
 				void pular();
 				void atualizarInvunerabilidade();
 			public:
@@ -46,9 +40,6 @@ namespace TrabalhoJogo {
 
 				int getNumVidas() const;
 				bool estarVivo() const;
-
-				void aplicarGelo();
-
 			};
 		}
 	}

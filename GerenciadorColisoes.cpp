@@ -8,7 +8,7 @@
 
 namespace TrabalhoJogo {
 	namespace Gerenciadores {
-		GerenciadorColisoes::GerenciadorColisoes() : pJog1(NULL), limiteChao(900) {}
+		GerenciadorColisoes::GerenciadorColisoes() : pJog1(NULL), limiteChao(0) {}
 
 		GerenciadorColisoes::~GerenciadorColisoes() {
 			LIs.clear();
@@ -54,11 +54,19 @@ namespace TrabalhoJogo {
 
 			std::list<Entidades::Obstaculos::Obstaculo*>::iterator it;
 
-			for(it = LOs.begin(); it != LOs.end(); ++it) {
-				if(*it != NULL) {
-					(*it)->obstaculizar(pJog1);
+			for (it = LOs.begin(); it != LOs.end(); it++)
+			{
+				Entidades::Obstaculos::Obstaculo* pObstaculo = *it;
+
+				if (pObstaculo != NULL)
+				{
+					if (verificarColisao(pJog1, pObstaculo))
+					{
+						tratarColisaoEntidadeObstaculo(pJog1, pObstaculo);
+
+						pObstaculo->obstaculizar(pJog1);
+					}
 				}
-				// Talvez Colocar um Else com Erase
 			}
 		}
 
@@ -83,7 +91,7 @@ namespace TrabalhoJogo {
 		void GerenciadorColisoes::executar() {
 			tratarColisoesJogsObstaculos();
 
-			tratarColisoesChao();
+			tratarColisaoChao(pJog1);
 
 			tratarColisoesJogsInimigos();
 			tratarColisoesJogsProjeteis();
@@ -94,39 +102,69 @@ namespace TrabalhoJogo {
 			limiteChao = limite;
 		}
 
-		int GerenciadorColisoes::getLimiteChao() const
-		{
-			return limiteChao;
-		}
-
 		void GerenciadorColisoes::tratarColisaoChao(Entidades::Entidade* pEntidade)
 		{
-			if (pJog1 == NULL)
+			if (pEntidade == NULL)
 			{
 				return;
 			}
 
-			sf::FloatRect corpoJogador = pJog1->getBody().getGlobalBounds();
+			sf::FloatRect corpo = pEntidade->getBody().getGlobalBounds();
 
-			int baseJogador = static_cast<int>(corpoJogador.top + corpoJogador.height);
+			float base = corpo.top + corpo.height;
 
-			if (baseJogador >= limiteChao)
+			if (base >= limiteChao)
 			{
-				int novoY = limiteChao - static_cast<int>(corpoJogador.height);
+				int novoY = limiteChao - static_cast<int>(corpo.height);
 
-				pJog1->setPosicao(pJog1->getX(), novoY);
-				pJog1->zerarVelocidadeY();
-				pJog1->setNoChao(true);
+				pEntidade->setPosicao(pEntidade->getX(), novoY);
+				pEntidade->zerarVelocidadeY();
+				pEntidade->setNoChao(true);
 			}
 		}
 
-		void GerenciadorColisoes::tratarColisoesChao() {
-			tratarColisaoChao(pJog1);
+		void GerenciadorColisoes::tratarColisaoEntidadeObstaculo(Entidades::Entidade* pEntidade, Entidades::Obstaculos::Obstaculo* pObstaculo) {
+			if (pEntidade == NULL || pObstaculo == NULL) {
+				return;
+			}
 
-			for (unsigned int i = 0; i < LIs.size(); i++) {
-				if (LIs[i] != NULL) {
-					tratarColisaoChao(LIs[i]);
-				}
+			const float toleranciaColisao = 25.0f;
+
+			sf::FloatRect entidade = pEntidade->getBody().getGlobalBounds();
+			sf::FloatRect obstaculo = pObstaculo->getBody().getGlobalBounds();
+
+			float baseEntidade = entidade.top + entidade.height;
+			float topoEntidade = entidade.top;
+
+			float baseObstaculo = obstaculo.top + obstaculo.height;
+			float topoObstaculo = obstaculo.top;
+
+			bool dentroHorizontal = entidade.left + entidade.width > obstaculo.left &&
+				                    entidade.left < obstaculo.left + obstaculo.width;
+
+			bool bateuCima = pEntidade->getVelocidadeY() >= 0.0f &&
+							 baseEntidade >= topoObstaculo &&
+							 baseEntidade <= topoObstaculo + toleranciaColisao &&
+							 dentroHorizontal;
+
+			bool bateuBaixo =
+				pEntidade->getVelocidadeY() < 0.0f &&
+				topoEntidade <= baseObstaculo &&
+				topoEntidade >= baseObstaculo - toleranciaColisao &&
+				dentroHorizontal;
+
+			if (bateuCima) {
+				int novoY = static_cast<int>(topoObstaculo - entidade.height);
+
+				pEntidade->setPosicao(pEntidade->getX(), novoY);
+				pEntidade->zerarVelocidadeY();
+				pEntidade->setNoChao(true);
+			}
+			else if (bateuBaixo) {
+				int novoY = static_cast<int>(baseObstaculo);
+
+				pEntidade->setPosicao(pEntidade->getX(), novoY);
+				pEntidade->zerarVelocidadeY();
 			}
 		}
 	}

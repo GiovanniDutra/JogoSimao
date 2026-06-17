@@ -35,7 +35,7 @@ namespace TrabalhoJogo {
 			bool const verificarColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2) const;
 
 			void tratarColisaoChao(Entidades::Entidade* pEntidade);
-			void tratarColisoesChao();
+			void tratarColisaoEntidadeObstaculo(Entidades::Entidade* pEntidade, Entidades::Obstaculos::Obstaculo* pObstaculo);
 
 			void tratarColisoesJogsObstaculos();
 			void tratarColisoesJogsInimigos();
@@ -47,7 +47,6 @@ namespace TrabalhoJogo {
 			void setJogador(Entidades::Personagens::Jogador* pJogador);
 
 			void setLimiteChao(int limite);
-			int getLimiteChao() const;
 			
 			void incluirInimigo(Entidades::Personagens::Inimigo* pI);
 			void incluirObstaculo(Entidades::Obstaculos::Obstaculo* pO);
