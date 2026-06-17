@@ -3,6 +3,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+enum EstadoMenu {
+    PRINCIPAL,
+    SELECAO_FASE,
+    SELECAO_JOGADORES,
+    SAIR
+};
 class Menu {
     int pos;
     bool pressed, theselect;
@@ -22,6 +28,15 @@ class Menu {
     std::vector<sf::Text> texts;
     std::vector<std::size_t> sizes;
 
+    EstadoMenu estado;
+
+    int faseEscolhida;
+    int numJogadores;
+
+    void montarMenuPrincipal();
+    void montarMenuFases();
+    void montarMenuJogadores();
+
 protected:
     void set_values();
     void loop_events();
@@ -32,4 +47,8 @@ public:
     ~Menu();
     void executar();
     int getOpcaoEscolhida() const;
+    bool deveIniciarJogo() const;
+    int getFaseEscolhida() const;
+    int getNumJogadores() const;
+    void centralizarTexto(sf::Text& texto, float y);
 };
