@@ -16,9 +16,6 @@ namespace TrabalhoJogo {
 
 				if (num_vidas <= 0) {
 					num_vidas = 0;
-
-					body.setSize(sf::Vector2f(0.f, 0.f));
-					setPosicao(-100, -100);
 				}
 			}
 

@@ -15,7 +15,9 @@ namespace TrabalhoJogo {
 				Personagem();
 				virtual ~Personagem();
 
-				void salvaDataBuffer(); 
+				void salvaDataBuffer();
+
+				virtual bool estarVivo() const;
 
 				virtual void executar() = 0;
 				virtual void salvar() = 0;

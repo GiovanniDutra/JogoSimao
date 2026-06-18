@@ -23,6 +23,8 @@ namespace TrabalhoJogo {
 			void percorrer();
 			void desenhar();
 			void limpar();
+
+			void removerMortos();
 		};
 	}
 }

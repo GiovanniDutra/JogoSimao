@@ -1,5 +1,6 @@
 #include "ListaEntidades.h"
 #include "Entidade.h"
+#include "Personagem.h"
 
 namespace TrabalhoJogo {
 	namespace Listas {
@@ -20,8 +21,14 @@ namespace TrabalhoJogo {
 			for (it = LEs.begin(); it != LEs.end(); ++it) {
 				if (*it != NULL) {
 					(*it)->executar();
-
 					(*it)->aplicarGravidade();
+
+					Entidades::Personagens::Personagem* pPersonagem = 
+						dynamic_cast<Entidades::Personagens::Personagem*>(*it);
+
+					if (pPersonagem != NULL && !pPersonagem->estarVivo()) {
+						(*it)->marcarRemocao();
+					}
 				}
 			}
 		}
@@ -46,6 +53,27 @@ namespace TrabalhoJogo {
 				}
 			}
 			LEs.clear();
+		}
+
+		void ListaEntidades::removerMortos() {
+			std::list<Entidades::Entidade*>::iterator it;
+
+			while (it != LEs.end()) {
+				Entidades::Entidade* pEntidade = *it;
+
+				if (pEntidade == NULL) {
+					it = LEs.erase(it);
+					continue;
+				}
+
+				if (pEntidade->estaMarcado()) {
+					delete pEntidade;
+					it = LEs.erase(it);
+					continue;
+				}
+
+				it++;
+			}
 		}
 	}
 }

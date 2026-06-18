@@ -19,6 +19,14 @@ namespace TrabalhoJogo {
 				bool invuneravel;
 				int tempInvuneravel;
 
+				bool atacando;
+				int tempoAtacando;
+				int duracaoAtaque;
+				int intervaloAtaqueCont;
+				int intervaloAtaque;
+				int forca;
+				int direcao;
+
 				void pular();
 				void atualizarInvunerabilidade();
 			public:
@@ -39,6 +47,11 @@ namespace TrabalhoJogo {
 
 				int getNumVidas() const;
 				bool estarVivo() const;
+
+				void atacar();
+				bool estaAtacando() const;
+				int getForcaAtaque() const;
+				int getDirecaoAtaque() const;
 			};
 		}
 	}

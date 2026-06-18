@@ -5,6 +5,7 @@
 #include "Obstaculo.h"
 #include "Projetil.h"
 #include "Inimigo.h"
+#include <iostream>
 
 namespace TrabalhoJogo {
 	namespace Gerenciadores {
@@ -95,10 +96,31 @@ namespace TrabalhoJogo {
 			}
 
 			for (unsigned int i = 0; i < LIs.size(); i++) {
-				if(LIs[i] != NULL) {
-					if (verificarColisao(pJog1, LIs[i])) {
-						LIs[i]->danificar(pJog1);
+				if(LIs[i] == NULL) {
+					continue;
+				}
+
+				Entidades::Personagens::Inimigo* pInimigo = LIs[i];
+
+				if(!verificarColisao(pJog1, pInimigo)) {
+					continue;
+				}
+
+				std::cout << "[DEBUG] Colisao detectada entre jogador e inimigo (nivel="
+					<< pInimigo->getNivelMaldade() << ", vidas=" << (int)pInimigo->estarVivo() << ")" << std::endl;
+
+				if(pJog1->estaAtacando()) {
+					std::cout << "[DEBUG] Jogador atacando: aplicando dano " << std::endl;
+					pInimigo->receberAtaque(pJog1->getForcaAtaque());
+
+					if (!pInimigo->estarVivo()) {
+						std::cout << "[DEBUG] Inimigo morreu após receber ataque." << std::endl;
+						pJog1->addPontos(10 * pInimigo->getNivelMaldade());
 					}
+				}
+				else {
+					std::cout << "[DEBUG] Jogador nao atacando: inimigo danifica jogador." << std::endl;
+					pInimigo->danificar(pJog1);
 				}
 			}
 		}

@@ -10,6 +10,10 @@ namespace TrabalhoJogo {
 			Personagem::~Personagem() {}
 
 			void Personagem::salvaDataBuffer(){} //Falta Implementar
+
+			bool Personagem::estarVivo() const {
+				return true;
+			}
 		}
 	}
 }

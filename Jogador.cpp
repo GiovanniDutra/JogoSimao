@@ -2,6 +2,7 @@
 #include "Inimigo.h"
 
 #include "SFML/Graphics.hpp"
+#include <iostream>
 
 namespace TrabalhoJogo {
 	namespace Entidades {
@@ -11,7 +12,14 @@ namespace TrabalhoJogo {
 				Personagem(),
 				pontos(0),
 				invuneravel(false),
-				tempInvuneravel(0)
+				tempInvuneravel(0),
+				atacando(false),
+				tempoAtacando(0),
+				duracaoAtaque(12),
+				intervaloAtaqueCont(0),
+				intervaloAtaque(18),
+				forca(1),
+				direcao(1)
 			{
 				num_vidas = 100;
 
@@ -31,6 +39,19 @@ namespace TrabalhoJogo {
 			void Jogador::executar()
 			{
 				mover();
+
+				if (intervaloAtaqueCont > 0) {
+					intervaloAtaqueCont--;
+				}
+				if (atacando) {
+					if (tempoAtacando > 0) {
+						tempoAtacando--;
+					}
+					if(tempoAtacando == 0) {
+						atacando = false;
+					}
+				}
+
 				atualizarInvunerabilidade();
 			}
 
@@ -41,6 +62,7 @@ namespace TrabalhoJogo {
 				const int velocidadeX = 5;
 
 				int novoX = getX();
+				int antigoX = getX();
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 				{
@@ -50,6 +72,17 @@ namespace TrabalhoJogo {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 				{
 					novoX += velocidadeX;
+				}
+
+				if (novoX < antigoX) {
+					direcao = -1;
+				}
+				else if(novoX > antigoX) {
+					direcao = 1;
+				}
+
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+					atacar();
 				}
 
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -122,6 +155,30 @@ namespace TrabalhoJogo {
 
 			bool Jogador::estarVivo() const {
 				return num_vidas > 0;
+			}
+
+			void Jogador::atacar() {
+				if(intervaloAtaqueCont > 0 || atacando) {
+					return;
+				}
+
+				atacando = true;
+				tempoAtacando = duracaoAtaque;
+				intervaloAtaqueCont = intervaloAtaque;
+
+				std::cout << "[DEBUG] Jogador::atacar() acionado. Forca = " << forca << "Duracao = " << duracaoAtaque << " Intervalo = " << std::endl;
+			}
+
+			bool Jogador::estaAtacando() const {
+				return atacando;
+			}
+
+			int Jogador::getForcaAtaque() const {
+				return forca;
+			}
+
+			int Jogador::getDirecaoAtaque() const {
+				return direcao;
 			}
 		}
 	}

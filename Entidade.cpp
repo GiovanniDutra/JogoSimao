@@ -8,7 +8,8 @@ namespace TrabalhoJogo {
 			x(0),
 			y(0),
 			velocidadeY(0),
-			noChao(false) {}
+			noChao(false),
+			flagRemocao(false) {}
 
 		Entidade::~Entidade() {}
 
@@ -62,6 +63,14 @@ namespace TrabalhoJogo {
 			}
 
 			setPosicao(getX(), getY() + velocidadeY);
+		}
+
+		void Entidade::marcarRemocao() {
+			flagRemocao = true;
+		}
+
+		bool Entidade::estaMarcado() const {
+			return flagRemocao;
 		}
 	}
 }
