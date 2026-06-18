@@ -19,6 +19,9 @@ namespace TrabalhoJogo {
 
 				void salvarDataBuffer();
 
+				void receberAtaque(int dano);
+				bool estarVivo() const;
+
 				virtual void executar() = 0;
 				virtual void danificar(Jogador* p) = 0;
 				virtual void salvar() = 0;

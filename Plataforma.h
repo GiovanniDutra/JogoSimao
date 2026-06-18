@@ -11,6 +11,7 @@ namespace TrabalhoJogo {
 			class Plataforma : public Obstaculo {
 			private:
 				int altura;
+				int baseY;
 			public:
 				Plataforma();
 				Plataforma(int x, int y, int largura, int altura); //Sobrecarga para facilitar a criação
@@ -19,6 +20,8 @@ namespace TrabalhoJogo {
 				void executar();
 				void obstaculizar(Personagens::Jogador* pJogador);
 				void salvar();
+
+				virtual void aplicarGravidade();
 			};
 		}
 	}

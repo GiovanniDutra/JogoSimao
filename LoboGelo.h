@@ -10,10 +10,16 @@ namespace TrabalhoJogo {
 		namespace Personagens {
 			class LoboGelo : public Inimigo {
 			private:
-				int tamanho;
+				int mordida;
+				int forcaPulo;
+
 				int direcao;
 				int limEsq;
 				int limDir;
+				int velocidade;
+
+				int puloEspera;
+				int contadorPulo;
 			public:
 				LoboGelo();
 				LoboGelo(int x, int y, int limEsq, int limDir); //Sobrecarga

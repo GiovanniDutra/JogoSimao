@@ -23,13 +23,13 @@ namespace TrabalhoJogo {
 
 		void FasePrimeira::criarLoboGelo() {
 			Entidades::Personagens::LoboGelo* pLoboGelo1 =
-				new Entidades::Personagens::LoboGelo(650, 605, 580, 820);
+				new Entidades::Personagens::LoboGelo(650, 605, 630, 670);
 
 			Entidades::Personagens::LoboGelo* pLoboGelo2 =
-				new Entidades::Personagens::LoboGelo(560, 415, 520, 730);
+				new Entidades::Personagens::LoboGelo(560, 415, 540, 580);
 
 			Entidades::Personagens::LoboGelo* pLoboGelo3 =
-				new Entidades::Personagens::LoboGelo(940, 315, 880, 1100);
+				new Entidades::Personagens::LoboGelo(940, 315, 920, 960);
 
 			listaEnts.incluirEntidade(pLoboGelo1);
 			listaEnts.incluirEntidade(pLoboGelo2);

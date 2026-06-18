@@ -40,6 +40,8 @@ namespace TrabalhoJogo {
 			void tratarColisoesJogsObstaculos();
 			void tratarColisoesJogsInimigos();
 			void tratarColisoesJogsProjeteis();
+
+			void tratarColisoesInimigosObstaculos();
 		public:
 			GerenciadorColisoes();
 			~GerenciadorColisoes();

@@ -9,7 +9,8 @@ namespace TrabalhoJogo {
 				largura(50.0f),
 				altura(25.0f),
 				escorregamento(3),
-				direcaoEscorregamento(1)
+				direcaoEscorregamento(1),
+				baseY(0)
 			{
 				danoso = false;
 
@@ -21,7 +22,7 @@ namespace TrabalhoJogo {
 					body.setFillColor(sf::Color::Red);
 				}
 				
-				setPosicao(0, 0);
+				setPosicao(0, baseY);
 			}
 
 			PlataformaGelida::PlataformaGelida(int x, int y, float largura, float altura) :
@@ -29,7 +30,8 @@ namespace TrabalhoJogo {
 				largura(largura),
 				altura(altura),
 				escorregamento(3),
-				direcaoEscorregamento(1)
+				direcaoEscorregamento(1),
+				baseY(y)
 			{
 				danoso = true;
 
@@ -41,12 +43,14 @@ namespace TrabalhoJogo {
 					body.setFillColor(sf::Color::Red);
 				}
 
-				setPosicao(x, y);
+				setPosicao(x, baseY);
 			}
 
 			PlataformaGelida::~PlataformaGelida() {} 
 
-			void PlataformaGelida::executar() {} //Falta implementar
+			void PlataformaGelida::executar() {
+				desenhar();
+			}
 
 			void PlataformaGelida::obstaculizar(Personagens::Jogador* pJogador) {
 				if (pJogador == NULL)
@@ -69,6 +73,12 @@ namespace TrabalhoJogo {
 			}
 
 			void PlataformaGelida::salvar() {} //Falta implementar
+
+			void PlataformaGelida::aplicarGravidade() {
+				Entidade::aplicarGravidade();
+				zerarVelocidadeY();
+				setPosicao(getX(), baseY);
+			}
 		}
 	}
 }

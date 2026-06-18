@@ -31,7 +31,6 @@ namespace TrabalhoJogo {
 			void Jogador::executar()
 			{
 				mover();
-				aplicarGravidade();
 				atualizarInvunerabilidade();
 			}
 
@@ -53,7 +52,7 @@ namespace TrabalhoJogo {
 					novoX += velocidadeX;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 				{
 					pular();
 				}
@@ -65,7 +64,7 @@ namespace TrabalhoJogo {
 			{
 				if (pInim != NULL)
 				{
-					receberDano();
+					//marca colisao;
 				}
 			}
 
@@ -77,22 +76,6 @@ namespace TrabalhoJogo {
 				}
 			}
 
-			void Jogador::aplicarGravidade() {
-				const int gravidade = 1;
-				const int velocidadeMaxima = 20;
-
-				velocidadeY += gravidade;
-
-				if (velocidadeY > velocidadeMaxima)
-				{
-					velocidadeY = velocidadeMaxima;
-				}
-
-				noChao = false;
-
-				setPosicao(getX(), getY() + velocidadeY);
-			}
-
 			void Jogador::addPontos(int valor) {
 				pontos += valor;
 			}
@@ -102,26 +85,35 @@ namespace TrabalhoJogo {
 			}
 
 			void Jogador::atualizarInvunerabilidade() {
-				if (invuneravel) {
+				if(!invuneravel) {
+					return;
+				}
+
+				if(tempInvuneravel > 0) {
 					tempInvuneravel--;
 
-					if (tempInvuneravel <= 0) {
+					if(tempInvuneravel == 0) {
 						invuneravel = false;
-						tempInvuneravel = 0;
 						body.setFillColor(sf::Color::White);
 					}
 				}
 			}
 
-			void Jogador::receberDano() {
-				if (!invuneravel) {
-					num_vidas--;
-
-					invuneravel = true;
-					tempInvuneravel = 30;
-
-					body.setFillColor(sf::Color::Yellow);
+			void Jogador::receberDano(int dano) {
+				if (invuneravel || dano <= 0) {
+					return;
 				}
+
+				num_vidas -= dano;
+				
+				if (num_vidas < 0) {
+					num_vidas = 0;
+				}
+
+				invuneravel = true;
+				tempInvuneravel = 60;
+
+				body.setFillColor(sf::Color::Yellow);
 			}
 
 			int Jogador::getNumVidas() const {

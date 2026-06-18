@@ -19,7 +19,6 @@ namespace TrabalhoJogo {
 				bool invuneravel;
 				int tempInvuneravel;
 
-				void aplicarGravidade();
 				void pular();
 				void atualizarInvunerabilidade();
 			public:
@@ -36,7 +35,7 @@ namespace TrabalhoJogo {
 				void addPontos(int valor);
 				int getPontos() const;
 
-				void receberDano();
+				void receberDano(int dano);
 
 				int getNumVidas() const;
 				bool estarVivo() const;

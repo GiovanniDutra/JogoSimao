@@ -7,7 +7,7 @@ namespace TrabalhoJogo {
 
 			Pinguim::Pinguim() :
 				Inimigo(),
-				raio(20.0),
+				trombada(1),
 				direcao(1),
 				limEsq(200),
 				limDir(400)
@@ -28,7 +28,7 @@ namespace TrabalhoJogo {
 
 			Pinguim::Pinguim(int x, int y, int limEsq, int limDir) :
 				Inimigo(),
-				raio(20.0),
+				trombada(1),
 				direcao(1),
 				limEsq(limEsq),
 				limDir(limDir)
@@ -72,10 +72,17 @@ namespace TrabalhoJogo {
 				//aplicarGravidade();
 			}
 			
-			void Pinguim::danificar(Jogador* p)
-			{
+			void Pinguim::danificar(Jogador* p) {
 				if (p != NULL) {
+					int dano = nivelMaldade * trombada;
+
+					if (dano < 1) {
+						dano = 1;
+					}
+
 					p->colidir(this);
+					p->receberDano(dano);
+
 				}
 			}
 

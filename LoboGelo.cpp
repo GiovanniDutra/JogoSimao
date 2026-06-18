@@ -8,10 +8,14 @@ namespace TrabalhoJogo {
 		namespace Personagens {
 			LoboGelo::LoboGelo() :
 				Inimigo(),
-				tamanho(45),
+				mordida(2),
+				forcaPulo(20),
 				direcao(1),
-				limEsq(450),
-				limDir(750)
+				limEsq(300),
+				limDir(500),
+				velocidade(2),
+				puloEspera(90),
+				contadorPulo(0)
 			{
 				nivelMaldade = 2;
 				num_vidas = 2;
@@ -27,12 +31,16 @@ namespace TrabalhoJogo {
 				setPosicao(400, 500);
 			}
 
-			LoboGelo::LoboGelo(int x, int y, int limEsq, int limDir) :
+			LoboGelo::LoboGelo(int x, int y, int lE, int lD) :
 				Inimigo(),
-				tamanho(45),
+				mordida(2),
+				forcaPulo(20),
 				direcao(1),
-				limEsq(limEsq),
-				limDir(limDir)
+				limEsq(lE),
+				limDir(lD),
+				velocidade(2),
+				puloEspera(90),
+				contadorPulo(0)
 			{
 				nivelMaldade = 2;
 				num_vidas = 2;
@@ -52,14 +60,12 @@ namespace TrabalhoJogo {
 			LoboGelo::~LoboGelo(){}
 
 			void LoboGelo::mover() {
-				const int velocidade = 2;
-
 				int novoX = getX() + velocidade * direcao;
 
-				if (novoX < limEsq) {
+				if(novoX < limEsq) {
 					novoX = limEsq;
 					direcao = 1;
-				}
+				} 
 				else if (novoX > limDir) {
 					novoX = limDir;
 					direcao = -1;
@@ -70,7 +76,14 @@ namespace TrabalhoJogo {
 			
 			void LoboGelo::danificar(Jogador* p) {
 				if (p != NULL) {
+					int dano = nivelMaldade * mordida;
+
+					if (dano < 1) {
+						dano = 1;
+					}
+
 					p->colidir(this);
+					p->receberDano(dano);
 				}
 			}
 
@@ -78,7 +91,17 @@ namespace TrabalhoJogo {
 
 			void LoboGelo::executar() {
 				mover();
-				//aplicarGravidade();
+
+				if (noChao) {
+					velocidadeY = -forcaPulo;
+					noChao = false;
+					contadorPulo = puloEspera;
+				}
+				else {
+					if(contadorPulo > 0) {
+						contadorPulo--;
+					}
+				}
 			}
 		}
 	}

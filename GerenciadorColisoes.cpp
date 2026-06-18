@@ -70,6 +70,25 @@ namespace TrabalhoJogo {
 			}
 		}
 
+		void GerenciadorColisoes::tratarColisoesInimigosObstaculos() {
+			for (unsigned int i = 0; i < LIs.size(); i++) {
+				if (LIs[i] != NULL) {
+					std::list<Entidades::Obstaculos::Obstaculo*>::iterator it;
+					for (it = LOs.begin(); it != LOs.end(); it++)
+					{
+						Entidades::Obstaculos::Obstaculo* pObstaculo = *it;
+						if (pObstaculo != NULL)
+						{
+							if (verificarColisao(LIs[i], pObstaculo))
+							{
+								tratarColisaoEntidadeObstaculo(LIs[i], pObstaculo);
+							}
+						}
+					}
+				}
+			}
+		}
+
 		void GerenciadorColisoes::tratarColisoesJogsInimigos() {
 			if(pJog1 == NULL) {
 				return;
@@ -90,8 +109,15 @@ namespace TrabalhoJogo {
 
 		void GerenciadorColisoes::executar() {
 			tratarColisoesJogsObstaculos();
+			tratarColisoesInimigosObstaculos();
 
 			tratarColisaoChao(pJog1);
+
+			for(unsigned int i = 0; i < LIs.size(); i++) {
+				if(LIs[i] != NULL) {
+					tratarColisaoChao(LIs[i]);
+				}
+			}
 
 			tratarColisoesJogsInimigos();
 			tratarColisoesJogsProjeteis();
@@ -147,11 +173,10 @@ namespace TrabalhoJogo {
 							 baseEntidade <= topoObstaculo + toleranciaColisao &&
 							 dentroHorizontal;
 
-			bool bateuBaixo =
-				pEntidade->getVelocidadeY() < 0.0f &&
-				topoEntidade <= baseObstaculo &&
-				topoEntidade >= baseObstaculo - toleranciaColisao &&
-				dentroHorizontal;
+			bool bateuBaixo = pEntidade->getVelocidadeY() < 0.0f &&
+							  topoEntidade <= baseObstaculo &&
+							  topoEntidade >= baseObstaculo - toleranciaColisao &&
+							  dentroHorizontal;
 
 			if (bateuCima) {
 				int novoY = static_cast<int>(topoObstaculo - entidade.height);

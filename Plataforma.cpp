@@ -6,7 +6,8 @@ namespace TrabalhoJogo {
 		namespace Obstaculos {
 			Plataforma::Plataforma() :
 				Obstaculo(),
-				altura(40)
+				altura(40),
+				baseY(700)
 			{
 				danoso = false;
 
@@ -17,12 +18,14 @@ namespace TrabalhoJogo {
 					body.setFillColor(sf::Color::Red);
 				}
 
-				setPosicao(0, 700);
+				setPosicao(0, baseY);
 			}
 
 			Plataforma::Plataforma(int x, int y, int largura, int altura) :
 				Obstaculo(),
-				altura(altura)
+				altura(altura),
+				baseY(y)
+
 			{
 				danoso = false;
 
@@ -35,7 +38,7 @@ namespace TrabalhoJogo {
 					body.setFillColor(sf::Color::Red);
 				}
 
-				setPosicao(x, y);
+				setPosicao(x, baseY);
 			}
 
 			Plataforma::~Plataforma(){}
@@ -68,6 +71,13 @@ namespace TrabalhoJogo {
 
 			void Plataforma::salvar() {
 				salvarDataBuffer();
+			}
+
+			void Plataforma::aplicarGravidade() {
+				Entidade::aplicarGravidade();
+
+				zerarVelocidadeY();
+				setPosicao(getX(), baseY);
 			}
 		}
 	}

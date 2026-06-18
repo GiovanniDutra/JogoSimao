@@ -20,6 +20,8 @@ namespace TrabalhoJogo {
 			for (it = LEs.begin(); it != LEs.end(); ++it) {
 				if (*it != NULL) {
 					(*it)->executar();
+
+					(*it)->aplicarGravidade();
 				}
 			}
 		}

@@ -32,7 +32,7 @@ namespace TrabalhoJogo {
 
 				if (corpoJogador.intersects(corpoObstaculo)) {
 					if (danoso) {
-						pJogador->receberDano();
+						pJogador->receberDano(danosidade);
 					}
 
 					if(pJogador->getX() < getX()) {

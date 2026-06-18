@@ -61,8 +61,6 @@ namespace TrabalhoJogo {
 				velocidadeY = velocidadeMaxima;
 			}
 
-			noChao = false;
-
 			setPosicao(getX(), getY() + velocidadeY);
 		}
 	}

@@ -14,7 +14,7 @@ namespace TrabalhoJogo {
 			class Pinguim : public Inimigo
 			{
 			private:
-				float raio;
+				int trombada;
 				int direcao;
 				int limEsq;
 				int limDir;

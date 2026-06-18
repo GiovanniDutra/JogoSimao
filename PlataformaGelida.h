@@ -16,6 +16,8 @@ namespace TrabalhoJogo {
 
 				int escorregamento;
 				int direcaoEscorregamento;
+
+				int baseY;
 			public:
 				PlataformaGelida();
 				PlataformaGelida(int x, int y, float largura, float altura); //Sobrecarga para facilitar a criação
@@ -25,6 +27,8 @@ namespace TrabalhoJogo {
 				void salvar();
 
 				void obstaculizar(Personagens::Jogador* pJogador);
+
+				virtual void aplicarGravidade();
 			};
 		}
 	}
