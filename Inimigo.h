@@ -6,26 +6,35 @@
 #include "Personagem.h"
 
 namespace TrabalhoJogo {
-	namespace Entidades {
-		namespace Personagens {
-			class Jogador;
+    namespace Entidades {
+        namespace Personagens {
 
-			class Inimigo : public Personagem {
-			protected:
-				int nivelMaldade;
-			public:
-				Inimigo();
-				~Inimigo();
+            class Jogador;
 
-				void salvarDataBuffer();
+            class Inimigo : public Personagem {
+            protected:
+                int nivelMaldade;
 
-				virtual void executar() = 0;
-				virtual void danificar(Jogador* p) = 0;
-				virtual void salvar() = 0;
-			};
-		}
-	}
+                int hp;
+                bool morto;
+
+            public:
+                Inimigo();
+                virtual ~Inimigo();
+
+                void salvarDataBuffer();
+
+                virtual void executar() = 0;
+                virtual void danificar(Jogador* p) = 0;
+                virtual void salvar() = 0;
+
+                void receberDano(int dano = 1);
+
+                bool estaMorto() const;
+            };
+
+        }
+    }
 }
 
 #endif
-

@@ -60,7 +60,7 @@ namespace TrabalhoJogo {
 					ultimaDirecao = 1;
 				}
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 				{
 					pular();
 				}
@@ -70,10 +70,32 @@ namespace TrabalhoJogo {
 
 			void Jogador::colidir(Inimigo* pInim)
 			{
-				if (pInim != NULL)
+				if (!pInim) return;
+				if (pInim->estaMorto()) return;
+
+				sf::RectangleShape& playerBody = this->getBody();
+				sf::RectangleShape& enemyBody = pInim->getBody();
+
+				if (!playerBody.getGlobalBounds().intersects(enemyBody.getGlobalBounds()))
+					return;
+
+				float playerBottom = playerBody.getPosition().y + playerBody.getSize().y;
+				float enemyTop = enemyBody.getPosition().y;
+
+				bool vindoDeCima = (playerBottom <= enemyTop + 10.f);
+				bool caindo = (this->getVelocidadeY() > 0);
+
+				if (vindoDeCima && caindo)
 				{
-					receberDano();
+					pInim->receberDano(1);
+
+					this->zerarVelocidadeY();
+					this->setNoChao(false);
+
+					return;
 				}
+
+				this->receberDano();
 			}
 
 			void Jogador::pular() {

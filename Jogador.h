@@ -28,6 +28,8 @@ namespace TrabalhoJogo {
 				void aplicarEscorramento();
 				void pular();
 				void atualizarInvunerabilidade();
+
+
 			public:
 
 				Jogador();
