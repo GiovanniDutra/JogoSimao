@@ -44,13 +44,13 @@ namespace TrabalhoJogo {
 
 		void Fase::criarPinguins() { //Criar Inimigos Faceis
 			Entidades::Personagens::Pinguim* pPinguim1 =
-				new Entidades::Personagens::Pinguim(260, 660, 150, 340);
+				new Entidades::Personagens::Pinguim(260, 660, 150, 440);
 
 			Entidades::Personagens::Pinguim* pPinguim2 =
-				new Entidades::Personagens::Pinguim(580, 430, 520, 730);
+				new Entidades::Personagens::Pinguim(580, 430, 520, 760);
 
 			Entidades::Personagens::Pinguim* pPinguim3 =
-				new Entidades::Personagens::Pinguim(950, 330, 880, 1100);
+				new Entidades::Personagens::Pinguim(950, 330, 880, 1130);
 
 			listaEnts.incluirEntidade(pPinguim1);
 			listaEnts.incluirEntidade(pPinguim2);
