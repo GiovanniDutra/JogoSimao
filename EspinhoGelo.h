@@ -18,9 +18,14 @@ namespace TrabalhoJogo {
 			{
 			private:
 				short int danosidade;
+				float largura;
+				float altura;
+
+				int baseY;
 
 			public:
 				EspinhoGelo();
+				EspinhoGelo(int x, int y, float largura, float altura);
 				virtual ~EspinhoGelo();
 
 				void executar();

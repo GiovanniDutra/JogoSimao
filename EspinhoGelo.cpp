@@ -1,5 +1,6 @@
 #include "EspinhoGelo.h" //Implementado mas so aparece na Fase Dois
 #include "Jogador.h"
+#include "GerenciadorGrafico.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -9,14 +10,38 @@ namespace TrabalhoJogo {
 
 			EspinhoGelo::EspinhoGelo() :
 				Obstaculo(),
-				danosidade(2)
+				danosidade(2),
+				baseY(y)
 			{
 				danoso = true;
 
 				body.setSize(sf::Vector2f(100.f, 100.f));
 				body.setFillColor(sf::Color::Blue);
 
+				if (!carregarTextura("assets/EstacaGelo.png"))
+				{
+					body.setFillColor(sf::Color::Red);
+				}
+
 				setPosicao(100, 100);
+			}
+
+			EspinhoGelo::EspinhoGelo(int x, int y, float largura, float altura) :
+				Obstaculo(),
+				danosidade(2),
+				baseY(y)
+			{
+				danoso = true;
+
+				body.setSize(sf::Vector2f(this->largura, this->altura));
+				body.setFillColor(sf::Color::Blue);
+
+				if (!carregarTextura("assets/EstacaGelo.png"))
+				{
+					body.setFillColor(sf::Color::Red);
+				}
+
+				setPosicao(x, baseY);
 			}
 
 			EspinhoGelo::~EspinhoGelo() {}
@@ -31,15 +56,22 @@ namespace TrabalhoJogo {
 				sf::FloatRect corpoObstaculo = body.getGlobalBounds();
 
 				if (corpoJogador.intersects(corpoObstaculo)) {
+
 					if (danoso) {
 						pJogador->receberDano(danosidade);
 					}
 
-					if(pJogador->getX() < getX()) {
-						pJogador->setPosicao(getX() - corpoJogador.width, pJogador->getY());
-					} 
+					if (pJogador->getX() < getX()) {
+						pJogador->setPosicao(
+							getX() - corpoJogador.width,
+							pJogador->getY()
+						);
+					}
 					else {
-						pJogador->setPosicao(getX() + corpoObstaculo.width, pJogador->getY());
+						pJogador->setPosicao(
+							getX() + corpoObstaculo.width,
+							pJogador->getY()
+						);
 					}
 				}
 			}

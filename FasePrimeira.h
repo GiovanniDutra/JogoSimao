@@ -17,6 +17,7 @@ namespace TrabalhoJogo {
 		protected:
 			virtual void criarInimigos();
 			virtual void criarObstaculos();
+			void carregaFundo(const std::string& caminho);
 
 			void criarLoboGelo(); //Criar Inimigo Medio
 			void criarObstMedios();

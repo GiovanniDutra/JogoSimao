@@ -80,21 +80,29 @@ void Menu::loop_events() {
                 }
 
                 else if (estado == EstadoMenu::SELECAO_FASE) {
+
                     if (pos == texts.size() - 1) {
                         estado = EstadoMenu::PRINCIPAL;
                         montarMenuPrincipal();
                     }
                     else {
-                        faseEscolhida = pos + 1;
+                        faseEscolhida = pos + 1; // 1 ou 2
                         estado = EstadoMenu::SELECAO_JOGADORES;
                         montarMenuJogadores();
                     }
                 }
 
                 else if (estado == EstadoMenu::SELECAO_JOGADORES) {
-                    numJogadores = (pos == 0 ? 1 : 2);
-                    opcaoEscoli = 1;
-                    window->close();
+
+                    if (pos == texts.size() - 1) { // Voltar
+                        estado = EstadoMenu::SELECAO_FASE;
+                        montarMenuFases(); // fundo muda aqui
+                    }
+                    else {
+                        numJogadores = (pos == 0 ? 1 : 2);
+                        opcaoEscoli = 1;
+                        window->close();
+                    }
                 }
             }
         }
@@ -127,6 +135,9 @@ void Menu::centralizarTexto(sf::Text& texto, float y) {
 
 
 void Menu::montarMenuPrincipal() {
+
+    trocarFundo("assets/menu.png");
+
     options = { "Play", "Quit" };
     texts.clear();
     texts.resize(options.size());
@@ -147,8 +158,8 @@ void Menu::montarMenuPrincipal() {
 
 void Menu::montarMenuFases() {
 
-    font->loadFromFile("assets/ethn.otf");
-    image->loadFromFile("assets/menu2.png");
+    trocarFundo("assets/menu2.png");
+
     options = { "Fase 1", "Fase 2", "Voltar" };
     texts.clear();
     texts.resize(options.size());
@@ -167,8 +178,8 @@ void Menu::montarMenuFases() {
 
 void Menu::montarMenuJogadores() {
 
-    font->loadFromFile("assets/ethn.otf");
-    image->loadFromFile("assets/menu3.png");
+    trocarFundo("assets/menu3.png");
+
     options = { "1 Jogador", "2 Jogadores" };
     texts.clear();
     texts.resize(options.size());
@@ -183,6 +194,25 @@ void Menu::montarMenuJogadores() {
 
     pos = 0;
     texts[0].setOutlineThickness(4);
+}
+
+void Menu::trocarFundo(const std::string& caminho) {
+
+    if (!image->loadFromFile(caminho)) {
+        std::cout << "Erro ao carregar fundo: " << caminho << std::endl;
+        return;
+    }
+
+    bg->setTexture(*image, true);
+
+    sf::Vector2u texSize = image->getSize();
+    sf::Vector2u winSize = window->getSize();
+
+    bg->setScale(
+        static_cast<float>(winSize.x) / texSize.x,
+        static_cast<float>(winSize.y) / texSize.y
+    );
+
 }
 
 bool Menu::deveIniciarJogo() const {

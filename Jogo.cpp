@@ -1,38 +1,43 @@
 #include "Jogo.h"
 #include "Menu.h"
+#include "FasePrimeira.h"
+#include "FaseSegunda.h"
 
-namespace TrabalhoJogo
-{
-    Jogo::Jogo() :
-        pJog1(NULL),
-        pGG(NULL),
-        faseAtual(NULL)
-    {
-        pGG = new Gerenciadores::GerenciadorGrafico();
-        Ente::setGG(pGG);
+namespace TrabalhoJogo {
 
-        faseAtual = new Fases::FasePrimeira();
-    }
-    Jogo::~Jogo() {} //Implementar depois
+	Jogo::Jogo() :
+		pGG(nullptr),
+		faseAtual(nullptr)
+	{
+		pGG = new Gerenciadores::GerenciadorGrafico();
+		Ente::setGG(pGG);
+	}
 
-    void Jogo::executar()
-    {
+	Jogo::~Jogo() {
+		delete faseAtual;
+		delete pGG;
+	}
 
-        Menu menu;
-        menu.executar();
+	void Jogo::executar() {
+		Menu menu;
+		menu.executar();
 
-        while (pGG->janelaAberta())
-        {
-            pGG->tratarEventos();
-            pGG->limpar();
+		if (!menu.deveIniciarJogo())
+			return;
 
-            if (faseAtual)
-            {
-                faseAtual->executar();
-            }
+		if (menu.getFaseEscolhida() == 1)
+			faseAtual = new Fases::FasePrimeira();
+		else
+			faseAtual = new Fases::FaseSegunda();
 
-            pGG->mostrar();
-        }
-    }
-}
+		while (pGG->janelaAberta()) {
+			pGG->tratarEventos();
+			pGG->limpar();
+
+			faseAtual->executar();
+
+			pGG->mostrar();
 		
+		}
+	}
+}

@@ -12,7 +12,6 @@ namespace TrabalhoJogo {
 			pGC(new Gerenciadores::GerenciadorColisoes()),
 			pJog1(NULL), limiteChao(900)
 		{
-			carregaFundo("assets/cenariofrio.jfif");
 
 			if (pGC != NULL) {
 				pGC->setLimiteChao(limiteChao);
@@ -44,13 +43,13 @@ namespace TrabalhoJogo {
 
 		void Fase::criarPinguins() { //Criar Inimigos Faceis
 			Entidades::Personagens::Pinguim* pPinguim1 =
-				new Entidades::Personagens::Pinguim(260, 660, 150, 340);
+				new Entidades::Personagens::Pinguim(260, 660, 150, 440);
 
 			Entidades::Personagens::Pinguim* pPinguim2 =
-				new Entidades::Personagens::Pinguim(580, 430, 520, 730);
+				new Entidades::Personagens::Pinguim(580, 430, 520, 760);
 
 			Entidades::Personagens::Pinguim* pPinguim3 =
-				new Entidades::Personagens::Pinguim(950, 330, 880, 1100);
+				new Entidades::Personagens::Pinguim(950, 330, 880, 1130);
 
 			listaEnts.incluirEntidade(pPinguim1);
 			listaEnts.incluirEntidade(pPinguim2);
@@ -63,23 +62,6 @@ namespace TrabalhoJogo {
 			}
 		}
 
-		void Fase::carregaFundo(const std::string& caminho) 
-		{
-			if (!texturaFundo.loadFromFile(caminho)) {
-				std::cout << "Erro ao carregar fundo: " << caminho << std::endl;
-				return;
-			}
-
-			fundo.setTexture(texturaFundo);
-
-			sf::Vector2u tamTextura = texturaFundo.getSize();
-			sf::Vector2u tamJanela = pGG->getJanela().getSize();
-
-			fundo.setScale(
-				static_cast<float>(tamJanela.x) / tamTextura.x,
-				static_cast<float>(tamJanela.y) / tamTextura.y
-			);
-		}
 
 		void Fase::criarPlataformas() {	
 			Entidades::Obstaculos::Plataforma* pPlat1 =

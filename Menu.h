@@ -51,4 +51,5 @@ public:
     int getFaseEscolhida() const;
     int getNumJogadores() const;
     void centralizarTexto(sf::Text& texto, float y);
+    void trocarFundo(const std::string& caminho);
 };

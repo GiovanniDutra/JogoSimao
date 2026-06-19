@@ -17,7 +17,7 @@ namespace TrabalhoJogo {
 	private:
 		Entidades::Personagens::Jogador* pJog1;
 		Gerenciadores::GerenciadorGrafico* pGG;
-		Fases::FasePrimeira* faseAtual;
+		Fases::Fase* faseAtual;
 
 		sf::RenderWindow window;
 
