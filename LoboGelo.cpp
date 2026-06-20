@@ -91,6 +91,7 @@ namespace TrabalhoJogo {
 
 			void LoboGelo::executar() {
 				mover();
+				aplicarGravidade();
 
 				if (noChao) {
 					velocidadeY = -forcaPulo;

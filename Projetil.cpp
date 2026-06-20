@@ -3,54 +3,75 @@
 namespace TrabalhoJogo {
 	namespace Entidades {
 
-		Projetil::Projetil(sf::Vector2f posicao, sf::Vector2f dire) :
+		Projetil::Projetil() :
 			Entidade(),
-			velo(10.f),
+			ativo(false),
+			velocidade(10.0f),
 			dano(3),
-			ativo(true),
-			direcao(dire)
+			direcao(1.0f, 0.0f)
 		{
-			body.setSize(sf::Vector2f(18.f, 8.f));
+			body.setSize(sf::Vector2f(18.0f, 8.0f));
 			body.setFillColor(sf::Color::Yellow);
-			body.setPosition(posicao); //Não garanto que esteja certo
+			
+			body.setPosition(0, 0);
+		}
+
+		Projetil::Projetil(sf::Vector2f posicao, sf::Vector2f sentido) :
+			Entidade(),
+			ativo(true),
+			velocidade(),
+			dano(3),
+			direcao(sentido)
+		{
+			body.setSize(sf::Vector2f(18.0f, 8.0f));
+			body.setFillColor(sf::Color::Yellow);
+
+			setPosicao((int)posicao.x, (int)posicao.y);
 		}
 
 		Projetil::~Projetil() {}
 
-		void Projetil::executar()
-		{
-			if (!ativo)
-			{
+		void Projetil::prepararDisparo(sf::Vector2f posicao, sf::Vector2f sentido) {
+			ativo = true;
+			Entidade::ativar();
+
+			direcao = sentido;
+
+			zerarVelocidadeY();
+			
+			setPosicao((int)posicao.x, (int)posicao.y);
+		}
+
+		void Projetil::executar() {
+			if (!ativo || !estaAtivo()) {
 				return;
 			}
-			mover();
-			//desenhar();
-		}
-		void Projetil::mover()
-		{
-			body.move(direcao * velo);
 
-			//Caso saia da Janela
-			if (body.getPosition().x > 2000 || body.getPosition().x < -50)
+			mover();
+			aplicarGravidade();
+
+			if (getX() < -50 || getX() > 1950 || getY() > 1100)
 			{
 				desativar();
 			}
 		}
-		void Projetil::desativar()
-		{
+
+		void Projetil::mover() {
+			setPosicao(
+				getX() + (int)(direcao.x * velocidade),
+				getY()
+			);
+		}
+
+		void Projetil::desativar() {
 			ativo = false;
+			Entidade::desativar();
 		}
-		void Projetil::salvar() //Falta Implementar
-		{
 
-		}
-		void Projetil::salvarDataBuffer() //Falta Implementar
-		{
-
-		}
-		int Projetil::getDano() const
-		{
+		int Projetil::getDano() const {
 			return dano;
 		}
+
+		void Projetil::salvar() {} //Falta Implementar
 	}
 }

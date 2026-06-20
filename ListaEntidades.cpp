@@ -5,75 +5,48 @@
 namespace TrabalhoJogo {
 	namespace Listas {
 		ListaEntidades::ListaEntidades(){}
+
 		ListaEntidades::~ListaEntidades() {
 			limpar();
 		}
 
-		void ListaEntidades::incluirEntidade(Entidades::Entidade* pE) {
+		void ListaEntidades::incluir(Entidades::Entidade* pE) {
 			if (pE != NULL) {
-				LEs.push_back(pE);
+				LEs.incluir(pE);
 			}
 		}
 
 		void ListaEntidades::percorrer() {
-			std::list<Entidades::Entidade*>::iterator it;
+			for (int i = 0; i < LEs.getTamanho(); i++) {
+				Entidades::Entidade* pEntidade = LEs[i];
 
-			for (it = LEs.begin(); it != LEs.end(); ++it) {
-				if (*it != NULL) {
-					(*it)->executar();
-					(*it)->aplicarGravidade();
-
-					Entidades::Personagens::Personagem* pPersonagem = 
-						dynamic_cast<Entidades::Personagens::Personagem*>(*it);
-
-					if (pPersonagem != NULL && !pPersonagem->estarVivo()) {
-						(*it)->marcarRemocao();
-					}
+				if (pEntidade != NULL && pEntidade->estaAtivo()) {
+					pEntidade->executar();	
 				}
 			}
 		}
 
 		void ListaEntidades::desenhar() {
-			std::list<Entidades::Entidade*>::iterator it;
+			for (int i = 0; i < LEs.getTamanho(); i++) {
+				Entidades::Entidade* pEntidade = LEs[i];
 
-			for (it = LEs.begin(); it != LEs.end(); ++it) {
-				if (*it != NULL) {
-					(*it)->desenhar();
+				if (pEntidade != NULL && pEntidade->estaAtivo()) {
+					pEntidade->desenhar();
 				}
 			}
 		}
 
 		void ListaEntidades::limpar() {
-			std::list<Entidades::Entidade*>::iterator it;
+			for (int i = 0; i < LEs.getTamanho(); i++) {
+				Entidades::Entidade* pEntidade = LEs[i];
 
-			for (it = LEs.begin(); it != LEs.end(); ++it) {
-				if (*it != NULL) {
-					delete* it;
-					*it = NULL;
-				}
-			}
-			LEs.clear();
-		}
-
-		void ListaEntidades::removerMortos() {
-			std::list<Entidades::Entidade*>::iterator it;
-
-			while (it != LEs.end()) {
-				Entidades::Entidade* pEntidade = *it;
-
-				if (pEntidade == NULL) {
-					it = LEs.erase(it);
-					continue;
-				}
-
-				if (pEntidade->estaMarcado()) {
+				if (pEntidade != NULL) {
 					delete pEntidade;
-					it = LEs.erase(it);
-					continue;
+					pEntidade = NULL;
 				}
-
-				it++;
 			}
+
+			LEs.limpar();
 		}
 	}
 }

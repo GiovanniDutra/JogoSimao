@@ -10,9 +10,9 @@ namespace TrabalhoJogo {
 	namespace Fases {
 		Fase::Fase() : Ente(), 
 			pGC(new Gerenciadores::GerenciadorColisoes()),
-			pJog1(NULL), limiteChao(900)
+			pJog1(NULL), limiteChao(900),
+			maxPinguins(10), maxPlataformas(10)
 		{
-
 			if (pGC != NULL) {
 				pGC->setLimiteChao(limiteChao);
 			}
@@ -42,63 +42,74 @@ namespace TrabalhoJogo {
 		}
 
 		void Fase::criarPinguins() { //Criar Inimigos Faceis
-			Entidades::Personagens::Pinguim* pPinguim1 =
-				new Entidades::Personagens::Pinguim(260, 660, 150, 440);
+			int quantidade = gerarQuantidadeAleatoria(maxPinguins);
 
-			Entidades::Personagens::Pinguim* pPinguim2 =
-				new Entidades::Personagens::Pinguim(580, 430, 520, 760);
+			int posicoes[10][4] = {  //X, Y, LimEsq, LimDir
+			{260,  660, 150, 440},
+			{580,  430, 520, 760},
+			{950,  330, 880, 1130},
+			{1260, 580, 1180, 1440},
+			{1540, 380, 1480, 1720},
+			{350,  820, 250, 520},
+			{700,  700, 620, 880},
+			{1080, 520, 1000, 1240},
+			{1380, 760, 1300, 1560},
+			{1650, 650, 1550, 1820}};
 
-			Entidades::Personagens::Pinguim* pPinguim3 =
-				new Entidades::Personagens::Pinguim(950, 330, 880, 1130);
+			for (int i = 0; i < quantidade; i++) {
+				Entidades::Personagens::Pinguim* pPinguim =
+					new Entidades::Personagens::Pinguim(
+						posicoes[i][0],
+						posicoes[i][1],
+						posicoes[i][2],
+						posicoes[i][3]
+					);
 
-			listaEnts.incluirEntidade(pPinguim1);
-			listaEnts.incluirEntidade(pPinguim2);
-			listaEnts.incluirEntidade(pPinguim3);
+				listaEnts.incluir(pPinguim);
 
-			if(pGC != NULL) {
-				pGC->incluirInimigo(pPinguim1);
-				pGC->incluirInimigo(pPinguim2);
-				pGC->incluirInimigo(pPinguim3);
+				if (pGC != NULL) {
+					pGC->incluirInimigo(pPinguim);
+				}
 			}
 		}
 
 
 		void Fase::criarPlataformas() {	
-			Entidades::Obstaculos::Plataforma* pPlat1 =
-				new Entidades::Obstaculos::Plataforma(150, 735, 350, 50);
+			int quantidade = gerarQuantidadeAleatoria(maxPlataformas);
 
-			Entidades::Obstaculos::Plataforma* pPlat2 =
-				new Entidades::Obstaculos::Plataforma(500, 565, 350, 50);
+			int posicoes[10][4] = { //X, Y, Largura, Altura
+			{80,   820, 300, 45},
+			{440,  700, 300, 45},
+			{820,  560, 300, 45},
+			{1200, 720, 300, 45},
+			{1540, 580, 300, 45},
+			{250,  430, 280, 45},
+			{650,  300, 280, 45},
+			{1050, 390, 280, 45},
+			{1420, 260, 280, 45},
+			{1580, 850, 260, 45}};
 
-			Entidades::Obstaculos::Plataforma* pPlat3 =
-				new Entidades::Obstaculos::Plataforma(860, 415, 350, 50);
+			for (int i = 0; i < quantidade; i++) {
+				Entidades::Obstaculos::Plataforma* pPlat =
+					new Entidades::Obstaculos::Plataforma(
+						posicoes[i][0], //X
+						posicoes[i][1], //Y
+						posicoes[i][2], //Largura
+						posicoes[i][3]  //Altura
+					);
 
-			Entidades::Obstaculos::Plataforma* pPlat4 =
-				new Entidades::Obstaculos::Plataforma(1200, 665, 350, 50);
+				listaEnts.incluir(pPlat);
 
-			Entidades::Obstaculos::Plataforma* pPlat5 =
-				new Entidades::Obstaculos::Plataforma(1500, 465, 350, 50);
-
-			listaEnts.incluirEntidade(pPlat1);
-			listaEnts.incluirEntidade(pPlat2);
-			listaEnts.incluirEntidade(pPlat3);
-			listaEnts.incluirEntidade(pPlat4);
-			listaEnts.incluirEntidade(pPlat5);
-
-			if (pGC != NULL)
-			{
-				pGC->incluirObstaculo(pPlat1);
-				pGC->incluirObstaculo(pPlat2);
-				pGC->incluirObstaculo(pPlat3);
-				pGC->incluirObstaculo(pPlat4);
-				pGC->incluirObstaculo(pPlat5);
+				if (pGC != NULL) {
+					pGC->incluirObstaculo(pPlat);
+				}
 			}
 		}
 
 		void Fase::criarCenario() {
 			pJog1 = new Entidades::Personagens::Jogador();
 
-			listaEnts.incluirEntidade(pJog1);
+			listaEnts.incluir(pJog1);
 
 			if (pGC != NULL)
 			{
@@ -109,6 +120,16 @@ namespace TrabalhoJogo {
 			criarObstaculos();
 			criarPlataformas();
 			criarInimigos();
+		}
+
+		int Fase::gerarQuantidadeAleatoria(const int maximo) const {
+			const int minimo = 3;
+
+			if (maximo < minimo) {
+				return minimo;
+			}
+
+			return minimo + rand() % (maximo - minimo + 1);
 		}
 	}
 }

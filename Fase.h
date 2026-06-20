@@ -29,6 +29,9 @@ namespace TrabalhoJogo {
 			sf::Sprite fundo;
 
 			int limiteChao;
+
+			const int maxPinguins;
+			const int maxPlataformas;
 		public:
 			Fase();
 			~Fase();
@@ -42,6 +45,8 @@ namespace TrabalhoJogo {
 
 			virtual void criarInimigos() = 0;
 			virtual void criarObstaculos() = 0;
+
+			int gerarQuantidadeAleatoria(const int maximo) const;
 
 		};
 	}

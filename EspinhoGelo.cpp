@@ -11,7 +11,9 @@ namespace TrabalhoJogo {
 			EspinhoGelo::EspinhoGelo() :
 				Obstaculo(),
 				danosidade(2),
-				baseY(y)
+				baseY(0),
+				altura(50),
+				largura(25)
 			{
 				danoso = true;
 
@@ -23,13 +25,15 @@ namespace TrabalhoJogo {
 					body.setFillColor(sf::Color::Red);
 				}
 
-				setPosicao(100, 100);
+				setPosicao(0, baseY);
 			}
 
 			EspinhoGelo::EspinhoGelo(int x, int y, float largura, float altura) :
 				Obstaculo(),
 				danosidade(2),
-				baseY(y)
+				baseY(y),
+				largura(largura),
+				altura(altura)
 			{
 				danoso = true;
 
@@ -49,8 +53,9 @@ namespace TrabalhoJogo {
 			void EspinhoGelo::executar() {} //Falta implementar
 
 			void EspinhoGelo::obstaculizar(Personagens::Jogador* pJogador) {
-				if (!pJogador)
+				if (pJogador == NULL) {
 					return;
+				}
 
 				sf::FloatRect corpoJogador = pJogador->getBody().getGlobalBounds();
 				sf::FloatRect corpoObstaculo = body.getGlobalBounds();

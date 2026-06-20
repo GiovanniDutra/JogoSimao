@@ -8,7 +8,8 @@ namespace TrabalhoJogo {
 	namespace Fases {
 		FasePrimeira::FasePrimeira() :
 			Fase(),
-			maxLoboGelo(10)
+			maxLoboGelo(10),
+			maxPlataformasGelidas(10)
 		{
 			carregaFundo("assets/cenariofrio.jfif");
 			criarCenario();
@@ -21,7 +22,7 @@ namespace TrabalhoJogo {
 		}
 
 		void FasePrimeira::criarObstaculos() {
-			criarObstMedios();
+			criarPlataformasGelidas();
 		}
 
 		void FasePrimeira::carregaFundo(const std::string& caminho)
@@ -43,47 +44,67 @@ namespace TrabalhoJogo {
 		}
 
 		void FasePrimeira::criarLoboGelo() {
-			Entidades::Personagens::LoboGelo* pLoboGelo1 =
-				new Entidades::Personagens::LoboGelo(650, 605, 630, 670);
+			int quantidade = gerarQuantidadeAleatoria(maxLoboGelo);
 
-			Entidades::Personagens::LoboGelo* pLoboGelo2 =
-				new Entidades::Personagens::LoboGelo(560, 415, 540, 580);
+			int posicoes[10][4] = {
+			{650,  605, 580, 820},
+			{560,  415, 520, 730},
+			{940,  315, 880, 1100},
+			{1250, 620, 1180, 1440},
+			{1550, 440, 1480, 1740},
+			{300,  760, 220, 500},
+			{720,  690, 640, 900},
+			{1080, 520, 1000, 1260},
+			{1360, 350, 1300, 1540},
+			{1620, 760, 1540, 1840}};
 
-			Entidades::Personagens::LoboGelo* pLoboGelo3 =
-				new Entidades::Personagens::LoboGelo(940, 315, 920, 960);
+			for (int i = 0; i < quantidade; i++) {
+				Entidades::Personagens::LoboGelo* pLobo =
+					new Entidades::Personagens::LoboGelo(
+						posicoes[i][0],
+						posicoes[i][1],
+						posicoes[i][2],
+						posicoes[i][3]
+					);	
 
-			listaEnts.incluirEntidade(pLoboGelo1);
-			listaEnts.incluirEntidade(pLoboGelo2);
-			listaEnts.incluirEntidade(pLoboGelo3);
+				listaEnts.incluir(pLobo);
 
-			if(pGC != NULL) {
-				pGC->incluirInimigo(pLoboGelo1);
-				pGC->incluirInimigo(pLoboGelo2);
-				pGC->incluirInimigo(pLoboGelo3);
+				if (pGC != NULL) {
+					pGC->incluirInimigo(pLobo);
+				}
 			}
 		}
 
-		void FasePrimeira::criarObstMedios() {
-			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida1 =
-				new Entidades::Obstaculos::PlataformaGelida(725, 750, 350.0f, 50.0f);
+		void FasePrimeira::criarPlataformasGelidas() {
+			int quantidade = gerarQuantidadeAleatoria(maxPlataformasGelidas);
 
-			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida2 =
-				new Entidades::Obstaculos::PlataformaGelida(200, 315, 350.0f, 50.0f);
+			int posicoes[10][4] = {
+		   {260,  760, 300, 45},
+		   {620,  630, 300, 45},
+		   {980,  480, 300, 45},
+		   {1360, 650, 300, 45},
+		   {1480, 430, 300, 45},
+		   {120,  560, 280, 45},
+		   {520,  390, 280, 45},
+		   {900,  250, 280, 45},
+		   {1260, 340, 280, 45},
+		   {1620, 720, 250, 45}};
 
-			Entidades::Obstaculos::PlataformaGelida* pPlataformaGelida3 =
-				new Entidades::Obstaculos::PlataformaGelida(1250, 280, 350.0f, 50.0f);
+			for (int i = 0; i < quantidade; i++) {
+				Entidades::Obstaculos::PlataformaGelida* pGelida =
+					new Entidades::Obstaculos::PlataformaGelida(
+						posicoes[i][0],
+						posicoes[i][1],
+						static_cast<float>(posicoes[i][2]),
+						static_cast<float>(posicoes[i][3])
+					);
 
-			listaEnts.incluirEntidade(pPlataformaGelida1);
-			listaEnts.incluirEntidade(pPlataformaGelida2);
-			listaEnts.incluirEntidade(pPlataformaGelida3);
+				listaEnts.incluir(pGelida);
 
-			if(pGC != NULL) {
-				pGC->incluirObstaculo(pPlataformaGelida1);
-				pGC->incluirObstaculo(pPlataformaGelida2);
-				pGC->incluirObstaculo(pPlataformaGelida3);
+				if (pGC != NULL) {
+					pGC->incluirObstaculo(pGelida);
+				}
 			}
 		}
-
-
 	}
 }

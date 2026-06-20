@@ -3,12 +3,17 @@
 #include "FasePrimeira.h"
 #include "FaseSegunda.h"
 
+#include <cstdlib>
+#include <ctime>
+
 namespace TrabalhoJogo {
 
 	Jogo::Jogo() :
-		pGG(nullptr),
-		faseAtual(nullptr)
+		pGG(NULL),
+		faseAtual(NULL)
 	{
+		srand((unsigned int)time(NULL));
+
 		pGG = new Gerenciadores::GerenciadorGrafico();
 		Ente::setGG(pGG);
 	}

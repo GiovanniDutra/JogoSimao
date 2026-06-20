@@ -16,11 +16,16 @@ namespace TrabalhoJogo {
 
 				if (num_vidas <= 0) {
 					num_vidas = 0;
+					desativar();
 				}
 			}
 
 			bool Inimigo::estarVivo() const {
 				return num_vidas > 0;
+			}
+
+			int Inimigo::getNivelMaldade() const {
+				return nivelMaldade;
 			}
 		}
 	}

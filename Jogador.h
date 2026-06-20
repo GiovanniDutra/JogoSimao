@@ -52,6 +52,7 @@ namespace TrabalhoJogo {
 				bool estaAtacando() const;
 				int getForcaAtaque() const;
 				int getDirecaoAtaque() const;
+				sf::FloatRect getAreaAtaque() const;
 			};
 		}
 	}

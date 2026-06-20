@@ -33,7 +33,7 @@ namespace TrabalhoJogo {
 				direcaoEscorregamento(1),
 				baseY(y)
 			{
-				danoso = true;
+				danoso = false;
 
 				body.setSize(sf::Vector2f(this->largura, this->altura));
 				body.setFillColor(sf::Color::Cyan);
@@ -48,9 +48,7 @@ namespace TrabalhoJogo {
 
 			PlataformaGelida::~PlataformaGelida() {} 
 
-			void PlataformaGelida::executar() {
-				desenhar();
-			}
+			void PlataformaGelida::executar() {}
 
 			void PlataformaGelida::obstaculizar(Personagens::Jogador* pJogador) {
 				if (pJogador == NULL)

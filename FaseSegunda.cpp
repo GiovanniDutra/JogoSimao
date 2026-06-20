@@ -5,30 +5,24 @@
 #include "GolemGelo.h"
 #include <iostream>
 #include "GerenciadorGrafico.h"
+#include "Projetil.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
 
-		FaseSegunda::FaseSegunda() : Fase() {
-			carregaFundo("assets/cenariofrio2.png"); // novo fundo
+		FaseSegunda::FaseSegunda() : 
+			Fase(), 
+			maxChefoes(10),
+			maxEspinhoGelo(10)
+		{
+			carregaFundo("assets/cenariofrio2.png");
 			criarCenario();
 		}
 
 		FaseSegunda::~FaseSegunda() {}
 
 		void FaseSegunda::criarInimigos() {
-
-			Entidades::Personagens::Pinguim* p1 =
-				new Entidades::Personagens::Pinguim(400, 650, 350, 600);
-
-			Entidades::Personagens::Pinguim* p2 =
-				new Entidades::Personagens::Pinguim(900, 500, 850, 1100);
-
-			listaEnts.incluirEntidade(p1);
-			listaEnts.incluirEntidade(p2);
-
-			pGC->incluirInimigo(p1);
-			pGC->incluirInimigo(p2);
+			criarGolemGelo();
 		}
 
 		void FaseSegunda::carregaFundo(const std::string& caminho)
@@ -50,58 +44,78 @@ namespace TrabalhoJogo {
 		}
 
 		void FaseSegunda::criarObstaculos() {
-			using namespace Entidades::Obstaculos;
-
-			EspinhoGelo* e1 = new EspinhoGelo();
-			EspinhoGelo* e2 = new EspinhoGelo();
-
-			e1->setPosicao(400, 820);
-			e2->setPosicao(750, 820);
-
-			listaEnts.incluirEntidade(e1);
-			listaEnts.incluirEntidade(e2);
-
-			pGC->incluirObstaculo(e1);
-			pGC->incluirObstaculo(e2);
+			criarEspinhoGelo();
 		}
+
 		void FaseSegunda::criarEspinhoGelo() {
-			Entidades::Obstaculos::EspinhoGelo* pEspinhoGelo1 =
-				new Entidades::Obstaculos::EspinhoGelo(725, 750, 350.0f, 50.0f);
+			int quantidade = gerarQuantidadeAleatoria(maxEspinhoGelo);
 
-			Entidades::Obstaculos::EspinhoGelo* pEspinhoGelo2 =
-				new Entidades::Obstaculos::EspinhoGelo(200, 315, 350.0f, 50.0f);
+			int posicoes[10][4] = {
+		   {240,  780, 80, 80},
+		   {580,  640, 80, 80},
+		   {930,  500, 80, 80},
+		   {1280, 700, 80, 80},
+		   {1580, 560, 80, 80},
+		   {350,  420, 80, 80},
+		   {720,  300, 80, 80},
+		   {1080, 380, 80, 80},
+		   {1420, 260, 80, 80},
+		   {1660, 760, 80, 80}};
 
-			Entidades::Obstaculos::EspinhoGelo* pEspinhoGelo3 =
-				new Entidades::Obstaculos::EspinhoGelo(1250, 280, 350.0f, 50.0f);
+			for (int i = 0; i < quantidade; i++) {
+				Entidades::Obstaculos::EspinhoGelo* pEspinho =
+					new Entidades::Obstaculos::EspinhoGelo(
+						posicoes[i][0],
+						posicoes[i][1],
+						static_cast<float>(posicoes[i][2]),
+						static_cast<float>(posicoes[i][3])
+					);
 
-			listaEnts.incluirEntidade(pEspinhoGelo1);
-			listaEnts.incluirEntidade(pEspinhoGelo2);
-			listaEnts.incluirEntidade(pEspinhoGelo3);
+				listaEnts.incluir(pEspinho);
 
-			if (pGC != NULL) {
-				pGC->incluirObstaculo(pEspinhoGelo1);
-				pGC->incluirObstaculo(pEspinhoGelo2);
-				pGC->incluirObstaculo(pEspinhoGelo3);
+				if (pGC != NULL) {
+					pGC->incluirObstaculo(pEspinho);
+				}
 			}
 		}
 		void FaseSegunda::criarGolemGelo() {
-			Entidades::Personagens::GolemGelo* pGolemGelo1 =
-				new Entidades::Personagens::GolemGelo(650, 605, 630, 670);
+			int quantidade = gerarQuantidadeAleatoria(maxChefoes);
 
-			Entidades::Personagens::GolemGelo* pGolemGelo2 =
-				new Entidades::Personagens::GolemGelo(560, 415, 540, 580);
+			int posicoes[10][4] = {
+			{650,  605, 600, 760},
+			{560,  415, 500, 700},
+			{940,  315, 880, 1100},
+			{1250, 620, 1180, 1440},
+			{1520, 450, 1460, 1740},
+			{300,  720, 220, 500},
+			{780,  680, 700, 960},
+			{1080, 500, 1000, 1280},
+			{1380, 350, 1300, 1580},
+			{1600, 760, 1520, 1840}};
 
-			Entidades::Personagens::GolemGelo* pGolemGelo3 =
-				new Entidades::Personagens::GolemGelo(940, 315, 920, 960);
+			for (int i = 0; i < quantidade; i++)
+			{
+				Entidades::Personagens::GolemGelo* pGolem =
+					new Entidades::Personagens::GolemGelo(
+						posicoes[i][0],
+						posicoes[i][1],
+						posicoes[i][2],
+						posicoes[i][3]
+					);
 
-			listaEnts.incluirEntidade(pGolemGelo1);
-			listaEnts.incluirEntidade(pGolemGelo2);
-			listaEnts.incluirEntidade(pGolemGelo3);
+				Entidades::Projetil* pProjetil = new Entidades::Projetil();
 
-			if (pGC != NULL) {
-				pGC->incluirInimigo(pGolemGelo1);
-				pGC->incluirInimigo(pGolemGelo2);
-				pGC->incluirInimigo(pGolemGelo3);
+				pGolem->setProjetil(pProjetil);
+				pGolem->setAlvo(pJog1);
+
+				listaEnts.incluir(pGolem);
+				listaEnts.incluir(pProjetil);
+
+				if (pGC != NULL)
+				{
+					pGC->incluirInimigo(pGolem);
+					pGC->incluirProjetil(pProjetil);
+				}
 			}
 		}
 	}

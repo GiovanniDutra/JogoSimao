@@ -27,6 +27,10 @@ namespace TrabalhoJogo {
 				return false;
 			}
 
+			if (!pE1->estaAtivo() || !pE2->estaAtivo()) {
+				return false;
+			}
+
 			return pE1->getBody().getGlobalBounds().intersects(pE2->getBody().getGlobalBounds());
 		}
 
@@ -72,17 +76,23 @@ namespace TrabalhoJogo {
 		}
 
 		void GerenciadorColisoes::tratarColisoesInimigosObstaculos() {
-			for (unsigned int i = 0; i < LIs.size(); i++) {
-				if (LIs[i] != NULL) {
+			for (unsigned int i = 0; i < LIs.size(); i++)
+			{
+				Entidades::Personagens::Inimigo* pInimigo = LIs[i];
+
+				if (pInimigo != NULL && pInimigo->estaAtivo())
+				{
 					std::list<Entidades::Obstaculos::Obstaculo*>::iterator it;
+
 					for (it = LOs.begin(); it != LOs.end(); it++)
 					{
 						Entidades::Obstaculos::Obstaculo* pObstaculo = *it;
-						if (pObstaculo != NULL)
+
+						if (pObstaculo != NULL && pObstaculo->estaAtivo())
 						{
-							if (verificarColisao(LIs[i], pObstaculo))
+							if (verificarColisao(pInimigo, pObstaculo))
 							{
-								tratarColisaoEntidadeObstaculo(LIs[i], pObstaculo);
+								tratarColisaoEntidadeObstaculo(pInimigo, pObstaculo);
 							}
 						}
 					}
@@ -91,52 +101,76 @@ namespace TrabalhoJogo {
 		}
 
 		void GerenciadorColisoes::tratarColisoesJogsInimigos() {
-			if(pJog1 == NULL) {
+			if (pJog1 == NULL || !pJog1->estaAtivo())
+			{
 				return;
 			}
 
-			for (unsigned int i = 0; i < LIs.size(); i++) {
-				if(LIs[i] == NULL) {
-					continue;
-				}
-
+			for (unsigned int i = 0; i < LIs.size(); i++)
+			{
 				Entidades::Personagens::Inimigo* pInimigo = LIs[i];
 
-				if(!verificarColisao(pJog1, pInimigo)) {
-					continue;
-				}
+				if (pInimigo != NULL && pInimigo->estaAtivo())
+				{
+					if (pJog1->estaAtacando())
+					{
+						sf::FloatRect areaAtaque = pJog1->getAreaAtaque();
 
-				std::cout << "[DEBUG] Colisao detectada entre jogador e inimigo (nivel="
-					<< pInimigo->getNivelMaldade() << ", vidas=" << (int)pInimigo->estarVivo() << ")" << std::endl;
+						if (areaAtaque.intersects(pInimigo->getBody().getGlobalBounds()))
+						{
+							pInimigo->receberAtaque(pJog1->getForcaAtaque());
 
-				if(pJog1->estaAtacando()) {
-					std::cout << "[DEBUG] Jogador atacando: aplicando dano " << std::endl;
-					pInimigo->receberAtaque(pJog1->getForcaAtaque());
+							if (!pInimigo->estaAtivo())
+							{
+								pJog1->addPontos(10);
+							}
 
-					if (!pInimigo->estarVivo()) {
-						std::cout << "[DEBUG] Inimigo morreu após receber ataque." << std::endl;
-						pJog1->addPontos(10 * pInimigo->getNivelMaldade());
+							continue;
+						}
 					}
-				}
-				else {
-					std::cout << "[DEBUG] Jogador nao atacando: inimigo danifica jogador." << std::endl;
-					pInimigo->danificar(pJog1);
+
+					if (verificarColisao(pJog1, pInimigo))
+					{
+						pInimigo->danificar(pJog1);
+					}
 				}
 			}
 		}
 
 		void GerenciadorColisoes::tratarColisoesJogsProjeteis() {
-			//Implementar Quando Projetil Existir
+			if (pJog1 == NULL || !pJog1->estaAtivo())
+			{
+				return;
+			}
+
+			std::set<Entidades::Projetil*>::iterator it;
+
+			for (it = LPs.begin(); it != LPs.end(); it++)
+			{
+				Entidades::Projetil* pProjetil = *it;
+
+				if (pProjetil != NULL && pProjetil->estaAtivo())
+				{
+					if (verificarColisao(pJog1, pProjetil))
+					{
+						pJog1->receberDano(pProjetil->getDano());
+						pProjetil->desativar();
+					}
+				}
+			}
 		}
 
 		void GerenciadorColisoes::executar() {
 			tratarColisoesJogsObstaculos();
 			tratarColisoesInimigosObstaculos();
 
-			tratarColisaoChao(pJog1);
+			if (pJog1 != NULL && pJog1->estaAtivo())
+			{
+				tratarColisaoChao(pJog1);
+			}
 
 			for(unsigned int i = 0; i < LIs.size(); i++) {
-				if(LIs[i] != NULL) {
+				if(LIs[i] != NULL && LIs[i]->estaAtivo()) {
 					tratarColisaoChao(LIs[i]);
 				}
 			}

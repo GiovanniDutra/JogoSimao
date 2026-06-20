@@ -39,6 +39,7 @@ namespace TrabalhoJogo {
 			void Jogador::executar()
 			{
 				mover();
+				aplicarGravidade();
 
 				if (intervaloAtaqueCont > 0) {
 					intervaloAtaqueCont--;
@@ -179,6 +180,31 @@ namespace TrabalhoJogo {
 
 			int Jogador::getDirecaoAtaque() const {
 				return direcao;
+			}
+
+			sf::FloatRect Jogador::getAreaAtaque() const
+			{
+				sf::FloatRect corpo = body.getGlobalBounds();
+
+				float larguraAtaque = 80.0f;
+				float alturaAtaque = corpo.height;
+
+				if (direcao >= 0)
+				{
+					return sf::FloatRect(
+						corpo.left + corpo.width,
+						corpo.top,
+						larguraAtaque,
+						alturaAtaque
+					);
+				}
+
+				return sf::FloatRect(
+					corpo.left - larguraAtaque,
+					corpo.top,
+					larguraAtaque,
+					alturaAtaque
+				);
 			}
 		}
 	}

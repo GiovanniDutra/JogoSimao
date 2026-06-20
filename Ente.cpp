@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 #include "SFML/Graphics.hpp"
-//#include "Figura.h"
 
 namespace TrabalhoJogo {
 

@@ -2,29 +2,35 @@
 
 #ifndef PROJETIL_H_
 #define PROJETIL_H_
+
 #include "Entidade.h"
 
 namespace TrabalhoJogo {
 	namespace Entidades {
 
-		class Projetil : Entidade
+		class Projetil : public Entidade
 		{
 		protected:
-			float velo;
-			int dano;
 			bool ativo;
+
+			float velocidade;
+
+			int dano;
+
 			sf::Vector2f direcao;
-
 		public:
-
+			Projetil();
 			Projetil(sf::Vector2f posicao, sf::Vector2f direcao);
 			virtual ~Projetil();
-			virtual void executar();
-			virtual void salvar();
+
+			void executar();
+			void salvar();
+
+			void prepararDisparo(sf::Vector2f posicao, sf::Vector2f direcao);
 
 			void mover();
 			void desativar();
-			void salvarDataBuffer();
+			
 			int getDano() const;
 		};
 	}

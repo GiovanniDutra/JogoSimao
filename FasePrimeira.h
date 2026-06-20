@@ -9,7 +9,8 @@ namespace TrabalhoJogo {
 	namespace Fases {
 		class FasePrimeira : public Fase {
 		private:
-			const int maxLoboGelo; //Max Inimigos Medios
+			const int maxLoboGelo;
+			const int maxPlataformasGelidas;
 		public:
 			FasePrimeira();
 			~FasePrimeira();
@@ -20,7 +21,7 @@ namespace TrabalhoJogo {
 			void carregaFundo(const std::string& caminho);
 
 			void criarLoboGelo(); //Criar Inimigo Medio
-			void criarObstMedios();
+			void criarPlataformasGelidas();
 		};
 	}
 }

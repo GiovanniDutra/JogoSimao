@@ -3,7 +3,9 @@
 #ifndef LISTA_H_
 #define LISTA_H_
 
-namespace JogoTrabalho {
+#include <iostream>
+
+namespace TrabalhoJogo {
 	namespace Listas {
 		template <class TL>
 
@@ -23,8 +25,8 @@ namespace JogoTrabalho {
 					pInfo = NULL;
 				}
 
-				void incluir(TE* pE) {
-					pInfo = pE;
+				void incluir(TE* pI) {
+					pInfo = pI;
 				}
 
 				void setProx(Elemento<TE>* pE) {
@@ -48,7 +50,7 @@ namespace JogoTrabalho {
 			Lista() : pPrimeiro(NULL), pUltimo(NULL), tamanho(0) {}
 
 			~Lista() {
-				//limpar():
+				limpar();
 			}
 
 			void incluir(TL* pI) {
@@ -96,6 +98,7 @@ namespace JogoTrabalho {
 				}
 
 				Elemento<TL>* pAtual = pPrimeiro;
+				
 				int i = 0;
 
 				while (pAtual != NULL && i < indice) {

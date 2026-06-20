@@ -17,7 +17,7 @@ namespace TrabalhoJogo {
 			int velocidadeY;
 			bool noChao;
 
-			bool flagRemocao;
+			bool ativo;
 
 			//ostream buffer; Falta Entender
 		public:
@@ -40,8 +40,9 @@ namespace TrabalhoJogo {
 
 			void setNoChao(bool estado);
 
-			void marcarRemocao();
-			bool estaMarcado() const;
+			void ativar();
+			void desativar();
+			bool estaAtivo() const;
 
 			sf::RectangleShape& getBody();
 			const sf::RectangleShape& getBody() const;

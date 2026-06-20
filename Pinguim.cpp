@@ -69,7 +69,7 @@ namespace TrabalhoJogo {
 			void Pinguim::executar()
 			{
 				mover();
-				//aplicarGravidade();
+				aplicarGravidade();
 			}
 			
 			void Pinguim::danificar(Jogador* p) {

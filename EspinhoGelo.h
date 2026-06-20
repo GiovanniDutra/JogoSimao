@@ -26,7 +26,7 @@ namespace TrabalhoJogo {
 			public:
 				EspinhoGelo();
 				EspinhoGelo(int x, int y, float largura, float altura);
-				virtual ~EspinhoGelo();
+				~EspinhoGelo();
 
 				void executar();
 				void salvar();

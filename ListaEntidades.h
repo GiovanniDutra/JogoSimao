@@ -3,7 +3,7 @@
 #ifndef LISTAENTIDADES_H_
 #define LISTAENTIDADES_H_
 
-#include <list>
+#include "Lista.h"
 
 namespace TrabalhoJogo {
 	namespace Entidades {
@@ -13,18 +13,16 @@ namespace TrabalhoJogo {
 	namespace Listas {
 		class ListaEntidades {
 		private:
-			std::list<Entidades::Entidade*> LEs;
+			Lista<Entidades::Entidade> LEs;
 		public:
 			ListaEntidades();
 			~ListaEntidades();
 
-			void incluirEntidade(Entidades::Entidade* pE);
+			void incluir(Entidades::Entidade* pE);
 
 			void percorrer();
 			void desenhar();
 			void limpar();
-
-			void removerMortos();
 		};
 	}
 }

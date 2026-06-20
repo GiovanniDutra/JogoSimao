@@ -26,9 +26,7 @@ namespace TrabalhoJogo {
 				virtual void danificar(Jogador* p) = 0;
 				virtual void salvar() = 0;
 
-				int getNivelMaldade() const { 
-					return nivelMaldade; 
-				}
+				int getNivelMaldade() const;
 			};
 		}
 	}

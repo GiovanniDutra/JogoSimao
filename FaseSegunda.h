@@ -1,18 +1,23 @@
 #pragma once
 
+#ifndef FASESEGUNDA_H_
+#define FASESEGUNDA_H_
+
 #include "Fase.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
 
 		class FaseSegunda : public Fase {
+		private:
+			const int maxChefoes;
+			const int maxEspinhoGelo;
 		public:
 			FaseSegunda();
 			~FaseSegunda();
-
-		private:
-			void criarInimigos() override;
-			void criarObstaculos() override;
+		protected:	
+			void criarInimigos();
+			void criarObstaculos();
 
 			void criarEspinhoGelo();
 			void criarGolemGelo();
@@ -21,3 +26,5 @@ namespace TrabalhoJogo {
 		};
 	}
 }
+
+#endif

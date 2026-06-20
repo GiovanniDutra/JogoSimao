@@ -43,9 +43,7 @@ namespace TrabalhoJogo {
 
 			Plataforma::~Plataforma(){}
 
-			void Plataforma::executar() {
-				return desenhar();
-			}
+			void Plataforma::executar() {}
 
 			void Plataforma::obstaculizar(Personagens::Jogador* pJogador) {
 				if (pJogador == 0) {
