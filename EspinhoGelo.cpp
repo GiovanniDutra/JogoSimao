@@ -18,7 +18,7 @@ namespace TrabalhoJogo {
 				danoso = true;
 
 				body.setSize(sf::Vector2f(100.f, 100.f));
-				body.setFillColor(sf::Color::Blue);
+				body.setFillColor(sf::Color::Black);
 
 				if (!carregarTextura("assets/EstacaGelo.png"))
 				{
@@ -38,7 +38,7 @@ namespace TrabalhoJogo {
 				danoso = true;
 
 				body.setSize(sf::Vector2f(this->largura, this->altura));
-				body.setFillColor(sf::Color::Blue);
+				body.setFillColor(sf::Color::White);
 
 				if (!carregarTextura("assets/EstacaGelo.png"))
 				{

@@ -11,6 +11,8 @@ namespace TrabalhoJogo {
 		class Projetil;
 
 		namespace Personagens {
+			class Jogador;
+
 			class GolemGelo : public Inimigo {
 			private:
 				int direcao;

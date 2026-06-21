@@ -23,6 +23,7 @@ namespace TrabalhoJogo {
 
 		void FaseSegunda::criarInimigos() {
 			criarGolemGelo();
+			criarProjeteis();
 		}
 
 		void FaseSegunda::carregaFundo(const std::string& caminho)
@@ -79,42 +80,61 @@ namespace TrabalhoJogo {
 			}
 		}
 		void FaseSegunda::criarGolemGelo() {
-			int quantidade = gerarQuantidadeAleatoria(maxChefoes);
+			int posicoes[10][4] =
+			{
+				{1300, 300, 1150, 1600},
+				{1650, 250, 1450, 1850},
+				{900, 400, 750, 1100},
+				{1450, 550, 1250, 1750},
+				{600, 350, 450, 850},
+				{1100, 650, 900, 1400},
+				{1750, 650, 1500, 1850},
+				{800, 700, 600, 1050},
+				{1350, 750, 1100, 1650},
+				{500, 650, 350, 750}
+			};
 
-			int posicoes[10][4] = {
-			{650,  605, 600, 760},
-			{560,  415, 500, 700},
-			{940,  315, 880, 1100},
-			{1250, 620, 1180, 1440},
-			{1520, 450, 1460, 1740},
-			{300,  720, 220, 500},
-			{780,  680, 700, 960},
-			{1080, 500, 1000, 1280},
-			{1380, 350, 1300, 1580},
-			{1600, 760, 1520, 1840}};
+			int quantidade = gerarQuantidadeAleatoria(maxChefoes);
 
 			for (int i = 0; i < quantidade; i++)
 			{
+				int x = posicoes[i][0];
+				int y = posicoes[i][1];
+				int limEsq = posicoes[i][2];
+				int limDir = posicoes[i][3];
+
 				Entidades::Personagens::GolemGelo* pGolem =
-					new Entidades::Personagens::GolemGelo(
-						posicoes[i][0],
-						posicoes[i][1],
-						posicoes[i][2],
-						posicoes[i][3]
-					);
+					new Entidades::Personagens::GolemGelo(x, y, limEsq, limDir);
 
-				Entidades::Projetil* pProjetil = new Entidades::Projetil();
-
-				pGolem->setProjetil(pProjetil);
-				pGolem->setAlvo(pJog1);
+				chefes.push_back(pGolem);
 
 				listaEnts.incluir(pGolem);
-				listaEnts.incluir(pProjetil);
 
 				if (pGC != NULL)
 				{
 					pGC->incluirInimigo(pGolem);
-					pGC->incluirProjetil(pProjetil);
+				}
+			}
+		}
+
+		void FaseSegunda::criarProjeteis() {
+			for (unsigned int i = 0; i < chefes.size(); i++)
+			{
+				Entidades::Personagens::GolemGelo* pGolem = chefes[i];
+
+				if (pGolem != NULL)
+				{
+					Entidades::Projetil* pProjetil = new Entidades::Projetil();
+
+					pGolem->setProjetil(pProjetil);
+					pGolem->setAlvo(pJog1);
+
+					listaEnts.incluir(pProjetil);
+
+					if (pGC != NULL)
+					{
+						pGC->incluirProjetil(pProjetil);
+					}
 				}
 			}
 		}

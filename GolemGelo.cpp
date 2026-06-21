@@ -107,6 +107,10 @@ namespace TrabalhoJogo {
 
 			void GolemGelo::setProjetil(Projetil* pP) {
 				pProjetil = pP;
+
+				if (pP != NULL) {
+					pP->setDono(this);
+				}
 			}
 
 			void GolemGelo::setAlvo(Jogador* pJogador) {
@@ -118,37 +122,23 @@ namespace TrabalhoJogo {
 					return;
 				}
 
-				if (!pAlvo->estaAtivo()) {
-					return;
+				sf::Vector2f posicao((float)getX(), (float)getY());
+				sf::Vector2f direcao;
+
+				if (pAlvo->getX() < getX())
+				{
+					direcao.x = -1.0f;
 				}
+				else
+				{
+					direcao.x = 1.0f;
+				}
+
+				direcao.y = 0.0f;
+
+				pProjetil->prepararDisparo(posicao, direcao);
 
 				jaAtirou = true;
-
-				sf::FloatRect corpoGolem = body.getGlobalBounds();
-				sf::FloatRect corpoJogador = pAlvo->getBody().getGlobalBounds();
-
-				float origemX = corpoGolem.left + corpoGolem.width / 2.0f;
-				float origemY = corpoGolem.top + corpoGolem.height / 2.0f;
-
-				float alvoX = corpoJogador.left + corpoJogador.width / 2.0f;
-				float alvoY = corpoJogador.top + corpoJogador.height / 2.0f;
-
-				float dx = alvoX - origemX;
-				float dy = alvoY - origemY;
-
-				float modulo = (float)sqrt(dx * dx + dy * dy);
-
-				if (modulo == 0.0f)
-				{
-					modulo = 1.0f;
-				}
-
-				sf::Vector2f direcaoProjetil(dx / modulo, dy / modulo);
-
-				pProjetil->prepararDisparo(
-					sf::Vector2f(origemX, origemY),
-					direcaoProjetil
-				);
 			}
 		}
 	}

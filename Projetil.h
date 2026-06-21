@@ -7,17 +7,24 @@
 
 namespace TrabalhoJogo {
 	namespace Entidades {
+		namespace Personagens 
+		{
+			class GolemGelo;
+		}
 
 		class Projetil : public Entidade
 		{
 		protected:
 			bool ativo;
-
 			float velocidade;
-
 			int dano;
 
+			float velocidadeProjetil;
+			float empuxo;
+
 			sf::Vector2f direcao;
+
+			Personagens::GolemGelo* pDono;
 		public:
 			Projetil();
 			Projetil(sf::Vector2f posicao, sf::Vector2f direcao);
@@ -32,6 +39,9 @@ namespace TrabalhoJogo {
 			void desativar();
 			
 			int getDano() const;
+
+			void setDono(Personagens::GolemGelo* pGolem);
+			Personagens::GolemGelo* getDono() const;
 		};
 	}
 }
