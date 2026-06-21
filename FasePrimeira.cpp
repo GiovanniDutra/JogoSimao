@@ -106,5 +106,8 @@ namespace TrabalhoJogo {
 				}
 			}
 		}
+		bool FasePrimeira::jogadorVivo() const {
+			return pJog1 && pJog1->estarVivo();
+		}
 	}
 }

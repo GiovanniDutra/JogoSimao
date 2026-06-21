@@ -37,6 +37,8 @@ namespace TrabalhoJogo {
 			~Fase();
 			
 			virtual void executar();
+			virtual bool jogadorVivo() const = 0;
+
 		protected:
 			void criarPinguins(); //Criar Inimigos Faceis
 			void criarPlataformas();

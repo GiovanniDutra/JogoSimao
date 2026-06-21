@@ -10,6 +10,7 @@ namespace TrabalhoJogo {
 
 	Jogo::Jogo() :
 		pGG(NULL),
+		estado(EstadoJogo::JOGANDO),
 		faseAtual(NULL)
 	{
 		srand((unsigned int)time(NULL));
@@ -35,14 +36,39 @@ namespace TrabalhoJogo {
 		else
 			faseAtual = new Fases::FaseSegunda();
 
+		estado = EstadoJogo::JOGANDO;
+
 		while (pGG->janelaAberta()) {
-			pGG->tratarEventos();
+
+			sf::Event event;
+			while (pGG->getJanela().pollEvent(event)) {
+				if (event.type == sf::Event::Closed)
+					pGG->fecharJanela();
+
+				if (event.type == sf::Event::KeyPressed &&
+					event.key.code == sf::Keyboard::Escape) {
+
+					estado = (estado == EstadoJogo::JOGANDO)
+						? EstadoJogo::PAUSADO
+						: EstadoJogo::JOGANDO;
+				}
+			}
+
 			pGG->limpar();
 
-			faseAtual->executar();
+			if (estado == EstadoJogo::JOGANDO) {
+				faseAtual->executar();
+			}
+			else if (estado == EstadoJogo::PAUSADO) {
+		
+				menu.desenharPausa(pGG->getJanela());
+			}
+			else if (estado == EstadoJogo::MORREU) {
+				menu.executarGameOver();
+			}
 
 			pGG->mostrar();
-		
 		}
+
 	}
 }

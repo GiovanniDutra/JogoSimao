@@ -12,6 +12,12 @@
 
 namespace TrabalhoJogo {
 
+	enum EstadoJogo {
+		JOGANDO,
+		PAUSADO,
+		MORREU
+	};
+
 	class Jogo
 	{
 	private:
@@ -20,6 +26,12 @@ namespace TrabalhoJogo {
 		Fases::Fase* faseAtual;
 
 		sf::RenderWindow window;
+		sf::Event event;
+
+		EstadoJogo estado;
+
+		
+		void desenharTelaMorte();
 
 	public:
 		Jogo();

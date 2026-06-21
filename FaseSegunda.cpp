@@ -6,6 +6,7 @@
 #include <iostream>
 #include "GerenciadorGrafico.h"
 #include "Projetil.h"
+#include "Jogo.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
@@ -137,6 +138,9 @@ namespace TrabalhoJogo {
 					}
 				}
 			}
+		}
+		bool FaseSegunda::jogadorVivo() const {
+			return pJog1 && pJog1->estarVivo();
 		}
 	}
 }

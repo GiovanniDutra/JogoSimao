@@ -5,6 +5,7 @@
 #include "Pinguim.h"
 #include "GerenciadorGrafico.h"
 #include <iostream>
+#include "Menu.h"
 
 namespace TrabalhoJogo {
 	namespace Fases {
@@ -35,8 +36,9 @@ namespace TrabalhoJogo {
 
 			listaEnts.desenhar();
 
-			if (pJog1 && pJog1->getNumVidas() <= 0)
-			{
+			if (!jogadorVivo()) {
+				Menu menuMorte;
+				menuMorte.executarGameOver();
 				pGG->fecharJanela();
 			}
 		}

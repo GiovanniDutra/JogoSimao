@@ -15,6 +15,8 @@ namespace TrabalhoJogo {
 			FasePrimeira();
 			~FasePrimeira();
 
+			virtual bool jogadorVivo() const;
+
 		protected:
 			virtual void criarInimigos();
 			virtual void criarObstaculos();

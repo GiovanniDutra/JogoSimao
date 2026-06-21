@@ -27,6 +27,8 @@ namespace TrabalhoJogo {
 		public:
 			FaseSegunda();
 			~FaseSegunda();
+			virtual bool jogadorVivo() const;
+
 		protected:	
 			void criarInimigos();
 			void criarObstaculos();
