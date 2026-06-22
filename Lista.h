@@ -92,7 +92,7 @@ namespace TrabalhoJogo {
 				tamanho = 0;
 			}
 
-			int getTamanho() {
+			int getTamanho() const{
 				return tamanho;
 			}
 

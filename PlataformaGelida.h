@@ -18,6 +18,7 @@ namespace TrabalhoJogo {
 				int direcaoEscorregamento;
 
 				int baseY;
+				int empuxo;
 			public:
 				PlataformaGelida();
 				PlataformaGelida(int x, int y, float largura, float altura); //Sobrecarga para facilitar a criação

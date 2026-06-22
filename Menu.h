@@ -49,9 +49,9 @@ namespace TrabalhoJogo{
         Menu();
         ~Menu();
         void executar();
-        void executarGameOver();
+        //void executarGameOver();
+        void desenharTelaVitoria(sf::RenderWindow& window);
         void desenharPausa(sf::RenderWindow& window);
-        int getOpcaoEscolhida() const;
         bool deveIniciarJogo() const;
         bool pausado = false;
         int getFaseEscolhida() const;

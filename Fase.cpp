@@ -12,7 +12,10 @@ namespace TrabalhoJogo {
 		Fase::Fase() : Ente(), 
 			pGC(new Gerenciadores::GerenciadorColisoes()),
 			pJog1(NULL), limiteChao(900),
-			maxPinguins(10), maxPlataformas(10)
+			maxPinguins(10), 
+			maxPlataformas(10),
+			inimigosVivos(0),
+			faseConcluida(false)
 		{
 			if (pGC != NULL) {
 				pGC->setLimiteChao(limiteChao);
@@ -38,8 +41,12 @@ namespace TrabalhoJogo {
 
 			if (!jogadorVivo()) {
 				Menu menuMorte;
-				menuMorte.executarGameOver();
+				//menuMorte.executarGameOver();
 				pGG->fecharJanela();
+			}
+			if (listaEnts.contarInimigosVivos() == 0)
+			{
+				faseConcluida = true;
 			}
 		}
 
@@ -132,6 +139,9 @@ namespace TrabalhoJogo {
 			}
 
 			return minimo + rand() % (maximo - minimo + 1);
+		}
+		bool Fase::acabou() const {
+			return faseConcluida;
 		}
 	}
 }

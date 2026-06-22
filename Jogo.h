@@ -15,7 +15,8 @@ namespace TrabalhoJogo {
 	enum EstadoJogo {
 		JOGANDO,
 		PAUSADO,
-		MORREU
+		MORREU,
+		VITORIA
 	};
 
 	class Jogo
@@ -30,8 +31,6 @@ namespace TrabalhoJogo {
 
 		EstadoJogo estado;
 
-		
-		void desenharTelaMorte();
 
 	public:
 		Jogo();

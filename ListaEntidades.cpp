@@ -1,6 +1,7 @@
 #include "ListaEntidades.h"
 #include "Entidade.h"
 #include "Personagem.h"
+#include "Inimigo.h"
 
 namespace TrabalhoJogo {
 	namespace Listas {
@@ -47,6 +48,26 @@ namespace TrabalhoJogo {
 			}
 
 			LEs.limpar();
+		}
+		int ListaEntidades::contarInimigosVivos() const {
+
+			int vivos = 0;
+			int tamanho = LEs.getTamanho();
+
+			for (int i = 0; i < tamanho; i++) {
+
+				Entidades::Entidade* ent = LEs[i];
+				if (!ent) continue;
+
+				auto inimigo =
+					dynamic_cast<TrabalhoJogo::Entidades::Personagens::Inimigo*>(ent);
+
+				if (inimigo && inimigo->estarVivo()) {
+					vivos++;
+				}
+			}
+
+			return vivos;
 		}
 	}
 }

@@ -142,7 +142,7 @@ namespace TrabalhoJogo{
         window.draw(texto);
     }
 
-    void Menu::executarGameOver() {
+    /*void Menu::executarGameOver() {
         sf::RenderWindow& janela = pGG->getJanela();
 
         while (janela.isOpen()) {
@@ -160,6 +160,37 @@ namespace TrabalhoJogo{
             // desenhar "GAME OVER"
             janela.display();
         }
+    }*/
+
+    void Menu::desenharTelaVitoria(sf::RenderWindow& window) {
+
+        sf::RectangleShape fundo(sf::Vector2f(window.getSize()));
+        fundo.setFillColor(sf::Color(0, 0, 0, 200));
+
+        static sf::Font font;
+        static bool loaded = false;
+
+        if (!loaded) {
+            font.loadFromFile("assets/ethn.otf");
+            loaded = true;
+        }
+
+        sf::Text texto;
+        texto.setFont(font);
+        texto.setString("VOCE VENCEU!");
+        texto.setCharacterSize(80);
+        texto.setFillColor(sf::Color::Yellow);
+
+        sf::Vector2u tamanho = window.getSize();
+        sf::FloatRect bounds = texto.getLocalBounds();
+
+        texto.setPosition(
+            (tamanho.x - bounds.width) / 2.f,
+            (tamanho.y - bounds.height) / 2.f
+        );
+
+        window.draw(fundo);
+        window.draw(texto);
     }
 
     void Menu::draw_all() {

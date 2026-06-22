@@ -148,7 +148,7 @@ namespace TrabalhoJogo {
 				invuneravel = true;
 				tempInvuneravel = 60;
 
-				body.setFillColor(sf::Color::Yellow);
+				body.setFillColor(sf::Color::Red);
 			}
 
 			int Jogador::getNumVidas() const {

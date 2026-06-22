@@ -19,7 +19,7 @@ namespace TrabalhoJogo {
 
 			bool ativo;
 
-			ostream buffer; //Falta Implementar
+			//ostream buffer; //Falta Implementar
 		public:
 			Entidade();
 			virtual ~Entidade();

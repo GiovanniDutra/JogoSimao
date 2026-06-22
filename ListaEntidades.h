@@ -23,6 +23,7 @@ namespace TrabalhoJogo {
 			void percorrer();
 			void desenhar();
 			void limpar();
+			int contarInimigosVivos() const;
 		};
 	}
 }

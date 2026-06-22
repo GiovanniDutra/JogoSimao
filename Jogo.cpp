@@ -57,14 +57,34 @@ namespace TrabalhoJogo {
 			pGG->limpar();
 
 			if (estado == EstadoJogo::JOGANDO) {
-				faseAtual->executar();
+				if (faseAtual) {
+					faseAtual->executar();
+
+					
+					if (faseAtual->acabou()) {
+
+						delete faseAtual;
+						faseAtual = nullptr;
+
+						if (menu.getFaseEscolhida() == 1) {
+							faseAtual = new Fases::FaseSegunda();
+						}
+						else {
+							estado = EstadoJogo::VITORIA;
+						}
+					}
+				}
 			}
 			else if (estado == EstadoJogo::PAUSADO) {
 		
 				menu.desenharPausa(pGG->getJanela());
 			}
 			else if (estado == EstadoJogo::MORREU) {
-				menu.executarGameOver();
+				//menu.executarGameOver();
+			}
+			else if (estado == EstadoJogo::VITORIA)
+			{
+				menu.desenharTelaVitoria(pGG->getJanela());
 			}
 
 			pGG->mostrar();
