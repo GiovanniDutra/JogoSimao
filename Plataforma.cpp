@@ -21,11 +21,10 @@ namespace TrabalhoJogo {
 				setPosicao(0, baseY);
 			}
 
-			Plataforma::Plataforma(int x, int y, int largura, int altura) :
+			Plataforma::Plataforma(int x, int y, int largura, int alt) :
 				Obstaculo(),
-				altura(altura),
+				altura(alt),
 				baseY(y)
-
 			{
 				danoso = false;
 
@@ -43,7 +42,10 @@ namespace TrabalhoJogo {
 
 			Plataforma::~Plataforma(){}
 
-			void Plataforma::executar() {}
+			void Plataforma::executar() {
+				aplicarGravidade();
+				aplicarEmpuxo();
+			}
 
 			void Plataforma::obstaculizar(Personagens::Jogador* pJogador) {
 				if (pJogador == 0) {
@@ -71,11 +73,15 @@ namespace TrabalhoJogo {
 				salvarDataBuffer();
 			}
 
-			void Plataforma::aplicarGravidade() {
+			void Plataforma::aplicarEmpuxo() {
 				Entidade::aplicarGravidade();
 
+				int forcaEmpuxo = getY() - baseY;
+
+				setPosicao(getX(), getY() - forcaEmpuxo);
+
 				zerarVelocidadeY();
-				setPosicao(getX(), baseY);
+				setNoChao(true);
 			}
 		}
 	}

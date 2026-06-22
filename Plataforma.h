@@ -21,7 +21,7 @@ namespace TrabalhoJogo {
 				void obstaculizar(Personagens::Jogador* pJogador);
 				void salvar();
 
-				virtual void aplicarGravidade();
+				virtual void aplicarEmpuxo();
 			};
 		}
 	}

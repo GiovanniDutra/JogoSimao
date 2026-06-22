@@ -4,6 +4,10 @@
 
 #include "SFML/Graphics.hpp"
 
+#include <iostream>
+#include <stdexcept>
+#include <string>
+
 namespace TrabalhoJogo {
 
 	Gerenciadores::GerenciadorGrafico* Ente::pGG = NULL;
@@ -32,12 +36,22 @@ namespace TrabalhoJogo {
 	}
 
 	bool Ente::carregarTextura(const char* caminho) {
-		if (!texturaEntidade.loadFromFile(caminho)) {
+		try {
+			if (caminho == NULL) {
+				throw std::runtime_error("Caminho da textura nulo.");
+			}
+
+			if (!texturaEntidade.loadFromFile(caminho)) {
+				throw std::runtime_error(std::string("Erro ao carregar textura: ") + caminho);
+			}
+
+			body.setTexture(&texturaEntidade);
+
+			return true;
+		}
+		catch (const std::exception& erro) {
+			std::cout << erro.what() << std::endl;
 			return false;
 		}
-
-		body.setTexture(&texturaEntidade);
-
-		return true;
 	}
 }

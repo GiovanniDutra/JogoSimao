@@ -10,7 +10,8 @@ namespace TrabalhoJogo {
 				altura(25.0f),
 				escorregamento(3),
 				direcaoEscorregamento(1),
-				baseY(0)
+				baseY(0),
+				empuxo(1.0f)
 			{
 				danoso = false;
 
@@ -31,7 +32,8 @@ namespace TrabalhoJogo {
 				altura(altura),
 				escorregamento(3),
 				direcaoEscorregamento(1),
-				baseY(y)
+				baseY(y),
+				empuxo(1.0f)
 			{
 				danoso = false;
 
@@ -48,7 +50,10 @@ namespace TrabalhoJogo {
 
 			PlataformaGelida::~PlataformaGelida() {} 
 
-			void PlataformaGelida::executar() {}
+			void PlataformaGelida::executar() {
+				aplicarGravidade();
+				aplicarEmpuxo();
+			}
 
 			void PlataformaGelida::obstaculizar(Personagens::Jogador* pJogador) {
 				if (pJogador == NULL)
@@ -72,10 +77,15 @@ namespace TrabalhoJogo {
 
 			void PlataformaGelida::salvar() {} //Falta implementar
 
-			void PlataformaGelida::aplicarGravidade() {
+			void PlataformaGelida::aplicarEmpuxo() {
 				Entidade::aplicarGravidade();
+
+				int forcaEmpuxo = getY() - baseY;
+
+				setPosicao(getX(), getY() - forcaEmpuxo);
+
 				zerarVelocidadeY();
-				setPosicao(getX(), baseY);
+				setNoChao(true);;
 			}
 		}
 	}

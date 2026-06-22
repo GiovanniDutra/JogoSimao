@@ -20,9 +20,11 @@ namespace TrabalhoJogo {
 				int limEsq;
 				int limDir;
 
-				short int forca;
+				short int socoGlacial;
 
 				bool jaAtirou;
+
+				int contadorMovimento;
 
 				Projetil* pProjetil;
 				Jogador* pAlvo;

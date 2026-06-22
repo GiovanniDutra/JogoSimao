@@ -9,18 +9,19 @@ namespace TrabalhoJogo {
 		namespace Personagens {
 			GolemGelo::GolemGelo() :
 				Inimigo(),
-				forca(5),
+				socoGlacial(5),
 				direcao(1),
 				limEsq(0),
 				limDir(0),
 				jaAtirou(false),
 				pProjetil(NULL),
-				pAlvo(NULL)
+				pAlvo(NULL),
+				contadorMovimento(0)
 			{
 				nivelMaldade = 3;
-				num_vidas = 5;
+				num_vidas = 10;
 
-				body.setSize(sf::Vector2f(150.f, 150.f));
+				body.setSize(sf::Vector2f(90.f, 100.f));
 				body.setFillColor(sf::Color::Cyan);
 
 				if (!carregarTextura("assets/GolemGelo.png")) {
@@ -32,18 +33,19 @@ namespace TrabalhoJogo {
 
 			GolemGelo::GolemGelo(int x, int y, int lE, int lD) :
 				Inimigo(),
-				forca(5),
+				socoGlacial(5),
 				direcao(1),
 				limEsq(lE),
 				limDir(lD),
 				jaAtirou(false),
 				pProjetil(NULL),
-				pAlvo(NULL)
+				pAlvo(NULL),
+				contadorMovimento(0)
 			{
 				nivelMaldade = 3;
 				num_vidas = 5;
 
-				body.setSize(sf::Vector2f(150.f, 150.f));
+				body.setSize(sf::Vector2f(90.f, 100.f));
 				body.setFillColor(sf::Color::Cyan);
 
 				if (!carregarTextura("assets/GolemGelo.png")) {
@@ -60,20 +62,53 @@ namespace TrabalhoJogo {
 			}
 
 			void GolemGelo::mover() {
-				const int velocidade = 1;
+				const int tempoPreparacao = 40;
+				const int tempoInvestida = 35;
+				const int velocidadePreparacao = 1;
+				const int velocidadeInvestida = 7;
 
-				int novoX = getX() + velocidade * direcao;
+				contadorMovimento++;
 
-				if (novoX < limEsq) {
+				if (contadorMovimento == 1 && pAlvo != NULL)
+				{
+					if (pAlvo->getX() < getX())
+					{
+						direcao = -1;
+					}
+					else
+					{
+						direcao = 1;
+					}
+				}
+
+				int velocidadeAtual = velocidadePreparacao;
+
+				if (contadorMovimento > tempoPreparacao)
+				{
+					velocidadeAtual = velocidadeInvestida;
+				}
+
+				int novoX = getX() + velocidadeAtual * direcao;
+
+				if (novoX < limEsq)
+				{
 					novoX = limEsq;
 					direcao = 1;
+					contadorMovimento = 0;
 				}
-				else if (novoX > limDir) {
+				else if (novoX > limDir)
+				{
 					novoX = limDir;
 					direcao = -1;
+					contadorMovimento = 0;
 				}
 
 				setPosicao(novoX, getY());
+
+				if (contadorMovimento >= tempoPreparacao + tempoInvestida)
+				{
+					contadorMovimento = 0;
+				}
 			}
 
 			void GolemGelo::executar()
@@ -86,19 +121,19 @@ namespace TrabalhoJogo {
 				}
 			}
 
-			void GolemGelo::danificar(Jogador* p)
+			void GolemGelo::danificar(Jogador* pJogador)
 			{
-				if (p != NULL) {
-					int dano = nivelMaldade * forca;
-
-					if (dano < 1) {
-						dano = 1;
-					}
-
-					p->colidir(this);
-					p->receberDano(dano);
-
+				if (pJogador == NULL) {
+					return;
 				}
+
+				if (!estaAtivo()) {
+					return;
+				}
+
+				int dano = socoGlacial * nivelMaldade;
+
+				pJogador->receberDano(dano);
 			}
 			void GolemGelo::salvar()
 			{
@@ -122,19 +157,25 @@ namespace TrabalhoJogo {
 					return;
 				}
 
-				sf::Vector2f posicao((float)getX(), (float)getY());
+				sf::Vector2f posicao;
+				posicao.x = (float)getX();
+				posicao.y = (float)getY();
+
+				float dx = (float)(pAlvo->getX() - getX());
+				float dy = (float)(pAlvo->getY() - getY());
+
+				float modulo = sqrt(dx * dx + dy * dy);
+
 				sf::Vector2f direcao;
 
-				if (pAlvo->getX() < getX())
-				{
-					direcao.x = -1.0f;
+				if (modulo != 0.0f) {
+					direcao.x = dx / modulo;
+					direcao.y = dy / modulo;
 				}
-				else
-				{
+				else {
 					direcao.x = 1.0f;
+					direcao.y = 0.0f;
 				}
-
-				direcao.y = 0.0f;
 
 				pProjetil->prepararDisparo(posicao, direcao);
 

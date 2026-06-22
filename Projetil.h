@@ -19,7 +19,6 @@ namespace TrabalhoJogo {
 			float velocidade;
 			int dano;
 
-			float velocidadeProjetil;
 			float empuxo;
 
 			sf::Vector2f direcao;
@@ -39,6 +38,8 @@ namespace TrabalhoJogo {
 			void desativar();
 			
 			int getDano() const;
+
+			void normalizarDirecao();
 
 			void setDono(Personagens::GolemGelo* pGolem);
 			Personagens::GolemGelo* getDono() const;

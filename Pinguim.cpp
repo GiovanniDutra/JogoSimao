@@ -13,9 +13,9 @@ namespace TrabalhoJogo {
 				limDir(400)
 			{
 				nivelMaldade = 1;
-				num_vidas = 1;
+				num_vidas = 2;
 
-				body.setSize(sf::Vector2f(50.f, 40.f));
+				body.setSize(sf::Vector2f(40.f, 30.f));
 
 				body.setFillColor(sf::Color::White);
 
@@ -35,7 +35,7 @@ namespace TrabalhoJogo {
 			{
 				nivelMaldade = 1;
 				num_vidas = 1;
-				body.setSize(sf::Vector2f(50.f, 40.f));
+				body.setSize(sf::Vector2f(40.f, 30.f));
 
 				body.setFillColor(sf::Color::White);
 

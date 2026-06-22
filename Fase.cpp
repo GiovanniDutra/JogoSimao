@@ -80,7 +80,7 @@ namespace TrabalhoJogo {
 			int quantidade = gerarQuantidadeAleatoria(maxPlataformas);
 
 			int posicoes[10][4] = { //X, Y, Largura, Altura
-			{80,   820, 300, 45},
+			{80,   800, 300, 45},
 			{440,  700, 300, 45},
 			{820,  560, 300, 45},
 			{1200, 720, 300, 45},

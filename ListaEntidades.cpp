@@ -12,7 +12,7 @@ namespace TrabalhoJogo {
 
 		void ListaEntidades::incluir(Entidades::Entidade* pE) {
 			if (pE != NULL) {
-				LEs.incluir(pE);
+				LEs += pE;
 			}
 		}
 

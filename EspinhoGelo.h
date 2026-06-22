@@ -18,11 +18,18 @@ namespace TrabalhoJogo {
 			{
 			private:
 				short int danosidade;
-				float largura;
-				float altura;
+				
+				bool fixado;
+				bool aparecendo;
 
-				int baseY;
+				int contTempo;
+				int tempoAlternancia;
 
+				int posFixaX;
+				int posFixaY;
+
+				sf::FloatRect getAreaDano() const;
+				int getDanosidade() const;
 			public:
 				EspinhoGelo();
 				EspinhoGelo(int x, int y, float largura, float altura);
@@ -32,6 +39,10 @@ namespace TrabalhoJogo {
 				void salvar();
 				void obstaculizar(Personagens::Jogador* pJogador);
 				void salvarDataBuffer();
+
+				void fixarCenario();
+				bool estaFixado() const;
+				bool estaAparecendo() const;
 			};
 		}
 	}

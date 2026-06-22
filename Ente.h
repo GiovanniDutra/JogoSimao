@@ -6,9 +6,6 @@
 #include "SFML/Graphics.hpp"
 
 namespace TrabalhoJogo {
-	
-	class Figura;
-
 	namespace Gerenciadores {
 		class GerenciadorGrafico;
 	}

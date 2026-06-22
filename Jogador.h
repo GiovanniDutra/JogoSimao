@@ -21,10 +21,14 @@ namespace TrabalhoJogo {
 
 				bool atacando;
 				int tempoAtacando;
+
 				int duracaoAtaque;
+				bool danoAplicadoNoAtaque;
+
 				int intervaloAtaqueCont;
 				int intervaloAtaque;
 				int forca;
+
 				int direcao;
 
 				void pular();
@@ -53,6 +57,9 @@ namespace TrabalhoJogo {
 				int getForcaAtaque() const;
 				int getDirecaoAtaque() const;
 				sf::FloatRect getAreaAtaque() const;
+
+				bool podeCausarDano() const;
+				void marcarDanoAplicado();
 			};
 		}
 	}

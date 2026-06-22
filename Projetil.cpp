@@ -1,6 +1,8 @@
 #include "Projetil.h"
 #include "GolemGelo.h"
 
+#include <cmath>
+
 namespace TrabalhoJogo {
 	namespace Entidades {
 
@@ -45,6 +47,7 @@ namespace TrabalhoJogo {
 
 			setPosicao((int)posicao.x, (int)posicao.y);
 
+			normalizarDirecao();
 		}
 
 		Projetil::~Projetil() {
@@ -56,6 +59,7 @@ namespace TrabalhoJogo {
 			Entidade::ativar();
 
 			direcao = sentido;
+			normalizarDirecao();
 
 			zerarVelocidadeY();
 			
@@ -67,9 +71,10 @@ namespace TrabalhoJogo {
 				return;
 			}
 
+			mover();
+
 			int yAntes = getY();
 
-			mover();
 			aplicarGravidade();
 
 			int queda = getY() - yAntes;
@@ -87,10 +92,10 @@ namespace TrabalhoJogo {
 			if (!ativo) {
 				return;
 			}
-			
+
 			setPosicao(
 				getX() + (int)(direcao.x * velocidade),
-				getY()
+				getY() + (int)(direcao.y * velocidade)
 			);
 		}
 
@@ -111,6 +116,21 @@ namespace TrabalhoJogo {
 
 		Personagens::GolemGelo* Projetil::getDono() const {
 			return pDono;
+		}
+
+		void Projetil::normalizarDirecao() {
+			float modulo = sqrt(direcao.x * direcao.x + direcao.y * direcao.y);
+
+			if (modulo != 0.0f)
+			{
+				direcao.x = direcao.x / modulo;
+				direcao.y = direcao.y / modulo;
+			}
+			else
+			{
+				direcao.x = 1.0f;
+				direcao.y = 0.0f;
+			}
 		}
 	}
 }

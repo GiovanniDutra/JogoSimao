@@ -18,7 +18,7 @@ namespace TrabalhoJogo {
 				contadorPulo(0)
 			{
 				nivelMaldade = 2;
-				num_vidas = 2;
+				num_vidas = 4;
 
 				body.setSize(sf::Vector2f(50.f, 40.f));
 

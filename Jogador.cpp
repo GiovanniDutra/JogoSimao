@@ -18,8 +18,9 @@ namespace TrabalhoJogo {
 				duracaoAtaque(12),
 				intervaloAtaqueCont(0),
 				intervaloAtaque(18),
-				forca(1),
-				direcao(1)
+				forca(2),
+				direcao(1),
+				danoAplicadoNoAtaque(false)
 			{
 				num_vidas = 100;
 
@@ -166,8 +167,7 @@ namespace TrabalhoJogo {
 				atacando = true;
 				tempoAtacando = duracaoAtaque;
 				intervaloAtaqueCont = intervaloAtaque;
-
-				std::cout << "[DEBUG] Jogador::atacar() acionado. Forca = " << forca << "Duracao = " << duracaoAtaque << " Intervalo = " << std::endl;
+				danoAplicadoNoAtaque = false;
 			}
 
 			bool Jogador::estaAtacando() const {
@@ -205,6 +205,14 @@ namespace TrabalhoJogo {
 					larguraAtaque,
 					alturaAtaque
 				);
+			}
+
+			bool Jogador::podeCausarDano() const {
+				return atacando && !danoAplicadoNoAtaque;
+			}
+
+			void Jogador::marcarDanoAplicado() {
+				danoAplicadoNoAtaque = true;
 			}
 		}
 	}

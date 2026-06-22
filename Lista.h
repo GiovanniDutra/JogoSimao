@@ -73,6 +73,10 @@ namespace TrabalhoJogo {
 				tamanho++;
 			}
 
+			void operator+=(TL* pI) {
+				incluir(pI);
+			}
+
 			void limpar() {
 				Elemento<TL>* pAtual = pPrimeiro;
 				Elemento<TL>* pProx = NULL;
