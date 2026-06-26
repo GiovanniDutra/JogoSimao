@@ -55,3 +55,7 @@ namespace TrabalhoJogo {
 		}
 	}
 }
+
+// imagens pegas e geradas atraves dos sites:
+// https://www.gratispng.com/
+// https://chatgpt.com/c/6a32055d-4488-83e9-95c7-6b9d50bb2959

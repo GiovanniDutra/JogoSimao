@@ -193,6 +193,7 @@ namespace TrabalhoJogo{
         window.draw(texto);
     }
 
+
     void Menu::draw_all() {
         window->clear();
         window->draw(*bg);
@@ -311,3 +312,8 @@ namespace TrabalhoJogo{
         return numJogadores;
     }
 }
+
+
+// Código adaptado de:
+// https://github.com/terroo/menu-sfml
+// Modificado para atender os requisitos do trabalho e nossas especificações
